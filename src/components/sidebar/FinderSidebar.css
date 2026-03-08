@@ -9,8 +9,8 @@
 .finder-sidebar {
   --finder-width: 200px;
   --finder-collapsed-width: 52px;
-  --finder-radius: 10px;
-  --finder-item-radius: 8px;
+  --finder-radius: 6px;
+  --finder-item-radius: 5px;
   --finder-blur: blur(40px) saturate(150%) brightness(1.05);
 
   /* 访达风格背景色 - 更纯净的白色 */
