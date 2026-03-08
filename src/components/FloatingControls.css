@@ -151,7 +151,7 @@
   visibility: hidden;
   pointer-events: none;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  margin-left: 140px; /* 展开时在侧边栏右侧（200px - 60px 间距） */
+  margin-left: 88px; /* 展开时在侧边栏内部右侧 */
 }
 
 .floating-toggle-btn.visible {
