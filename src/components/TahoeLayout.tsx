@@ -137,9 +137,8 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
             activeId={activeNavId}
             onSelect={handleNavSelect}
             config={sidebarConfig}
+            collapsed={isSidebarCollapsed}
             onCollapsedChange={setIsSidebarCollapsed}
-            syncStatus="synced"
-            user={{ name: 'sutie' }}
           />
         );
       case 'classic':

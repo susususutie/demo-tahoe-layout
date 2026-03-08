@@ -586,13 +586,31 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
   syncStatus: _syncStatus,
   user: _user,
   windowControls,
+  collapsed: controlledCollapsed,
 }) => {
   const {
     defaultCollapsed = false,
     showToggle = true,
   } = config;
 
-  const [isCollapsed, setIsCollapsed] = useState(defaultCollapsed);
+  // 内部状态（非受控模式）
+  const [internalCollapsed, setInternalCollapsed] = useState(defaultCollapsed);
+
+  // 判断是否使用受控模式
+  const isControlled = controlledCollapsed !== undefined;
+  const isCollapsed = isControlled ? controlledCollapsed : internalCollapsed;
+
+  const setIsCollapsed = (value: boolean | ((prev: boolean) => boolean)) => {
+    if (isControlled) {
+      // 受控模式：只通知父组件
+      const newValue = typeof value === 'function' ? value(controlledCollapsed!) : value;
+      onCollapsedChange?.(newValue);
+    } else {
+      // 非受控模式：更新内部状态
+      setInternalCollapsed(value);
+    }
+  };
+
   const [isScrolled, setIsScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
@@ -609,10 +627,12 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     return () => navEl.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // 通知父组件收起状态变化
+  // 通知父组件收起状态变化（非受控模式）
   useEffect(() => {
-    onCollapsedChange?.(isCollapsed);
-  }, [isCollapsed, onCollapsedChange]);
+    if (!isControlled) {
+      onCollapsedChange?.(isCollapsed);
+    }
+  }, [isCollapsed, onCollapsedChange, isControlled]);
 
   const handleToggle = () => {
     setIsCollapsed(!isCollapsed);

@@ -283,6 +283,8 @@ export interface SidebarProps {
   config?: SidebarConfig;
   /** 收起状态变化回调 */
   onCollapsedChange?: (collapsed: boolean) => void;
+  /** 外部控制收起状态（受控模式） */
+  collapsed?: boolean;
   /** 自定义内容（底部） */
   footer?: ReactNode;
   /** 同步状态（iCloud 风格） */
