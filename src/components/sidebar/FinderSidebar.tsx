@@ -186,8 +186,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
             aria-label="收起侧边栏"
             title="收起"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M8 8l8 8M16 8l-8 8" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6l-12 12" />
             </svg>
           </button>
           <button
