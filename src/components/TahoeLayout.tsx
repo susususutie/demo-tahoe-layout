@@ -81,6 +81,10 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
               <span className="tahoe-nav-label">Folder {i + 1}</span>
             </button>
           ))}
+          {/* Custom sidebar content */}
+          {sidebarContent && (
+            <div className="tahoe-sidebar-custom">{sidebarContent}</div>
+          )}
         </nav>
         <div
           className={`tahoe-sidebar-vignette bottom ${sidebarScrolled ? 'visible' : ''}`}
