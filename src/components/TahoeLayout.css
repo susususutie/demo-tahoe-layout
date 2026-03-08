@@ -182,7 +182,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  padding-left: 100px; /* 留出空间避让三色按钮和展开按钮 */
+  padding-left: 120px; /* 留出空间避让三色按钮和展开按钮 */
   min-height: var(--tahoe-header-height);
   background: var(--tahoe-bg-header);
   backdrop-filter: var(--tahoe-blur);
