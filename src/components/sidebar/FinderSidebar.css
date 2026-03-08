@@ -67,12 +67,12 @@
    ============================ */
 .finder-sidebar {
   width: var(--finder-width);
-  height: calc(100% - 16px);
+  height: calc(100vh - 16px);
   display: flex;
   flex-direction: column;
-  position: absolute;
-  left: 8px;
-  top: 8px;
+  position: relative;
+  margin: 8px;
+  margin-right: 0;
   border-radius: var(--finder-radius);
   background: var(--finder-bg);
   backdrop-filter: var(--finder-blur);
@@ -82,22 +82,14 @@
     inset 0 0 0 1px var(--finder-border-highlight),
     0 4px 24px rgba(0, 0, 0, 0.08);
   z-index: 100;
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0s;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
-/* 收起状态：向左滑出并隐藏 */
+/* 收起状态：宽度变为收起宽度 */
 .finder-sidebar.collapsed {
-  transform: translateX(calc(-100% - 16px));
-  opacity: 0;
-  visibility: hidden;
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0s 0.3s;
+  width: var(--finder-collapsed-width);
 }
 
 /* ============================
