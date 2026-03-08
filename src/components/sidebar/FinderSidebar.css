@@ -549,9 +549,9 @@
 
 /* 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格） */
 .finder-nav-icon.finder-colored-rect {
-  width: 24px;
-  height: 24px;
-  border-radius: 6px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -559,8 +559,8 @@
 }
 
 .finder-nav-icon.finder-colored-rect svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   color: white;
 }
 
