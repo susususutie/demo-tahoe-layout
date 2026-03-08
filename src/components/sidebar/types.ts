@@ -240,6 +240,10 @@ export interface NavSection {
   items: NavItem[];
   /** 选中时是否高亮显示（深色背景+蓝色文字） */
   highlightOnSelect?: boolean;
+  /** 是否显示展开/收起图标，默认为 true */
+  collapsible?: boolean;
+  /** 默认展开状态，默认为 true。当 collapsible 为 false 时，始终展开 */
+  defaultExpanded?: boolean;
 }
 
 /** iCloud 同步状态 */

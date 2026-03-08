@@ -62,9 +62,20 @@ const getDefaultNavSections = (): NavSection[] => [
       { id: 'trash', iconName: 'trash', label: '废纸篓', activeColor: 'macos' },
     ],
   },
+  // 示例：不显示分组名称，只有空白间隔
+  {
+    id: 'spacer',
+    // title 不传，显示空白间隔
+    items: [
+      { id: 'divider1', iconName: 'icloud', label: '云端', activeColor: 'macos' },
+      { id: 'divider2', iconName: 'wifi', label: '网络', activeColor: 'macos' },
+    ],
+  },
+  // 示例：不可折叠的分组，始终展开
   {
     id: 'shortcuts',
-    title: '快捷方式',
+    title: '快捷方式（不可折叠）',
+    collapsible: false, // 不显示展开/收起按钮，始终展开
     items: [
       { id: 'star', iconName: 'star', label: '收藏', activeColor: 'macos' },
       { id: 'heart', iconName: 'heart', label: '喜欢', activeColor: 'macos' },

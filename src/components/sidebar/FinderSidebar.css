@@ -419,6 +419,7 @@
   justify-content: space-between;
   padding: 6px 8px 4px 12px;
   cursor: default;
+  min-height: 24px; /* 确保无标题时仍有高度 */
 }
 
 .finder-section-header:hover .finder-section-toggle {
@@ -433,6 +434,11 @@
   letter-spacing: 0.03em;
   margin: 0;
   user-select: none;
+}
+
+/* 标题占位符 - 无标题时保持间距 */
+.finder-section-title-placeholder {
+  flex: 1;
 }
 
 /* 展开/收起按钮 */

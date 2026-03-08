@@ -525,7 +525,13 @@ const NavSectionComponent: React.FC<{
   isCollapsed: boolean;
   onSelect: (id: string) => void;
 }> = ({ section, activeId, isCollapsed, onSelect }) => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  // collapsible 默认为 true，defaultExpanded 默认为 true
+  const collapsible = section.collapsible !== false;
+  const defaultExpanded = section.defaultExpanded !== false;
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
+
+  // 不可折叠时强制展开
+  const effectiveExpanded = collapsible ? isExpanded : true;
 
   if (isCollapsed) {
     // 收起状态只显示图标，不显示分组标题
@@ -546,18 +552,24 @@ const NavSectionComponent: React.FC<{
   }
 
   return (
-    <div className={`finder-section ${isExpanded ? 'expanded' : 'collapsed'}`}>
-      {section.title && (
-        <div className="finder-section-header">
+    <div className={`finder-section ${effectiveExpanded ? 'expanded' : 'collapsed'}`}>
+      {/* 标题区域：始终渲染占位，保持间距 */}
+      <div className="finder-section-header">
+        {section.title ? (
           <h3 className="finder-section-title">{section.title}</h3>
+        ) : (
+          <span className="finder-section-title-placeholder" />
+        )}
+        {/* 仅当 collapsible 为 true 时显示展开/收起按钮 */}
+        {collapsible && (
           <button
             className="finder-section-toggle"
             onClick={() => setIsExpanded(!isExpanded)}
-            aria-label={isExpanded ? '收起分组' : '展开分组'}
-            title={isExpanded ? '收起' : '展开'}
+            aria-label={effectiveExpanded ? '收起分组' : '展开分组'}
+            title={effectiveExpanded ? '收起' : '展开'}
           >
             <svg
-              className={isExpanded ? 'expanded' : ''}
+              className={effectiveExpanded ? 'expanded' : ''}
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -568,8 +580,8 @@ const NavSectionComponent: React.FC<{
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </button>
-        </div>
-      )}
+        )}
+      </div>
       <div className="finder-section-items">
         {section.items.map((item) => (
           <NavItemComponent
