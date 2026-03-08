@@ -39,6 +39,16 @@ export interface SidebarConfig {
   collapsedWidth?: number;
 }
 
+/** 窗口控制按钮回调 */
+export interface WindowControlCallbacks {
+  /** 关闭按钮回调，不传则默认收起侧边栏 */
+  onClose?: () => void;
+  /** 最小化按钮回调，不传则默认收起侧边栏 */
+  onMinimize?: () => void;
+  /** 展开/最大化按钮回调，不传则默认展开侧边栏 */
+  onExpand?: () => void;
+}
+
 /** 侧边栏 Props */
 export interface SidebarProps {
   /** 导航分组数据 */
@@ -60,6 +70,8 @@ export interface SidebarProps {
     name: string;
     avatar?: ReactNode;
   };
+  /** 窗口控制按钮回调 */
+  windowControls?: WindowControlCallbacks;
 }
 
 /** 侧边栏样式变体 */

@@ -139,6 +139,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
   footer,
   syncStatus,
   user,
+  windowControls,
 }) => {
   const {
     defaultCollapsed = false,
@@ -171,6 +172,31 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     setIsCollapsed(!isCollapsed);
   };
 
+  // 窗口控制按钮处理
+  const handleClose = () => {
+    if (windowControls?.onClose) {
+      windowControls.onClose();
+    } else {
+      handleToggle();
+    }
+  };
+
+  const handleMinimize = () => {
+    if (windowControls?.onMinimize) {
+      windowControls.onMinimize();
+    } else {
+      handleToggle();
+    }
+  };
+
+  const handleExpand = () => {
+    if (windowControls?.onExpand) {
+      windowControls.onExpand();
+    } else {
+      handleToggle();
+    }
+  };
+
   return (
     <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       {/* 顶部遮罩 */}
@@ -182,9 +208,9 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
         <div className="finder-window-controls">
           <button
             className="finder-window-btn finder-close-btn"
-            onClick={handleToggle}
-            aria-label="收起侧边栏"
-            title="收起"
+            onClick={handleClose}
+            aria-label="关闭"
+            title="关闭"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M6 6l12 12M18 6l-12 12" />
@@ -192,9 +218,9 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           </button>
           <button
             className="finder-window-btn finder-minimize-btn"
-            onClick={handleToggle}
-            aria-label="收起侧边栏"
-            title="收起"
+            onClick={handleMinimize}
+            aria-label="最小化"
+            title="最小化"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="5" y1="12" x2="19" y2="12" />
@@ -202,8 +228,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           </button>
           <button
             className="finder-window-btn finder-expand-btn"
-            onClick={handleToggle}
-            aria-label="展开侧边栏"
+            onClick={handleExpand}
+            aria-label="展开"
             title="展开"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
