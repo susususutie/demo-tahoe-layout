@@ -59,7 +59,6 @@ const getDefaultNavSections = (): NavSection[] => [
   {
     id: 'tags',
     title: '标签',
-    useItemColor: true,
     items: [
       { id: 'tag-red', icon: '●', label: '重要', color: '#ff3b30' },
       { id: 'tag-orange', icon: '●', label: '进行中', color: '#ff9500' },
