@@ -72,6 +72,9 @@ const NavItemComponent: React.FC<{
     ? { color: iconColor }
     : undefined;
 
+  // 是否使用 CSS 绘制的固定颜色圆点
+  const useFixedColorDot = item.iconType === 'fixed' && item.iconColor;
+
   return (
     <button
       className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''}`}
@@ -80,9 +83,13 @@ const NavItemComponent: React.FC<{
       title={isCollapsed ? item.label : undefined}
       style={textStyle}
       data-icon-type={item.iconType}
+      data-icon-color={item.iconColor}
     >
-      <span className="finder-nav-icon" style={iconStyle}>
-        {item.icon}
+      <span 
+        className={`finder-nav-icon ${useFixedColorDot ? 'finder-color-dot' : ''}`} 
+        style={iconStyle}
+      >
+        {useFixedColorDot ? '' : item.icon}
       </span>
       {!isCollapsed && (
         <>
