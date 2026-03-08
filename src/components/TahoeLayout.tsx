@@ -27,9 +27,10 @@ interface TahoeLayoutProps {
  * 示例导航数据 - 访达风格分组
  */
 const getDefaultNavSections = (): NavSection[] => [
+  // 应用程序分组：不显示标题和展开图标
   {
     id: 'apps',
-    title: '应用程序',
+    // title 不传，不显示分组标题和展开按钮
     items: [
       // 使用 appIcon 类型：内置应用图标（通过 iconName 匹配 /icons/ 目录下的文件）
       { id: 'finder', label: 'Finder', iconType: 'appIcon', iconName: 'finder', activeColor: 'macos' },
@@ -62,20 +63,10 @@ const getDefaultNavSections = (): NavSection[] => [
       { id: 'trash', iconName: 'trash', label: '废纸篓', activeColor: 'macos' },
     ],
   },
-  // 示例：不显示分组名称，只有空白间隔
-  {
-    id: 'spacer',
-    // title 不传，显示空白间隔
-    items: [
-      { id: 'divider1', iconName: 'icloud', label: '云端', activeColor: 'macos' },
-      { id: 'divider2', iconName: 'wifi', label: '网络', activeColor: 'macos' },
-    ],
-  },
-  // 示例：不可折叠的分组，始终展开
+  // 快捷方式分组：正常显示标题和展开按钮
   {
     id: 'shortcuts',
-    title: '快捷方式（不可折叠）',
-    collapsible: false, // 不显示展开/收起按钮，始终展开
+    title: '快捷方式',
     items: [
       { id: 'star', iconName: 'star', label: '收藏', activeColor: 'macos' },
       { id: 'heart', iconName: 'heart', label: '喜欢', activeColor: 'macos' },
