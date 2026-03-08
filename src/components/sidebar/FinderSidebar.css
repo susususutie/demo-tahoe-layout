@@ -193,14 +193,14 @@
     color: var(--finder-text);
   }
 
-  /* 深色模式下选中状态：不改变背景 */
+  /* 深色模式下选中状态：macOS 风格深灰色背景 */
   .finder-nav-item.active {
-    /* 背景保持透明 */
+    background: rgba(255, 255, 255, 0.1);
   }
 
   /* 深色模式下 highlight 选中状态 */
   .finder-nav-item.active.highlight {
-    /* 文字颜色通过行内样式设置 */
+    background: rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -499,14 +499,14 @@
   /* 背景保持不变 */
 }
 
-/* 默认选中状态：不改变背景，只显示选中标记 */
+/* 默认选中状态：macOS 风格灰色背景 */
 .finder-nav-item.active {
-  /* 背景保持透明 */
+  background: rgba(0, 0, 0, 0.08);
 }
 
-/* highlight 模式选中状态：仅文字高亮 */
+/* highlight 模式选中状态：同样使用灰色背景 */
 .finder-nav-item.active.highlight {
-  /* 文字颜色和加粗通过行内样式设置 */
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .finder-nav-item.disabled {
