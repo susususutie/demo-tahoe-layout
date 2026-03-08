@@ -253,7 +253,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 8px;
-  padding-top: 60px; /* 给头部留出 52px + 8px 间距 */
+  padding-top: 56px; /* 给头部留出 52px + 4px 间距 */
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
   position: relative;
