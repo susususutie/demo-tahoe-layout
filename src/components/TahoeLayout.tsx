@@ -30,6 +30,7 @@ const getDefaultNavSections = (): NavSection[] => [
   {
     id: 'favorites',
     title: '个人收藏',
+    highlightOnSelect: true,
     items: [
       { id: 'airdrop', icon: '📡', label: '隔空投送' },
       { id: 'recent', icon: '🕐', label: '最近使用' },

@@ -20,6 +20,8 @@ export interface NavSection {
   id: string;
   title?: string;
   items: NavItem[];
+  /** 选中时是否高亮显示（深色背景+蓝色文字） */
+  highlightOnSelect?: boolean;
 }
 
 /** iCloud 同步状态 */

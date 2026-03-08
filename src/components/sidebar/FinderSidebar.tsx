@@ -39,10 +39,11 @@ const NavItemComponent: React.FC<{
   isActive: boolean;
   isCollapsed: boolean;
   onClick: () => void;
-}> = ({ item, isActive, isCollapsed, onClick }) => {
+  highlightOnSelect?: boolean;
+}> = ({ item, isActive, isCollapsed, onClick, highlightOnSelect }) => {
   return (
     <button
-      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''}`}
+      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''}`}
       onClick={onClick}
       disabled={item.disabled}
       title={isCollapsed ? item.label : undefined}
@@ -80,6 +81,7 @@ const NavSectionComponent: React.FC<{
             isActive={activeId === item.id}
             isCollapsed={true}
             onClick={() => onSelect(item.id)}
+            highlightOnSelect={section.highlightOnSelect}
           />
         ))}
       </div>
@@ -119,6 +121,7 @@ const NavSectionComponent: React.FC<{
             isActive={activeId === item.id}
             isCollapsed={false}
             onClick={() => onSelect(item.id)}
+            highlightOnSelect={section.highlightOnSelect}
           />
         ))}
       </div>
