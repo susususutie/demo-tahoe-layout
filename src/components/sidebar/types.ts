@@ -52,18 +52,28 @@ export interface NavItem {
   /** 
    * 图标类型
    * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
+   * - 'image': 使用图片图标（从 URL 加载，如 macosicons.com 下载的图标）
    * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
    * - 'circle': 固定颜色的圆形图标（不受选中影响，标签用）
    * - 'coloredRect': 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）
    */
-  iconType?: 'svg' | 'roundedRect' | 'circle' | 'coloredRect';
+  iconType?: 'svg' | 'image' | 'roundedRect' | 'circle' | 'coloredRect';
   /** 
    * 内置图标名称（当 iconType 为 'svg' 或 undefined 时使用）
    * 如 'airdrop', 'recent', 'documents' 等
    */
   iconName?: BuiltinIconName;
   /** 
-   * 圆角矩形图标颜色（当 iconType 为 'roundedRect' 时使用）
+   * 图片图标 URL（当 iconType 为 'image' 时使用）
+   * 可以是 macosicons.com 下载的图标，或其他图片链接
+   */
+  iconSrc?: string;
+  /** 
+   * 图标尺寸（当 iconType 为 'image' 时使用，默认 20px）
+   */
+  iconSize?: number;
+  /** 
+   * 圆角矩形图标颜色（当 iconType 为 'roundedRect' 或 'circle' 或 'coloredRect' 时使用）
    * 如 '#ff3b30' 表示红色圆角矩形
    */
   iconColor?: string;

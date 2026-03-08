@@ -119,6 +119,7 @@ const NavItemComponent: React.FC<{
   const useRoundedRect = item.iconType === 'roundedRect' && item.iconColor;
   const useCircle = item.iconType === 'circle' && item.iconColor;
   const useColoredRect = item.iconType === 'coloredRect' && item.iconColor && item.iconName;
+  const useImage = item.iconType === 'image' && item.iconSrc;
   const useFixedColor = useRoundedRect || useCircle;
 
   // 计算图标颜色
@@ -136,6 +137,17 @@ const NavItemComponent: React.FC<{
 
   // 渲染图标内容
   const renderIcon = () => {
+    // 图片图标（从 URL 加载，如 macosicons.com）
+    if (useImage) {
+      const size = item.iconSize || 20;
+      return (
+        <img 
+          src={item.iconSrc} 
+          alt={item.label}
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      );
+    }
     // 固定颜色纯色块（圆角矩形/圆形）- 由 CSS 绘制
     if (useFixedColor) {
       return null;
@@ -167,6 +179,7 @@ const NavItemComponent: React.FC<{
     useRoundedRect ? 'finder-rounded-rect' : '',
     useCircle ? 'finder-circle' : '',
     useColoredRect ? 'finder-colored-rect' : '',
+    useImage ? 'finder-image-icon' : '',
   ].filter(Boolean).join(' ');
 
   return (

@@ -564,6 +564,18 @@
   color: white;
 }
 
+/* 图片图标（从 macosicons.com 等加载） */
+.finder-nav-icon.finder-image-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.finder-nav-icon.finder-image-icon img {
+  border-radius: 3px;
+}
+
 /* 标签 */
 .finder-nav-label {
   font-size: 13px;

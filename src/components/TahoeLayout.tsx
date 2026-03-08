@@ -28,17 +28,14 @@ interface TahoeLayoutProps {
  */
 const getDefaultNavSections = (): NavSection[] => [
   {
-    id: 'settings',
-    title: '设置',
+    id: 'apps',
+    title: '应用程序',
     items: [
-      // 使用 coloredRect 类型：彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）
-      { id: 'general', label: '通用', iconType: 'coloredRect', iconName: 'settings', iconColor: '#8e8e93', activeColor: 'macos' },
-      { id: 'menu-bar', label: '菜单栏', iconType: 'coloredRect', iconName: 'menu', iconColor: '#5856d6', activeColor: 'macos' },
-      { id: 'accessibility', label: '辅助功能', iconType: 'coloredRect', iconName: 'accessibility', iconColor: '#007aff', activeColor: 'macos' },
-      { id: 'focus', label: '聚焦', iconType: 'coloredRect', iconName: 'target', iconColor: '#5e5ce6', activeColor: 'macos' },
-      { id: 'wallpaper', label: '墙纸', iconType: 'coloredRect', iconName: 'wallpaper', iconColor: '#34c759', activeColor: 'macos' },
-      { id: 'appearance', label: '外观', iconType: 'coloredRect', iconName: 'appearance', iconColor: '#1c1c1e', activeColor: 'macos' },
-      { id: 'display', label: '显示器', iconType: 'coloredRect', iconName: 'display', iconColor: '#007aff', activeColor: 'macos' },
+      // 使用 image 类型：从 URL 加载图片图标（如 macosicons.com 下载的图标）
+      { id: 'vscode', label: 'VS Code', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:visual-studio-code.svg', iconSize: 22, activeColor: 'macos' },
+      { id: 'chrome', label: 'Chrome', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:chrome.svg', iconSize: 22, activeColor: 'macos' },
+      { id: 'figma', label: 'Figma', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:figma.svg', iconSize: 22, activeColor: 'macos' },
+      { id: 'github', label: 'GitHub', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:github-icon.svg', iconSize: 22, activeColor: 'macos' },
     ],
   },
   {
