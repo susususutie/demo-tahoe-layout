@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FinderSidebar } from './sidebar';
 import { Breadcrumb } from './Breadcrumb';
-import { FloatingControls } from './FloatingControls';
 import type { NavSection, SidebarConfig } from './sidebar/types';
 import type { BreadcrumbItem } from './Breadcrumb';
 import './TahoeLayout.css';
@@ -174,13 +173,6 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
 
   return (
     <div className="tahoe-layout">
-      {/* 悬浮控制按钮组 - 始终显示在左上角 */}
-      <FloatingControls
-        isCollapsed={isSidebarCollapsed}
-        onExpand={() => setIsSidebarCollapsed(false)}
-        onCollapse={() => setIsSidebarCollapsed(true)}
-      />
-
       {/* 侧边栏 */}
       {renderSidebar()}
 

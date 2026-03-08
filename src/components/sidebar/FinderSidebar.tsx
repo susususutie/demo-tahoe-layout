@@ -7,6 +7,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
+import { FloatingControls } from '../FloatingControls';
 import type { SidebarProps, NavItem, NavSection } from './types';
 import './FinderSidebar.css';
 
@@ -636,52 +637,61 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
   };
 
   return (
-    <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-      {/* 顶部遮罩 */}
-      <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
+    <>
+      {/* 悬浮控制按钮组 - 固定在左上角，不随侧边栏移动 */}
+      <FloatingControls
+        isCollapsed={isCollapsed}
+        onExpand={() => setIsCollapsed(false)}
+        onCollapse={() => setIsCollapsed(true)}
+      />
 
-      {/* 头部占位区域 - 为悬浮按钮留出空间 */}
-      <div className="finder-sidebar-header-spacer" />
+      <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
+        {/* 顶部遮罩 */}
+        <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
 
-      {/* 导航区域 */}
-      <nav className="finder-nav" ref={navRef}>
-        {sections.map((section) => (
-          <NavSectionComponent
-            key={section.id}
-            section={section}
-            activeId={activeId}
-            isCollapsed={isCollapsed}
-            onSelect={onSelect}
-          />
-        ))}
-        {footer && !isCollapsed && (
-          <div className="finder-footer">{footer}</div>
-        )}
-      </nav>
+        {/* 头部占位区域 - 为悬浮按钮留出空间 */}
+        <div className="finder-sidebar-header-spacer" />
 
-      {/* 底部遮罩 */}
-      <div className="finder-vignette bottom" />
+        {/* 导航区域 */}
+        <nav className="finder-nav" ref={navRef}>
+          {sections.map((section) => (
+            <NavSectionComponent
+              key={section.id}
+              section={section}
+              activeId={activeId}
+              isCollapsed={isCollapsed}
+              onSelect={onSelect}
+            />
+          ))}
+          {footer && !isCollapsed && (
+            <div className="finder-footer">{footer}</div>
+          )}
+        </nav>
 
-      {/* 收起状态下的悬浮展开按钮 */}
-      {isCollapsed && showToggle && (
-        <button
-          className="finder-floating-toggle"
-          onClick={handleToggle}
-          aria-label="展开侧边栏"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+        {/* 底部遮罩 */}
+        <div className="finder-vignette bottom" />
+
+        {/* 收起状态下的悬浮展开按钮 */}
+        {isCollapsed && showToggle && (
+          <button
+            className="finder-floating-toggle"
+            onClick={handleToggle}
+            aria-label="展开侧边栏"
           >
-            <polyline points="9 18 15 12 9 6" />
-          </svg>
-        </button>
-      )}
-    </aside>
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        )}
+      </aside>
+    </>
   );
 };
 
