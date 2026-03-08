@@ -565,8 +565,10 @@
   color: white;
 }
 
-/* 图片图标（从 macosicons.com 等加载） */
+/* 图片图标（从 macosicons.com 等加载的 macOS 应用图标） */
 .finder-nav-icon.finder-image-icon {
+  width: 28px;
+  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -574,7 +576,8 @@
 }
 
 .finder-nav-icon.finder-image-icon img {
-  border-radius: 3px;
+  border-radius: 6px;
+  object-fit: contain;
 }
 
 /* 标签 */

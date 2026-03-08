@@ -31,11 +31,11 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'apps',
     title: '应用程序',
     items: [
-      // macOS Big Sur 风格应用图标（使用 coloredRect 类型）
-      { id: 'siri', label: 'Siri', iconType: 'coloredRect', iconName: 'settings', iconColor: 'linear-gradient(135deg, #5856d6 0%, #007aff 25%, #34c759 50%, #ffcc00 75%, #ff3b30 100%)', activeColor: 'macos' },
-      { id: 'safari', label: 'Safari', iconType: 'coloredRect', iconName: 'target', iconColor: '#007aff', activeColor: 'macos' },
-      { id: 'settings', label: '设置', iconType: 'coloredRect', iconName: 'settings', iconColor: '#8e8e93', activeColor: 'macos' },
-      { id: 'appstore', label: 'App Store', iconType: 'coloredRect', iconName: 'applications', iconColor: 'linear-gradient(180deg, #007aff 0%, #5e5ce6 100%)', activeColor: 'macos' },
+      // 使用 image 类型：直接使用图标文件（如从 macosicons.com 下载）
+      { id: 'siri', label: 'Siri', iconType: 'image', iconSrc: 'https://macosicons.com/icons/siri.png', iconSize: 28, activeColor: 'macos' },
+      { id: 'safari', label: 'Safari', iconType: 'image', iconSrc: 'https://macosicons.com/icons/safari.png', iconSize: 28, activeColor: 'macos' },
+      { id: 'settings', label: '设置', iconType: 'image', iconSrc: 'https://macosicons.com/icons/settings.png', iconSize: 28, activeColor: 'macos' },
+      { id: 'appstore', label: 'App Store', iconType: 'image', iconSrc: 'https://macosicons.com/icons/app-store.png', iconSize: 28, activeColor: 'macos' },
     ],
   },
   {
