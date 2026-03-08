@@ -37,26 +37,8 @@ import {
 /** 内置应用图标文件映射表 - iconName 对应本地图标路径 */
 const appIconFileMap: Record<string, string> = {
   finder: '/icons/finder.png',
-  siri: '/icons/siri.png',
-  safari: '/icons/safari.png',
-  settings: '/icons/settings.png',
-  appstore: '/icons/appstore.png',
-  messages: '/icons/messages.png',
-  mail: '/icons/mail.png',
-  photos: '/icons/photos.png',
-  music: '/icons/music.png',
-  calendar: '/icons/calendar.png',
-  notes: '/icons/notes.png',
-  reminders: '/icons/reminders.png',
-  terminal: '/icons/terminal.png',
-  maps: '/icons/maps.png',
-  weather: '/icons/weather.png',
-  books: '/icons/books.png',
-  calculator: '/icons/calculator.png',
-  facetime: '/icons/facetime.png',
-  tv: '/icons/tv.png',
-  podcasts: '/icons/podcasts.png',
-  stocks: '/icons/stocks.png',
+  clock: '/icons/clock.png',
+  textedit: '/icons/textedit.png',
 };
 
 /** iCloud 同步状态图标 */

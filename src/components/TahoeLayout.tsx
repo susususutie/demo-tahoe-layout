@@ -33,11 +33,8 @@ const getDefaultNavSections = (): NavSection[] => [
     items: [
       // 使用 appIcon 类型：内置应用图标（通过 iconName 匹配 /icons/ 目录下的文件）
       { id: 'finder', label: 'Finder', iconType: 'appIcon', iconName: 'finder', activeColor: 'macos' },
-      { id: 'siri', label: 'Siri', iconType: 'appIcon', iconName: 'siri', activeColor: 'macos' },
-      { id: 'safari', label: 'Safari', iconType: 'appIcon', iconName: 'safari', activeColor: 'macos' },
-      { id: 'settings', label: '设置', iconType: 'appIcon', iconName: 'settings', activeColor: 'macos' },
-      { id: 'messages', label: '信息', iconType: 'appIcon', iconName: 'messages', activeColor: 'macos' },
-      { id: 'mail', label: '邮件', iconType: 'appIcon', iconName: 'mail', activeColor: 'macos' },
+      { id: 'clock', label: '时钟', iconType: 'appIcon', iconName: 'clock', activeColor: 'macos' },
+      { id: 'textedit', label: '文本编辑', iconType: 'appIcon', iconName: 'textedit', activeColor: 'macos' },
     ],
   },
   {

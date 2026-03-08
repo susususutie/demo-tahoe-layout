@@ -36,25 +36,8 @@ export type BuiltinIconName =
   | 'display'      // 显示器
   // macOS 应用图标
   | 'finder'       // Finder
-  | 'siri'         // Siri
-  | 'safari'       // Safari
-  | 'appstore'     // App Store
-  | 'facetime'     // FaceTime
-  | 'messages'     // 信息
-  | 'mail'         // 邮件
-  | 'calendar'     // 日历
-  | 'photos'       // 照片
-  | 'notes'        // 备忘录
-  | 'reminders'    // 提醒事项
-  | 'music'        // 音乐
-  | 'podcasts'     // 播客
-  | 'tv'           // TV
-  | 'maps'         // 地图
-  | 'weather'      // 天气
-  | 'stocks'       // 股市
-  | 'books'        // 图书
-  | 'calculator'   // 计算器
-  | 'terminal';    // 终端
+  | 'clock'        // 时钟
+  | 'textedit';    // 文本编辑
 
 /** 导航项数据 */
 export interface NavItem {
