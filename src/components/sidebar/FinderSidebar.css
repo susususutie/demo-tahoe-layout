@@ -561,25 +561,27 @@
 }
 
 /* ============================
-   滚动遮罩
+   滚动遮罩 - macOS 风格磨砂玻璃
    ============================ */
 .finder-vignette {
   position: absolute;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 40px;
   pointer-events: none;
   z-index: 10;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.25s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
 .finder-vignette.top {
   top: 52px;
   background: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
     transparent 100%
   );
 }
@@ -589,8 +591,8 @@
   border-radius: 0 0 var(--finder-radius) var(--finder-radius);
   background: linear-gradient(
     to top,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0.7) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
     transparent 100%
   );
 }
@@ -604,8 +606,8 @@
   .finder-vignette.top {
     background: linear-gradient(
       to bottom,
-      rgba(40, 40, 42, 0.95) 0%,
-      rgba(40, 40, 42, 0.5) 50%,
+      rgba(40, 40, 42, 0.7) 0%,
+      rgba(40, 40, 42, 0.3) 50%,
       transparent 100%
     );
   }
@@ -613,8 +615,8 @@
   .finder-vignette.bottom {
     background: linear-gradient(
       to top,
-      rgba(40, 40, 42, 0.95) 0%,
-      rgba(40, 40, 42, 0.5) 50%,
+      rgba(40, 40, 42, 0.7) 0%,
+      rgba(40, 40, 42, 0.3) 50%,
       transparent 100%
     );
   }
