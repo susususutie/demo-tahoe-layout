@@ -49,8 +49,27 @@ const NavItemComponent: React.FC<{
     return item.activeColor;
   })();
 
-  const activeStyle = activeTextColor
+  // 计算文字样式
+  const textStyle = activeTextColor
     ? { color: activeTextColor }
+    : undefined;
+
+  // 计算图标颜色
+  const iconColor = (() => {
+    // 固定图标颜色模式
+    if (item.iconType === 'fixed' && item.iconColor) {
+      return item.iconColor;
+    }
+    // 跟随文字颜色模式（选中时与文字同色）
+    if (isActive && activeTextColor) {
+      return activeTextColor;
+    }
+    return undefined;
+  })();
+
+  // 构建图标样式
+  const iconStyle = iconColor
+    ? { color: iconColor }
     : undefined;
 
   return (
@@ -59,9 +78,11 @@ const NavItemComponent: React.FC<{
       onClick={onClick}
       disabled={item.disabled}
       title={isCollapsed ? item.label : undefined}
-      style={activeStyle}
+      style={textStyle}
     >
-      <span className="finder-nav-icon">{item.icon}</span>
+      <span className="finder-nav-icon" style={iconStyle}>
+        {item.icon}
+      </span>
       {!isCollapsed && (
         <>
           <span className="finder-nav-label">{item.label}</span>

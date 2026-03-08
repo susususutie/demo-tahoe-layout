@@ -59,9 +59,11 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'tags',
     title: '标签',
     items: [
-      { id: 'tag-red', icon: '●', label: '重要', activeColor: '#ff3b30' },
-      { id: 'tag-orange', icon: '●', label: '进行中', activeColor: '#ff9500' },
-      { id: 'tag-yellow', icon: '●', label: '待处理', activeColor: '#ffcc00' },
+      // 固定圆形色块图标（始终显示对应颜色）
+      { id: 'tag-red', icon: '●', label: '重要', iconType: 'fixed', iconColor: '#ff3b30' },
+      { id: 'tag-orange', icon: '●', label: '进行中', iconType: 'fixed', iconColor: '#ff9500' },
+      { id: 'tag-yellow', icon: '●', label: '待处理', iconType: 'fixed', iconColor: '#ffcc00' },
+      // 与文字同色的图标（选中时变色）
       { id: 'tag-green', icon: '●', label: '已完成', activeColor: '#34c759' },
       { id: 'tag-blue', icon: '●', label: '个人', activeColor: 'macos' },
       { id: 'tag-purple', icon: '●', label: '工作', activeColor: '#af52de' },

@@ -23,6 +23,17 @@ export interface NavItem {
    * - string: 自定义颜色值（如 '#ff3b30'）
    */
   activeColor?: ActiveTextColor;
+  /** 
+   * 图标类型
+   * - 'text' | undefined: 图标跟随文字颜色（选中时与文字同色）
+   * - 'fixed': 固定颜色图标（不受选中影响，配合 iconColor 使用）
+   */
+  iconType?: 'text' | 'fixed';
+  /** 
+   * 固定图标颜色（当 iconType 为 'fixed' 时使用）
+   * 如 '#ff3b30' 表示红色圆形色块
+   */
+  iconColor?: string;
 }
 
 /** 导航分组 */
