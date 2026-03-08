@@ -547,6 +547,23 @@
   flex-shrink: 0;
 }
 
+/* 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格） */
+.finder-nav-icon.finder-colored-rect {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.finder-nav-icon.finder-colored-rect svg {
+  width: 14px;
+  height: 14px;
+  color: white;
+}
+
 /* 标签 */
 .finder-nav-label {
   font-size: 13px;

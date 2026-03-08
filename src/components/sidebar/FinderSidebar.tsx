@@ -26,6 +26,11 @@ import {
   Trash2,
   Wifi,
   Folder,
+  Settings,
+  Menu,
+  Accessibility,
+  Target,
+  Eye,
   type LucideProps,
 } from 'lucide-react';
 
@@ -54,6 +59,7 @@ const SyncStatusIcon: React.FC<{ status: SyncStatus }> = ({ status }) => {
 
 /** Lucide 图标映射 - macOS 风格 */
 const iconMap: Record<string, React.ComponentType<LucideProps>> = {
+  // 访达风格图标
   airdrop: Share2,      // 隔空投送
   recent: Clock,        // 最近使用
   applications: LayoutGrid, // 应用程序
@@ -69,6 +75,14 @@ const iconMap: Record<string, React.ComponentType<LucideProps>> = {
   wifi: Wifi,           // 无线
   folder: Folder,       // 文件夹
   home: Home,           // 主页
+  // 系统设置风格图标
+  settings: Settings,   // 通用/设置
+  menu: Menu,           // 菜单栏
+  accessibility: Accessibility, // 辅助功能
+  target: Target,       // 聚焦
+  wallpaper: Cloud,     // 墙纸（用云朵代替）
+  appearance: Eye,      // 外观
+  display: Monitor,     // 显示器
 };
 
 /** 内置图标组件 - 使用 Lucide Icons */
@@ -104,6 +118,7 @@ const NavItemComponent: React.FC<{
   // 判断图标类型
   const useRoundedRect = item.iconType === 'roundedRect' && item.iconColor;
   const useCircle = item.iconType === 'circle' && item.iconColor;
+  const useColoredRect = item.iconType === 'coloredRect' && item.iconColor && item.iconName;
   const useFixedColor = useRoundedRect || useCircle;
 
   // 计算图标颜色
@@ -121,9 +136,13 @@ const NavItemComponent: React.FC<{
 
   // 渲染图标内容
   const renderIcon = () => {
-    // 固定颜色图标（圆角矩形/圆形）- 由 CSS 绘制
+    // 固定颜色纯色块（圆角矩形/圆形）- 由 CSS 绘制
     if (useFixedColor) {
       return null;
+    }
+    // 彩色背景 + 白色图标
+    if (useColoredRect) {
+      return <BuiltinIcon name={item.iconName!} color="white" />;
     }
     // SVG 线条图标 - 可随文字变色
     if (item.iconName) {
@@ -133,13 +152,21 @@ const NavItemComponent: React.FC<{
   };
 
   // 构建图标容器样式和类名
-  const iconContainerStyle = useFixedColor
-    ? { color: item.iconColor }
-    : undefined;
+  const iconContainerStyle = (() => {
+    if (useColoredRect) {
+      return { backgroundColor: item.iconColor };
+    }
+    if (useFixedColor) {
+      return { color: item.iconColor };
+    }
+    return undefined;
+  })();
+  
   const iconClassName = [
     'finder-nav-icon',
     useRoundedRect ? 'finder-rounded-rect' : '',
     useCircle ? 'finder-circle' : '',
+    useColoredRect ? 'finder-colored-rect' : '',
   ].filter(Boolean).join(' ');
 
   return (

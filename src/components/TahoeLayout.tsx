@@ -28,14 +28,17 @@ interface TahoeLayoutProps {
  */
 const getDefaultNavSections = (): NavSection[] => [
   {
-    id: 'projects',
-    title: '项目',
+    id: 'settings',
+    title: '设置',
     items: [
-      // 使用圆角矩形图标的示例菜单组
-      { id: 'proj-web', label: '网站重构', iconType: 'roundedRect', iconColor: '#5856d6', activeColor: 'macos' },
-      { id: 'proj-app', label: 'App 开发', iconType: 'roundedRect', iconColor: '#34c759', activeColor: 'macos' },
-      { id: 'proj-design', label: '设计系统', iconType: 'roundedRect', iconColor: '#ff9500', activeColor: 'macos' },
-      { id: 'proj-docs', label: '技术文档', iconType: 'roundedRect', iconColor: '#007aff', activeColor: 'macos' },
+      // 使用 coloredRect 类型：彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）
+      { id: 'general', label: '通用', iconType: 'coloredRect', iconName: 'settings', iconColor: '#8e8e93', activeColor: 'macos' },
+      { id: 'menu-bar', label: '菜单栏', iconType: 'coloredRect', iconName: 'menu', iconColor: '#5856d6', activeColor: 'macos' },
+      { id: 'accessibility', label: '辅助功能', iconType: 'coloredRect', iconName: 'accessibility', iconColor: '#007aff', activeColor: 'macos' },
+      { id: 'focus', label: '聚焦', iconType: 'coloredRect', iconName: 'target', iconColor: '#5e5ce6', activeColor: 'macos' },
+      { id: 'wallpaper', label: '墙纸', iconType: 'coloredRect', iconName: 'wallpaper', iconColor: '#34c759', activeColor: 'macos' },
+      { id: 'appearance', label: '外观', iconType: 'coloredRect', iconName: 'appearance', iconColor: '#1c1c1e', activeColor: 'macos' },
+      { id: 'display', label: '显示器', iconType: 'coloredRect', iconName: 'display', iconColor: '#007aff', activeColor: 'macos' },
     ],
   },
   {

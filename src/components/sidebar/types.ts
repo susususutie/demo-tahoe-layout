@@ -10,6 +10,7 @@ export type ActiveTextColor = 'default' | 'macos' | string;
 
 /** 内置图标名称 - macOS 风格 */
 export type BuiltinIconName = 
+  // 访达风格图标
   | 'airdrop'      // 隔空投送
   | 'recent'       // 最近使用
   | 'applications' // 应用程序
@@ -24,7 +25,15 @@ export type BuiltinIconName =
   | 'trash'        // 废纸篓
   | 'wifi'         // 无线
   | 'folder'       // 文件夹
-  | 'home';        // 主页
+  | 'home'         // 主页
+  // 系统设置风格图标
+  | 'settings'     // 通用/设置
+  | 'menu'         // 菜单栏
+  | 'accessibility'// 辅助功能
+  | 'target'       // 聚焦
+  | 'wallpaper'    // 墙纸
+  | 'appearance'   // 外观
+  | 'display';     // 显示器
 
 /** 导航项数据 */
 export interface NavItem {
@@ -45,8 +54,9 @@ export interface NavItem {
    * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
    * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
    * - 'circle': 固定颜色的圆形图标（不受选中影响，标签用）
+   * - 'coloredRect': 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）
    */
-  iconType?: 'svg' | 'roundedRect' | 'circle';
+  iconType?: 'svg' | 'roundedRect' | 'circle' | 'coloredRect';
   /** 
    * 内置图标名称（当 iconType 为 'svg' 或 undefined 时使用）
    * 如 'airdrop', 'recent', 'documents' 等
