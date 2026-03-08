@@ -527,9 +527,9 @@
 
 /* 固定颜色图标（标签圆点）- macOS 风格小圆点 */
 .finder-nav-item[data-icon-type="fixed"] .finder-nav-icon {
-  font-size: 10px;
-  width: 12px;
-  height: 12px;
+  font-size: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 /* 标签 */
