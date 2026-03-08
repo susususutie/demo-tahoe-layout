@@ -433,11 +433,12 @@
 .finder-section-toggle svg {
   width: 14px;
   height: 14px;
+  transform: rotate(-90deg);
   transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .finder-section-toggle svg.expanded {
-  transform: rotate(180deg);
+  transform: rotate(0deg);
 }
 
 /* 分组内容区域 - 展开/收起动画 */
