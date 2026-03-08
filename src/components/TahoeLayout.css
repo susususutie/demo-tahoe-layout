@@ -1,0 +1,371 @@
+/* macOS Tahoe 风格布局样式 */
+
+:root {
+  --tahoe-sidebar-width: 240px;
+  --tahoe-header-height: 52px;
+  --tahoe-blur: blur(20px) saturate(180%);
+  --tahoe-bg-sidebar: rgba(255, 255, 255, 0.72);
+  --tahoe-bg-content: rgba(255, 255, 255, 0.64);
+  --tahoe-bg-sidebar-dark: rgba(30, 30, 30, 0.72);
+  --tahoe-bg-content-dark: rgba(28, 28, 28, 0.64);
+  --tahoe-border: rgba(0, 0, 0, 0.08);
+  --tahoe-border-dark: rgba(255, 255, 255, 0.08);
+  --tahoe-text: rgba(0, 0, 0, 0.85);
+  --tahoe-text-secondary: rgba(0, 0, 0, 0.5);
+  --tahoe-text-dark: rgba(255, 255, 255, 0.9);
+  --tahoe-text-secondary-dark: rgba(255, 255, 255, 0.55);
+  --tahoe-accent: #007aff;
+  --tahoe-vignette-size: 60px;
+  --tahoe-radius: 12px;
+  --tahoe-radius-sm: 8px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --tahoe-bg-sidebar: var(--tahoe-bg-sidebar-dark);
+    --tahoe-bg-content: var(--tahoe-bg-content-dark);
+    --tahoe-border: var(--tahoe-border-dark);
+    --tahoe-text: var(--tahoe-text-dark);
+    --tahoe-text-secondary: var(--tahoe-text-secondary-dark);
+  }
+}
+
+/* 布局容器 */
+.tahoe-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-size: cover;
+}
+
+/* 侧边栏 */
+.tahoe-sidebar {
+  width: var(--tahoe-sidebar-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--tahoe-bg-sidebar);
+  backdrop-filter: var(--tahoe-blur);
+  -webkit-backdrop-filter: var(--tahoe-blur);
+  border-right: 1px solid var(--tahoe-border);
+}
+
+/* 侧边栏头部 */
+.tahoe-sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--tahoe-border);
+  flex-shrink: 0;
+}
+
+.tahoe-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.tahoe-username {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--tahoe-text);
+}
+
+/* 侧边栏导航 */
+.tahoe-sidebar-nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: 12px 12px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.tahoe-sidebar-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.tahoe-sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tahoe-sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+
+.tahoe-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  margin-bottom: 4px;
+  border: none;
+  border-radius: var(--tahoe-radius-sm);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--tahoe-text);
+}
+
+.tahoe-nav-item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.tahoe-nav-item.active {
+  background: rgba(0, 122, 255, 0.1);
+  color: var(--tahoe-accent);
+}
+
+.tahoe-nav-icon {
+  font-size: 18px;
+  width: 24px;
+  text-align: center;
+}
+
+.tahoe-nav-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* 主内容区 */
+.tahoe-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: var(--tahoe-bg-content);
+  backdrop-filter: var(--tahoe-blur);
+  -webkit-backdrop-filter: var(--tahoe-blur);
+  overflow: hidden;
+}
+
+/* 内容头部 */
+.tahoe-content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  height: var(--tahoe-header-height);
+  border-bottom: 1px solid var(--tahoe-border);
+  flex-shrink: 0;
+}
+
+.tahoe-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--tahoe-text);
+  margin: 0;
+}
+
+.tahoe-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.tahoe-action-btn {
+  padding: 8px 16px;
+  border-radius: var(--tahoe-radius-sm);
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--tahoe-accent);
+  color: white;
+}
+
+.tahoe-action-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.tahoe-action-btn.secondary {
+  background: rgba(0, 0, 0, 0.05);
+  color: var(--tahoe-text);
+  padding: 8px 12px;
+}
+
+.tahoe-action-btn.secondary:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* 内容区域 */
+.tahoe-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.tahoe-content::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tahoe-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tahoe-content::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.tahoe-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================
+   滚动透明遮罩效果 (Vignette)
+   ============================ */
+
+/* 侧边栏遮罩 */
+.tahoe-sidebar-vignette {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--tahoe-vignette-size);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tahoe-sidebar-vignette.top {
+  top: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.3) 70%,
+    transparent 100%
+  );
+}
+
+.tahoe-sidebar-vignette.bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.7) 40%,
+    rgba(255, 255, 255, 0.3) 70%,
+    transparent 100%
+  );
+}
+
+.tahoe-sidebar-vignette.visible {
+  opacity: 1;
+}
+
+/* 内容区遮罩 */
+.tahoe-content-vignette {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--tahoe-vignette-size);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.tahoe-content-vignette.top {
+  top: var(--tahoe-header-height);
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+}
+
+.tahoe-content-vignette.bottom {
+  bottom: 0;
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.6) 50%,
+    transparent 100%
+  );
+}
+
+.tahoe-content-vignette.visible {
+  opacity: 1;
+}
+
+/* 深色模式遮罩 */
+@media (prefers-color-scheme: dark) {
+  .tahoe-sidebar-vignette.top {
+    background: linear-gradient(
+      to bottom,
+      rgba(30, 30, 30, 0.95) 0%,
+      rgba(30, 30, 30, 0.7) 40%,
+      rgba(30, 30, 30, 0.3) 70%,
+      transparent 100%
+    );
+  }
+
+  .tahoe-sidebar-vignette.bottom {
+    background: linear-gradient(
+      to top,
+      rgba(30, 30, 30, 0.95) 0%,
+      rgba(30, 30, 30, 0.7) 40%,
+      rgba(30, 30, 30, 0.3) 70%,
+      transparent 100%
+    );
+  }
+
+  .tahoe-content-vignette.top {
+    background: linear-gradient(
+      to bottom,
+      rgba(28, 28, 28, 0.9) 0%,
+      rgba(28, 28, 28, 0.6) 50%,
+      transparent 100%
+    );
+  }
+
+  .tahoe-content-vignette.bottom {
+    background: linear-gradient(
+      to top,
+      rgba(28, 28, 28, 0.9) 0%,
+      rgba(28, 28, 28, 0.6) 50%,
+      transparent 100%
+    );
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .tahoe-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 100;
+  }
+
+  .tahoe-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .tahoe-sidebar-vignette {
+    display: none;
+  }
+}

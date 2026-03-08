@@ -1,0 +1,163 @@
+/* 演示内容样式 */
+
+.demo-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.demo-section {
+  margin-bottom: 40px;
+}
+
+.demo-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.demo-section h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.demo-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 16px 0;
+}
+
+/* 特性卡片网格 */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.feature-card {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.feature-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.feature-card h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.feature-card p {
+  font-size: 13px;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 内容列表项 */
+.content-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 10px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.content-item:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateX(4px);
+}
+
+.content-item-icon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 8px;
+}
+
+.content-item-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.content-item-info p {
+  font-size: 13px;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* 深色模式适配 */
+@media (prefers-color-scheme: dark) {
+  .demo-section h2,
+  .demo-section h3 {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .demo-section p {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .feature-card {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.05);
+  }
+
+  .feature-card:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .feature-card h4 {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .feature-card p {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .content-item {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .content-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .content-item-icon {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .content-item-info h4 {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .content-item-info p {
+    color: rgba(255, 255, 255, 0.5);
+  }
+}
