@@ -1,0 +1,24 @@
+# AI 助手工作备忘录
+
+## 必须遵守的规则
+
+### 1. 提交规范 ⭐⭐⭐
+- **完成文件修改后，必须主动执行 `git add` 和 `git commit` 提交更改**
+- **不要等到用户提醒才提交**
+- 提交信息格式遵循约定式提交规范：`type: 描述`
+- type 可选值：feat, fix, style, refactor, docs, chore
+
+### 2. 代码校验
+- 修改后必须执行 `pnpm build` 确保 TypeScript 编译通过
+- 执行 `pnpm lint` 检查 ESLint 规范
+
+### 3. 任务管理
+- 复杂任务使用 todo 工具拆解并追踪
+- 及时更新任务状态（pending → in_progress → completed）
+
+## 项目特定规范
+
+- CSS 类名必须以 `tahoe-` 开头
+- 使用 BEM 命名法：`tahoe-block__element--modifier`
+- 深色模式使用 `@media (prefers-color-scheme: dark)`
+- 磨砂玻璃效果必须同时设置 `backdrop-filter` 和 `-webkit-backdrop-filter`
