@@ -31,29 +31,31 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'favorites',
     title: '个人收藏',
     items: [
-      // 所有菜单选中时文字都变为 macOS 蓝色，使用内置 SVG 图标
-      { id: 'airdrop', iconName: 'airdrop', label: '隔空投送', activeColor: 'macos' },
+      // 所有菜单选中时文字都变为 macOS 蓝色，使用 Lucide 图标
       { id: 'recent', iconName: 'recent', label: '最近使用', activeColor: 'macos' },
+      { id: 'shared', iconName: 'share', label: '共享', activeColor: 'macos' },
       { id: 'applications', iconName: 'applications', label: '应用程序', activeColor: 'macos' },
+      { id: 'image', iconName: 'image', label: '图片', activeColor: 'macos' },
+      { id: 'downloads', iconName: 'downloads', label: '下载', activeColor: 'macos' },
       { id: 'desktop', iconName: 'desktop', label: '桌面', badge: 3, activeColor: 'macos' },
       { id: 'documents', iconName: 'documents', label: '文稿', activeColor: 'macos' },
-      { id: 'downloads', iconName: 'downloads', label: '下载', activeColor: 'macos' },
     ],
   },
   {
     id: 'icloud',
     title: 'iCloud',
     items: [
-      { id: 'icloud-drive', iconName: 'icloud', label: 'iCloud 云盘' },
-      { id: 'shared', iconName: 'share', label: '共享' },
+      { id: 'icloud-drive', iconName: 'icloud', label: 'iCloud 云盘', activeColor: 'macos' },
     ],
   },
   {
     id: 'locations',
     title: '位置',
     items: [
-      { id: 'mac', iconName: 'mac', label: 'Mac' },
-      { id: 'network', iconName: 'network', label: '网络' },
+      { id: 'sutie', iconName: 'mac', label: 'sutie', activeColor: 'macos' },
+      { id: 'airdrop', iconName: 'airdrop', label: '隔空投送', activeColor: 'macos' },
+      { id: 'network', iconName: 'network', label: '网络', activeColor: 'macos' },
+      { id: 'trash', iconName: 'trash', label: '废纸篓', activeColor: 'macos' },
     ],
   },
   {

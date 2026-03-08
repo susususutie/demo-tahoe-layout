@@ -13,6 +13,7 @@ export type BuiltinIconName =
   | 'airdrop'      // 隔空投送
   | 'recent'       // 最近使用
   | 'applications' // 应用程序
+  | 'image'        // 图片
   | 'desktop'      // 桌面
   | 'documents'    // 文稿
   | 'downloads'    // 下载
@@ -20,6 +21,8 @@ export type BuiltinIconName =
   | 'share'        // 共享
   | 'mac'          // Mac
   | 'network'      // 网络
+  | 'trash'        // 废纸篓
+  | 'wifi'         // 无线
   | 'folder'       // 文件夹
   | 'home';        // 主页
 

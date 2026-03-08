@@ -514,9 +514,8 @@
   cursor: not-allowed;
 }
 
-/* 图标 */
+/* 图标容器 */
 .finder-nav-icon {
-  font-size: 17px;
   width: 20px;
   height: 20px;
   display: flex;
@@ -525,10 +524,8 @@
   flex-shrink: 0;
 }
 
-/* 内置 SVG 图标 */
+/* Lucide 图标默认继承文字颜色 */
 .finder-nav-icon svg {
-  width: 18px;
-  height: 18px;
   flex-shrink: 0;
 }
 
