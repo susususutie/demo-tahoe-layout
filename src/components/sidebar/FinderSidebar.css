@@ -192,6 +192,11 @@
   .finder-collapse-btn svg {
     color: var(--finder-text);
   }
+
+  .finder-section-toggle:hover {
+    background: var(--finder-hover-bg);
+    color: var(--finder-text);
+  }
 }
 
 /* ============================
@@ -374,10 +379,23 @@
 }
 
 /* ============================
-   分组标题
+   分组标题 - 支持展开/收起
    ============================ */
 .finder-section {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
+}
+
+/* 分组头部：标题 + 展开按钮 */
+.finder-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 4px 12px;
+  cursor: default;
+}
+
+.finder-section-header:hover .finder-section-toggle {
+  opacity: 1;
 }
 
 .finder-section-title {
@@ -386,15 +404,63 @@
   color: var(--finder-section-title);
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  padding: 8px 12px 4px;
   margin: 0;
   user-select: none;
 }
 
+/* 展开/收起按钮 */
+.finder-section-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s ease;
+  color: var(--finder-section-title);
+}
+
+.finder-section-toggle:hover {
+  background: var(--finder-hover-bg);
+  color: var(--finder-text);
+}
+
+.finder-section-toggle svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.finder-section-toggle svg.expanded {
+  transform: rotate(180deg);
+}
+
+/* 分组内容区域 - 展开/收起动画 */
 .finder-section-items {
   display: flex;
   flex-direction: column;
   gap: 1px;
+  overflow: hidden;
+  max-height: 1000px;
+  opacity: 1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 收起状态 */
+.finder-section.collapsed .finder-section-items {
+  max-height: 0;
+  opacity: 0;
+  margin-top: 0;
+}
+
+/* 展开时始终显示按钮 */
+.finder-section.expanded .finder-section-toggle {
+  opacity: 1;
 }
 
 /* ============================

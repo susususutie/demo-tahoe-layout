@@ -60,13 +60,15 @@ const NavItemComponent: React.FC<{
   );
 };
 
-/** 导航分组 */
+/** 导航分组 - 支持展开/收起 */
 const NavSectionComponent: React.FC<{
   section: NavSection;
   activeId: string;
   isCollapsed: boolean;
   onSelect: (id: string) => void;
 }> = ({ section, activeId, isCollapsed, onSelect }) => {
+  const [isExpanded, setIsExpanded] = useState(true);
+
   if (isCollapsed) {
     // 收起状态只显示图标，不显示分组标题
     return (
@@ -85,9 +87,29 @@ const NavSectionComponent: React.FC<{
   }
 
   return (
-    <div className="finder-section">
+    <div className={`finder-section ${isExpanded ? 'expanded' : 'collapsed'}`}>
       {section.title && (
-        <h3 className="finder-section-title">{section.title}</h3>
+        <div className="finder-section-header">
+          <h3 className="finder-section-title">{section.title}</h3>
+          <button
+            className="finder-section-toggle"
+            onClick={() => setIsExpanded(!isExpanded)}
+            aria-label={isExpanded ? '收起分组' : '展开分组'}
+            title={isExpanded ? '收起' : '展开'}
+          >
+            <svg
+              className={isExpanded ? 'expanded' : ''}
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </button>
+        </div>
       )}
       <div className="finder-section-items">
         {section.items.map((item) => (
