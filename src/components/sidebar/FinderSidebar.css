@@ -63,6 +63,24 @@
 }
 
 /* ============================
+   侧边栏占位容器
+   ============================ */
+.finder-sidebar-wrapper {
+  width: var(--finder-width);
+  height: calc(100vh - 16px);
+  margin: 8px;
+  margin-right: 0;
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.finder-sidebar-wrapper.collapsed {
+  width: 0;
+  margin: 8px 0;
+}
+
+/* ============================
    侧边栏容器
    ============================ */
 .finder-sidebar {
@@ -70,9 +88,9 @@
   height: calc(100vh - 16px);
   display: flex;
   flex-direction: column;
-  position: relative;
-  margin: 8px;
-  margin-right: 0;
+  position: fixed;
+  left: 8px;
+  top: 8px;
   border-radius: var(--finder-radius);
   background: var(--finder-bg);
   backdrop-filter: var(--finder-blur);
@@ -82,14 +100,16 @@
     inset 0 0 0 1px var(--finder-border-highlight),
     0 4px 24px rgba(0, 0, 0, 0.08);
   z-index: 100;
-  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  flex-shrink: 0;
 }
 
-/* 收起状态：宽度变为收起宽度 */
+/* 收起状态：向左滑出 */
 .finder-sidebar.collapsed {
-  width: var(--finder-collapsed-width);
+  transform: translateX(calc(-100% - 16px));
+  opacity: 0;
 }
 
 /* ============================

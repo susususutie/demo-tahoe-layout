@@ -150,25 +150,27 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
 
   // 经典侧边栏（保留原有简单样式作为备选）
   const ClassicSidebar = () => (
-    <aside className={`tahoe-sidebar-classic ${isSidebarCollapsed ? 'collapsed' : ''}`}>
-      <div className="tahoe-classic-header">
-        <span>Sidebar</span>
-        <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}>
-          {isSidebarCollapsed ? '→' : '←'}
-        </button>
-      </div>
-      <nav className="tahoe-classic-nav">
-        {navSections[0].items.map((item) => (
-          <button
-            key={item.id}
-            className={activeNavId === item.id ? 'active' : ''}
-            onClick={() => handleNavSelect(item.id)}
-          >
-            {isSidebarCollapsed ? item.label.charAt(0) : item.label}
+    <div className={`tahoe-sidebar-classic-wrapper ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+      <aside className={`tahoe-sidebar-classic ${isSidebarCollapsed ? 'collapsed' : ''}`}>
+        <div className="tahoe-classic-header">
+          <span>Sidebar</span>
+          <button onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}>
+            {isSidebarCollapsed ? '→' : '←'}
           </button>
-        ))}
-      </nav>
-    </aside>
+        </div>
+        <nav className="tahoe-classic-nav">
+          {navSections[0].items.map((item) => (
+            <button
+              key={item.id}
+              className={activeNavId === item.id ? 'active' : ''}
+              onClick={() => handleNavSelect(item.id)}
+            >
+              {isSidebarCollapsed ? item.label.charAt(0) : item.label}
+            </button>
+          ))}
+        </nav>
+      </aside>
+    </div>
   );
 
   return (

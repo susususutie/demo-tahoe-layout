@@ -74,13 +74,29 @@
 /* ============================
    经典侧边栏（备选）
    ============================ */
+.tahoe-sidebar-classic-wrapper {
+  width: var(--tahoe-sidebar-width);
+  height: calc(100vh - 16px);
+  margin: 8px;
+  margin-right: 0;
+  flex-shrink: 0;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.tahoe-sidebar-classic-wrapper.collapsed {
+  width: 0;
+  margin: 8px 0;
+}
+
 .tahoe-sidebar-classic {
   width: var(--tahoe-sidebar-width);
   height: calc(100vh - 16px);
   display: flex;
   flex-direction: column;
-  margin: 8px;
-  margin-right: 0;
+  position: fixed;
+  left: 8px;
+  top: 8px;
   border-radius: var(--tahoe-radius);
   background: rgba(255, 255, 255, 0.32);
   backdrop-filter: var(--tahoe-blur);
@@ -90,13 +106,15 @@
     inset 0 0 0 1px var(--tahoe-border-highlight),
     0 4px 24px rgba(0, 0, 0, 0.08);
   z-index: 100;
-  transition: width 0.3s ease;
+  transition:
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
-  flex-shrink: 0;
 }
 
 .tahoe-sidebar-classic.collapsed {
-  width: var(--tahoe-sidebar-collapsed-width);
+  transform: translateX(calc(-100% - 16px));
+  opacity: 0;
 }
 
 .tahoe-classic-header {
