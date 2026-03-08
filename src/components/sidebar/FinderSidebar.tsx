@@ -166,7 +166,11 @@ const NavItemComponent: React.FC<{
   // 构建图标容器样式和类名
   const iconContainerStyle = (() => {
     if (useColoredRect) {
-      return { backgroundColor: item.iconColor };
+      // 支持渐变背景（如果包含 linear-gradient）或纯色
+      const isGradient = item.iconColor?.includes('gradient');
+      return isGradient 
+        ? { background: item.iconColor }
+        : { backgroundColor: item.iconColor };
     }
     if (useFixedColor) {
       return { color: item.iconColor };

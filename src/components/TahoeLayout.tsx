@@ -31,11 +31,11 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'apps',
     title: '应用程序',
     items: [
-      // 使用 image 类型：从 URL 加载图片图标（macosicons.com 风格）
-      { id: 'siri', label: 'Siri', iconType: 'image', iconSrc: 'https://api.macosicons.com/icon/1T8DDbVshC/download', iconSize: 22, activeColor: 'macos' },
-      { id: 'safari', label: 'Safari', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg', iconSize: 22, activeColor: 'macos' },
-      { id: 'mail', label: '邮件', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg', iconSize: 22, activeColor: 'macos' },
-      { id: 'messages', label: '信息', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/IMessage_logo.svg', iconSize: 22, activeColor: 'macos' },
+      // macOS Big Sur 风格应用图标（使用 coloredRect 类型）
+      { id: 'siri', label: 'Siri', iconType: 'coloredRect', iconName: 'settings', iconColor: 'linear-gradient(135deg, #5856d6 0%, #007aff 25%, #34c759 50%, #ffcc00 75%, #ff3b30 100%)', activeColor: 'macos' },
+      { id: 'safari', label: 'Safari', iconType: 'coloredRect', iconName: 'target', iconColor: '#007aff', activeColor: 'macos' },
+      { id: 'settings', label: '设置', iconType: 'coloredRect', iconName: 'settings', iconColor: '#8e8e93', activeColor: 'macos' },
+      { id: 'appstore', label: 'App Store', iconType: 'coloredRect', iconName: 'applications', iconColor: 'linear-gradient(180deg, #007aff 0%, #5e5ce6 100%)', activeColor: 'macos' },
     ],
   },
   {
