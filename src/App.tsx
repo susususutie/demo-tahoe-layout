@@ -3,7 +3,14 @@ import './App.css'
 
 function App() {
   return (
-    <TahoeLayout sidebarContent={null} title="Tahoe Dashboard">
+    <TahoeLayout
+      sidebarVariant="finder"
+      title="Tahoe Dashboard"
+      breadcrumbs={[
+        { id: 'home', label: 'sutie', icon: '🏠' },
+        { id: 'documents', label: '文稿' },
+      ]}
+    >
       <div className="demo-content">
         <section className="demo-section">
           <h2>Welcome to macOS Tahoe Style</h2>

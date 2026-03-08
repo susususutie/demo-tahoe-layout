@@ -1,0 +1,123 @@
+/**
+ * 面包屑导航样式
+ * 参考 macOS Finder 路径栏
+ */
+
+.tahoe-breadcrumb {
+  display: flex;
+  align-items: center;
+}
+
+.tahoe-breadcrumb-list {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tahoe-breadcrumb-item {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+/* 面包屑按钮 */
+.tahoe-breadcrumb-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--tahoe-text, rgba(0, 0, 0, 0.7));
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.tahoe-breadcrumb-btn:hover:not(:disabled) {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.tahoe-breadcrumb-btn:active:not(:disabled) {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.tahoe-breadcrumb-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* 当前项（最后一项） */
+.tahoe-breadcrumb-item.last .tahoe-breadcrumb-btn {
+  font-weight: 600;
+  color: var(--tahoe-text, rgba(0, 0, 0, 0.88));
+}
+
+/* 激活项 */
+.tahoe-breadcrumb-item.active .tahoe-breadcrumb-btn {
+  background: rgba(0, 113, 227, 0.1);
+  color: #0071e3;
+}
+
+/* 首页图标 */
+.tahoe-breadcrumb-home {
+  padding: 4px;
+}
+
+.tahoe-breadcrumb-home svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* 图标 */
+.tahoe-breadcrumb-icon {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 标签 */
+.tahoe-breadcrumb-label {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 分隔符 */
+.tahoe-breadcrumb-separator {
+  width: 14px;
+  height: 14px;
+  color: var(--tahoe-text-secondary, rgba(0, 0, 0, 0.35));
+  flex-shrink: 0;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  .tahoe-breadcrumb-btn {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .tahoe-breadcrumb-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .tahoe-breadcrumb-btn:active:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .tahoe-breadcrumb-item.last .tahoe-breadcrumb-btn {
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .tahoe-breadcrumb-separator {
+    color: rgba(255, 255, 255, 0.35);
+  }
+}

@@ -1,0 +1,407 @@
+/**
+ * Finder 风格侧边栏样式
+ * 参考 macOS Finder 侧边栏设计
+ */
+
+/* ============================
+   基础变量
+   ============================ */
+.finder-sidebar {
+  --finder-width: 200px;
+  --finder-collapsed-width: 52px;
+  --finder-radius: 10px;
+  --finder-item-radius: 8px;
+  --finder-blur: blur(40px) saturate(150%) brightness(1.05);
+
+  /* 访达风格背景色 - 更纯净的白色 */
+  --finder-bg: rgba(255, 255, 255, 0.32);
+  --finder-bg-dark: rgba(40, 40, 42, 0.48);
+
+  /* 选中项背景 */
+  --finder-active-bg: rgba(0, 113, 227, 0.12);
+  --finder-active-bg-dark: rgba(0, 113, 227, 0.25);
+
+  /* 悬停背景 */
+  --finder-hover-bg: rgba(0, 0, 0, 0.04);
+  --finder-hover-bg-dark: rgba(255, 255, 255, 0.06);
+
+  /* 边框 */
+  --finder-border: rgba(255, 255, 255, 0.2);
+  --finder-border-dark: rgba(255, 255, 255, 0.1);
+  --finder-border-highlight: rgba(255, 255, 255, 0.4);
+
+  /* 文字 */
+  --finder-text: rgba(0, 0, 0, 0.88);
+  --finder-text-secondary: rgba(0, 0, 0, 0.5);
+  --finder-text-dark: rgba(255, 255, 255, 0.92);
+  --finder-text-secondary-dark: rgba(255, 255, 255, 0.5);
+
+  /* 分组标题 */
+  --finder-section-title: rgba(0, 0, 0, 0.4);
+  --finder-section-title-dark: rgba(255, 255, 255, 0.4);
+
+  /* 强调色 */
+  --finder-accent: #0071e3;
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  .finder-sidebar {
+    --finder-bg: var(--finder-bg-dark);
+    --finder-active-bg: var(--finder-active-bg-dark);
+    --finder-hover-bg: var(--finder-hover-bg-dark);
+    --finder-border: var(--finder-border-dark);
+    --finder-text: var(--finder-text-dark);
+    --finder-text-secondary: var(--finder-text-secondary-dark);
+    --finder-section-title: var(--finder-section-title-dark);
+  }
+}
+
+/* ============================
+   侧边栏容器
+   ============================ */
+.finder-sidebar {
+  width: var(--finder-width);
+  height: calc(100% - 16px);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin: 8px;
+  margin-right: 0;
+  border-radius: var(--finder-radius);
+  background: var(--finder-bg);
+  backdrop-filter: var(--finder-blur);
+  -webkit-backdrop-filter: var(--finder-blur);
+  border: 1px solid var(--finder-border);
+  box-shadow:
+    inset 0 0 0 1px var(--finder-border-highlight),
+    0 4px 24px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+/* 收起状态 */
+.finder-sidebar.collapsed {
+  width: var(--finder-collapsed-width);
+}
+
+/* ============================
+   头部
+   ============================ */
+.finder-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px;
+  min-height: 52px;
+  border-bottom: 1px solid var(--finder-border);
+  flex-shrink: 0;
+}
+
+.finder-sidebar.collapsed .finder-sidebar-header {
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.finder-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  flex-shrink: 0;
+}
+
+.finder-username {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--finder-text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* iCloud 同步状态图标 */
+.finder-sync-icon {
+  font-size: 12px;
+  opacity: 0.7;
+  cursor: help;
+}
+
+/* ============================
+   切换按钮
+   ============================ */
+.finder-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.finder-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.finder-toggle-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--finder-text);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.finder-toggle-icon.collapsed {
+  transform: rotate(180deg);
+}
+
+/* 收起状态下的悬浮展开按钮 */
+.finder-floating-toggle {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid var(--finder-border);
+  border-radius: 10px;
+  background: var(--finder-bg);
+  backdrop-filter: var(--finder-blur);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 101;
+}
+
+.finder-floating-toggle svg {
+  width: 12px;
+  height: 12px;
+  color: var(--finder-text);
+}
+
+.finder-sidebar.collapsed:hover .finder-floating-toggle {
+  opacity: 1;
+}
+
+.finder-floating-toggle:hover {
+  background: var(--finder-hover-bg);
+  transform: translateY(-50%) scale(1.05);
+}
+
+/* ============================
+   导航区域
+   ============================ */
+.finder-nav {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+.finder-sidebar.collapsed .finder-nav {
+  padding: 8px 6px;
+}
+
+.finder-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.finder-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.finder-nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+}
+
+/* ============================
+   分组标题
+   ============================ */
+.finder-section {
+  margin-bottom: 8px;
+}
+
+.finder-section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--finder-section-title);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 8px 12px 4px;
+  margin: 0;
+  user-select: none;
+}
+
+.finder-section-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* ============================
+   导航项
+   ============================ */
+.finder-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 10px;
+  border: none;
+  border-radius: var(--finder-item-radius);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--finder-text);
+  text-align: left;
+  position: relative;
+}
+
+/* 收起状态居中 */
+.finder-sidebar.collapsed .finder-nav-item {
+  justify-content: center;
+  padding: 8px;
+}
+
+.finder-nav-item:hover:not(.disabled) {
+  background: var(--finder-hover-bg);
+}
+
+.finder-nav-item.active {
+  background: var(--finder-active-bg);
+  color: var(--finder-accent);
+  font-weight: 500;
+}
+
+.finder-nav-item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 图标 */
+.finder-nav-icon {
+  font-size: 17px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* 标签 */
+.finder-nav-label {
+  font-size: 13px;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 徽章 */
+.finder-nav-badge {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--finder-text-secondary);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 2px 6px;
+  border-radius: 10px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.finder-nav-item.active .finder-nav-badge {
+  background: rgba(0, 113, 227, 0.15);
+  color: var(--finder-accent);
+}
+
+/* ============================
+   底部区域
+   ============================ */
+.finder-footer {
+  margin-top: auto;
+  padding-top: 8px;
+  border-top: 1px solid var(--finder-border);
+}
+
+/* ============================
+   滚动遮罩
+   ============================ */
+.finder-vignette {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 60px;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.finder-vignette.top {
+  top: 52px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.finder-vignette.bottom {
+  bottom: 0;
+  border-radius: 0 0 var(--finder-radius) var(--finder-radius);
+  background: linear-gradient(
+    to top,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 100%
+  );
+}
+
+.finder-vignette.visible {
+  opacity: 1;
+}
+
+/* 深色模式遮罩 */
+@media (prefers-color-scheme: dark) {
+  .finder-vignette.top {
+    background: linear-gradient(
+      to bottom,
+      rgba(40, 40, 42, 0.95) 0%,
+      rgba(40, 40, 42, 0.5) 50%,
+      transparent 100%
+    );
+  }
+
+  .finder-vignette.bottom {
+    background: linear-gradient(
+      to top,
+      rgba(40, 40, 42, 0.95) 0%,
+      rgba(40, 40, 42, 0.5) 50%,
+      transparent 100%
+    );
+  }
+}
