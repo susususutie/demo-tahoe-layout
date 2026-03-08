@@ -151,39 +151,51 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
       {/* 顶部遮罩 */}
       <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
 
-      {/* 头部 */}
-      <div className="finder-sidebar-header">
-        {!isCollapsed && user && (
-          <>
-            <div className="finder-avatar">
-              {user.avatar || user.name.charAt(0).toUpperCase()}
-            </div>
-            <span className="finder-username">{user.name}</span>
-            {syncStatus && <SyncStatusIcon status={syncStatus} />}
-          </>
-        )}
-
-        {/* 收起/展开按钮 */}
-        {showToggle && (
-          <button
-            className="finder-toggle-btn"
-            onClick={handleToggle}
-            aria-label={isCollapsed ? '展开侧边栏' : '收起侧边栏'}
-          >
-            <svg
-              className={`finder-toggle-icon ${isCollapsed ? 'collapsed' : ''}`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6" />
-            </svg>
-          </button>
-        )}
+      {/* macOS 风格窗口控制按钮 */}
+      <div className="finder-window-controls">
+        <button
+          className="finder-window-btn finder-close-btn"
+          onClick={handleToggle}
+          aria-label="收起侧边栏"
+          title="收起"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <line x1="8" y1="12" x2="16" y2="12" />
+          </svg>
+        </button>
+        <button
+          className="finder-window-btn finder-minimize-btn"
+          onClick={handleToggle}
+          aria-label="收起侧边栏"
+          title="收起"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <rect x="6" y="11" width="12" height="2" rx="1" />
+          </svg>
+        </button>
+        <button
+          className="finder-window-btn finder-expand-btn"
+          onClick={handleToggle}
+          aria-label="展开侧边栏"
+          title="展开"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+            <path d="M8 8h8v8" />
+            <path d="M8 16l8-8" />
+          </svg>
+        </button>
       </div>
+
+      {/* 头部信息 - 仅展开时显示 */}
+      {!isCollapsed && user && (
+        <div className="finder-sidebar-header">
+          <div className="finder-avatar">
+            {user.avatar || user.name.charAt(0).toUpperCase()}
+          </div>
+          <span className="finder-username">{user.name}</span>
+          {syncStatus && <SyncStatusIcon status={syncStatus} />}
+        </div>
+      )}
 
       {/* 导航区域 */}
       <nav className="finder-nav" ref={navRef}>
