@@ -3,15 +3,18 @@ import './TahoeLayout.css';
 
 interface TahoeLayoutProps {
   children: React.ReactNode;
-  sidebarContent: React.ReactNode;
+  sidebarContent?: React.ReactNode;
   title?: string;
+  defaultCollapsed?: boolean;
 }
 
 export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   children,
   sidebarContent,
   title = 'Tahoe Layout',
+  defaultCollapsed = false,
 }) => {
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(defaultCollapsed);
   const [sidebarScrolled, setSidebarScrolled] = useState(false);
   const [contentScrolled, setContentScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState('Dashboard');
@@ -54,14 +57,30 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
 
   return (
     <div className="tahoe-layout">
-      {/* Sidebar */}
-      <aside className="tahoe-sidebar">
+      {/* Sidebar - 访达风格圆角设计 */}
+      <aside
+        className={`tahoe-sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}
+      >
         <div
           className={`tahoe-sidebar-vignette top ${sidebarScrolled ? 'visible' : ''}`}
         />
         <div className="tahoe-sidebar-header">
-          <div className="tahoe-avatar">S</div>
-          <span className="tahoe-username">sutie</span>
+          {!sidebarCollapsed && (
+            <>
+              <div className="tahoe-avatar">S</div>
+              <span className="tahoe-username">sutie</span>
+            </>
+          )}
+          {/* 收起/展开按钮 */}
+          <button
+            className="tahoe-sidebar-toggle"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            aria-label={sidebarCollapsed ? '展开侧边栏' : '收起侧边栏'}
+          >
+            <span className={`tahoe-toggle-icon ${sidebarCollapsed ? 'collapsed' : ''}`}>
+              ◀
+            </span>
+          </button>
         </div>
         <nav className="tahoe-sidebar-nav" ref={sidebarRef}>
           {navItems.map((item) => (
@@ -69,20 +88,23 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
               key={item.label}
               className={`tahoe-nav-item ${activeItem === item.label ? 'active' : ''}`}
               onClick={() => setActiveItem(item.label)}
+              title={sidebarCollapsed ? item.label : undefined}
             >
               <span className="tahoe-nav-icon">{item.icon}</span>
-              <span className="tahoe-nav-label">{item.label}</span>
+              {!sidebarCollapsed && (
+                <span className="tahoe-nav-label">{item.label}</span>
+              )}
             </button>
           ))}
           {/* Extra items to enable scrolling */}
-          {Array.from({ length: 10 }).map((_, i) => (
+          {!sidebarCollapsed && Array.from({ length: 10 }).map((_, i) => (
             <button key={`extra-${i}`} className="tahoe-nav-item">
               <span className="tahoe-nav-icon">📁</span>
               <span className="tahoe-nav-label">Folder {i + 1}</span>
             </button>
           ))}
           {/* Custom sidebar content */}
-          {sidebarContent && (
+          {!sidebarCollapsed && sidebarContent && (
             <div className="tahoe-sidebar-custom">{sidebarContent}</div>
           )}
         </nav>
@@ -97,7 +119,19 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
           className={`tahoe-content-vignette top ${contentScrolled ? 'visible' : ''}`}
         />
         <div className="tahoe-content-header">
-          <h1 className="tahoe-title">{title}</h1>
+          <div className="tahoe-header-left">
+            {/* 当侧边栏收起时显示展开按钮 */}
+            {sidebarCollapsed && (
+              <button
+                className="tahoe-sidebar-show-btn"
+                onClick={() => setSidebarCollapsed(false)}
+                aria-label="展开侧边栏"
+              >
+                ☰
+              </button>
+            )}
+            <h1 className="tahoe-title">{title}</h1>
+          </div>
           <div className="tahoe-actions">
             <button className="tahoe-action-btn">+ New</button>
             <button className="tahoe-action-btn secondary">⋯</button>
