@@ -529,11 +529,11 @@
   flex-shrink: 0;
 }
 
-/* 固定颜色图标（标签圆点）- CSS 绘制圆形 */
-.finder-nav-icon.finder-color-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
+/* 圆角矩形图标 - 固定颜色 */
+.finder-nav-icon.finder-rounded-rect {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
   background-color: currentColor;
   flex-shrink: 0;
 }

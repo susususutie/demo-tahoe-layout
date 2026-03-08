@@ -62,13 +62,13 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'tags',
     title: '标签',
     items: [
-      // 所有标签都使用 CSS 绘制的固定颜色圆点，选中时文字颜色也对应变化
-      { id: 'tag-red', label: '红色', iconType: 'fixed', iconColor: '#ff3b30', activeColor: '#ff3b30' },
-      { id: 'tag-orange', label: '工作', iconType: 'fixed', iconColor: '#ff9500', activeColor: '#ff9500' },
-      { id: 'tag-yellow', label: '黄色', iconType: 'fixed', iconColor: '#ffcc00', activeColor: '#ffcc00' },
-      { id: 'tag-green', label: '已完成', iconType: 'fixed', iconColor: '#34c759', activeColor: '#34c759' },
-      { id: 'tag-blue', label: '个人', iconType: 'fixed', iconColor: '#007aff', activeColor: '#007aff' },
-      { id: 'tag-purple', label: '紫色', iconType: 'fixed', iconColor: '#af52de', activeColor: '#af52de' },
+      // 使用 roundedRect 类型的圆角矩形图标（固定颜色）
+      { id: 'tag-red', label: '红色', iconType: 'roundedRect', iconColor: '#ff3b30', activeColor: '#ff3b30' },
+      { id: 'tag-orange', label: '工作', iconType: 'roundedRect', iconColor: '#ff9500', activeColor: '#ff9500' },
+      { id: 'tag-yellow', label: '黄色', iconType: 'roundedRect', iconColor: '#ffcc00', activeColor: '#ffcc00' },
+      { id: 'tag-green', label: '已完成', iconType: 'roundedRect', iconColor: '#34c759', activeColor: '#34c759' },
+      { id: 'tag-blue', label: '个人', iconType: 'roundedRect', iconColor: '#007aff', activeColor: '#007aff' },
+      { id: 'tag-purple', label: '紫色', iconType: 'roundedRect', iconColor: '#af52de', activeColor: '#af52de' },
     ],
   },
 ];

@@ -101,38 +101,39 @@ const NavItemComponent: React.FC<{
     ? { color: activeTextColor }
     : undefined;
 
+  // 是否使用圆角矩形图标
+  const useRoundedRect = item.iconType === 'roundedRect' && item.iconColor;
+
   // 计算图标颜色
   const iconColor = (() => {
-    // 固定图标颜色模式
-    if (item.iconType === 'fixed' && item.iconColor) {
+    // 圆角矩形图标 - 使用固定颜色
+    if (useRoundedRect) {
       return item.iconColor;
     }
-    // 跟随文字颜色模式（选中时与文字同色）
+    // SVG 图标 - 跟随文字颜色（选中时变色）
     if (isActive && activeTextColor) {
       return activeTextColor;
     }
     return undefined;
   })();
 
-  // 构建图标样式
-  const iconStyle = iconColor
-    ? { color: iconColor }
-    : undefined;
-
-  // 是否使用 CSS 绘制的固定颜色圆点
-  const useFixedColorDot = item.iconType === 'fixed' && item.iconColor;
-
   // 渲染图标内容
   const renderIcon = () => {
-    if (useFixedColorDot) {
-      return null; // CSS 圆点由样式绘制
+    // 圆角矩形图标 - 固定颜色
+    if (useRoundedRect) {
+      return null; // 由 CSS 绘制圆角矩形
     }
-    // 使用内置 SVG 图标
+    // SVG 线条图标 - 可随文字变色
     if (item.iconName) {
       return <BuiltinIcon name={item.iconName} color={iconColor} />;
     }
     return null;
   };
+
+  // 构建图标容器样式
+  const iconContainerStyle = useRoundedRect
+    ? { color: item.iconColor }
+    : undefined;
 
   return (
     <button
@@ -145,8 +146,8 @@ const NavItemComponent: React.FC<{
       data-icon-color={item.iconColor}
     >
       <span 
-        className={`finder-nav-icon ${useFixedColorDot ? 'finder-color-dot' : ''}`} 
-        style={iconStyle}
+        className={`finder-nav-icon ${useRoundedRect ? 'finder-rounded-rect' : ''}`} 
+        style={iconContainerStyle}
       >
         {renderIcon()}
       </span>

@@ -42,18 +42,18 @@ export interface NavItem {
   activeColor?: ActiveTextColor;
   /** 
    * 图标类型
-   * - 'text' | undefined: 使用内置图标（根据 iconName 渲染 SVG）
-   * - 'fixed': 固定颜色图标（不受选中影响，配合 iconColor 使用）
+   * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
+   * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
    */
-  iconType?: 'text' | 'fixed';
+  iconType?: 'svg' | 'roundedRect';
   /** 
-   * 内置图标名称（当 iconType 为 'text' 或 undefined 时使用）
+   * 内置图标名称（当 iconType 为 'svg' 或 undefined 时使用）
    * 如 'airdrop', 'recent', 'documents' 等
    */
   iconName?: BuiltinIconName;
   /** 
-   * 固定图标颜色（当 iconType 为 'fixed' 时使用）
-   * 如 '#ff3b30' 表示红色圆形色块
+   * 圆角矩形图标颜色（当 iconType 为 'roundedRect' 时使用）
+   * 如 '#ff3b30' 表示红色圆角矩形
    */
   iconColor?: string;
 }
