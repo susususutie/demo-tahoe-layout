@@ -504,14 +504,12 @@
   border-radius: var(--finder-item-radius);
   background: transparent;
   cursor: pointer;
-  transition: 
+  transition:
     background-color var(--finder-transition-fast),
-    transform var(--finder-transition-fast),
     color var(--finder-transition-fast);
   color: var(--finder-text);
   text-align: left;
   position: relative;
-  will-change: transform;
 }
 
 /* 收起状态居中 */
@@ -520,28 +518,18 @@
   padding: 8px;
 }
 
-/* 悬停时轻微移动 */
+/* 悬停效果 */
 .finder-nav-item:hover:not(.disabled) {
   background: rgba(0, 0, 0, 0.04);
-  transform: translateX(2px);
-}
-
-.finder-sidebar.collapsed .finder-nav-item:hover:not(.disabled) {
-  transform: scale(1.05);
 }
 
 /* 默认选中状态：macOS 风格灰色背景 */
 .finder-nav-item.active {
   background: rgba(0, 0, 0, 0.08);
-  transform: translateX(0);
 }
 
 .finder-nav-item:active:not(.disabled) {
-  transform: scale(0.98);
-}
-
-.finder-sidebar.collapsed .finder-nav-item:active:not(.disabled) {
-  transform: scale(0.95);
+  background: rgba(0, 0, 0, 0.12);
 }
 
 /* highlight 模式选中状态：同样使用灰色背景 */
