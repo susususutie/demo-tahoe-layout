@@ -123,7 +123,8 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
-.finder-window-btn:hover svg {
+/* 鼠标移入按钮区域时，所有图标都显示 */
+.finder-window-controls:hover .finder-window-btn svg {
   opacity: 1;
 }
 
