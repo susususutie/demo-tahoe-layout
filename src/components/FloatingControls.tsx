@@ -22,7 +22,7 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
   onCollapse,
 }) => {
   return (
-    <div className="floating-controls">
+    <div className={`floating-controls ${isCollapsed ? 'collapsed' : ''}`}>
       {/* 三色窗口控制按钮 - 始终显示 */}
       <div className="floating-window-controls">
         <button
@@ -54,25 +54,12 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
         </button>
       </div>
 
-      {/* 隐藏侧边栏按钮 - 仅展开时显示 */}
+      {/* 侧边栏控制按钮 - 显示时在右侧，隐藏时靠近三色按钮 */}
       <button
-        className={`floating-hide-btn ${!isCollapsed ? 'visible' : ''}`}
-        onClick={onCollapse}
-        aria-label="隐藏侧边栏"
-        title="隐藏侧边栏"
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="5" width="18" height="14" rx="2" />
-          <line x1="8" y1="5" x2="8" y2="19" />
-        </svg>
-      </button>
-
-      {/* 展开侧边栏按钮 - 仅收起时显示 */}
-      <button
-        className={`floating-sidebar-btn ${isCollapsed ? 'visible' : ''}`}
-        onClick={onExpand}
-        aria-label="展开侧边栏"
-        title="展开侧边栏"
+        className="floating-toggle-btn"
+        onClick={isCollapsed ? onExpand : onCollapse}
+        aria-label={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
+        title={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="5" width="18" height="14" rx="2" />

@@ -4,13 +4,18 @@
 
 .floating-controls {
   position: fixed;
-  top: 16px;
-  left: 16px;
+  top: 24px;
+  left: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
   z-index: 200;
   pointer-events: none;
+  transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-controls.collapsed {
+  left: 24px;
 }
 
 .floating-controls > * {
@@ -26,8 +31,8 @@
 
 /* 三色按钮基础样式 */
 .floating-btn {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -44,8 +49,8 @@
 }
 
 .floating-btn svg {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   opacity: 0;
   transition: opacity 0.15s ease;
   stroke: rgba(0, 0, 0, 0.7);
@@ -92,7 +97,7 @@
   pointer-events: none;
 }
 
-/* 关闭按钮 - 红色 */
+/* 三色按钮颜色 */
 .floating-close-btn {
   background: linear-gradient(180deg, #ff5f57 0%, #ff4940 100%);
   box-shadow:
@@ -105,7 +110,6 @@
   background: linear-gradient(180deg, #ff6b63 0%, #ff5f57 100%);
 }
 
-/* 最小化按钮 - 黄色 */
 .floating-minimize-btn {
   background: linear-gradient(180deg, #febc2e 0%, #ffb020 100%);
   box-shadow:
@@ -118,7 +122,6 @@
   background: linear-gradient(180deg, #ffc83e 0%, #febc2e 100%);
 }
 
-/* 展开按钮 - 绿色 */
 .floating-expand-btn {
   background: linear-gradient(180deg, #28c840 0%, #22b336 100%);
   box-shadow:
@@ -131,8 +134,8 @@
   background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
 }
 
-/* 展开侧边栏按钮 */
-.floating-sidebar-btn {
+/* 侧边栏控制按钮 - 显示时在右侧，隐藏时靠近三色按钮 */
+.floating-toggle-btn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -143,26 +146,22 @@
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  opacity: 0;
-  transform: translateX(-10px);
-  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-left: 140px; /* 展开时在侧边栏右侧 */
 }
 
-.floating-sidebar-btn.visible {
-  opacity: 1;
-  transform: translateX(0);
-  visibility: visible;
+.floating-controls.collapsed .floating-toggle-btn {
+  margin-left: 0; /* 收起时靠近三色按钮 */
 }
 
-.floating-sidebar-btn:hover {
+.floating-toggle-btn:hover {
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
   transform: scale(1.05);
 }
 
-.floating-sidebar-btn svg {
+.floating-toggle-btn svg {
   width: 18px;
   height: 18px;
   color: rgba(0, 0, 0, 0.7);
@@ -182,29 +181,16 @@
     background: linear-gradient(180deg, #28c840 0%, #1e9f2e 100%);
   }
 
-  .floating-sidebar-btn {
+  .floating-toggle-btn {
     background: rgba(40, 40, 42, 0.9);
     border-color: rgba(255, 255, 255, 0.1);
   }
 
-  .floating-sidebar-btn:hover {
+  .floating-toggle-btn:hover {
     background: rgba(50, 50, 52, 1);
   }
 
-  .floating-sidebar-btn svg {
-    color: rgba(255, 255, 255, 0.9);
-  }
-
-  .floating-hide-btn {
-    background: rgba(40, 40, 42, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .floating-hide-btn:hover {
-    background: rgba(50, 50, 52, 1);
-  }
-
-  .floating-hide-btn svg {
+  .floating-toggle-btn svg {
     color: rgba(255, 255, 255, 0.9);
   }
 

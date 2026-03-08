@@ -647,7 +647,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
 
           {/* 头部占位区域 - 为悬浮按钮留出空间 */}
-          <div className="finder-sidebar-header-spacer" />
+          <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
 
           {/* 导航区域 */}
           <nav className="finder-nav" ref={navRef}>
