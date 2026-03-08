@@ -28,6 +28,17 @@ interface TahoeLayoutProps {
  */
 const getDefaultNavSections = (): NavSection[] => [
   {
+    id: 'projects',
+    title: '项目',
+    items: [
+      // 使用圆角矩形图标的示例菜单组
+      { id: 'proj-web', label: '网站重构', iconType: 'roundedRect', iconColor: '#5856d6', activeColor: 'macos' },
+      { id: 'proj-app', label: 'App 开发', iconType: 'roundedRect', iconColor: '#34c759', activeColor: 'macos' },
+      { id: 'proj-design', label: '设计系统', iconType: 'roundedRect', iconColor: '#ff9500', activeColor: 'macos' },
+      { id: 'proj-docs', label: '技术文档', iconType: 'roundedRect', iconColor: '#007aff', activeColor: 'macos' },
+    ],
+  },
+  {
     id: 'favorites',
     title: '个人收藏',
     items: [
