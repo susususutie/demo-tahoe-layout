@@ -525,6 +525,13 @@
   flex-shrink: 0;
 }
 
+/* 内置 SVG 图标 */
+.finder-nav-icon svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* 固定颜色图标（标签圆点）- CSS 绘制圆形 */
 .finder-nav-icon.finder-color-dot {
   width: 10px;

@@ -31,29 +31,29 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'favorites',
     title: '个人收藏',
     items: [
-      // 所有菜单选中时文字都变为 macOS 蓝色
-      { id: 'airdrop', icon: '📡', label: '隔空投送', activeColor: 'macos' },
-      { id: 'recent', icon: '🕐', label: '最近使用', activeColor: 'macos' },
-      { id: 'applications', icon: '🚀', label: '应用程序', activeColor: 'macos' },
-      { id: 'desktop', icon: '🖥️', label: '桌面', badge: 3, activeColor: 'macos' },
-      { id: 'documents', icon: '📄', label: '文稿', activeColor: 'macos' },
-      { id: 'downloads', icon: '⬇️', label: '下载', activeColor: 'macos' },
+      // 所有菜单选中时文字都变为 macOS 蓝色，使用内置 SVG 图标
+      { id: 'airdrop', iconName: 'airdrop', label: '隔空投送', activeColor: 'macos' },
+      { id: 'recent', iconName: 'recent', label: '最近使用', activeColor: 'macos' },
+      { id: 'applications', iconName: 'applications', label: '应用程序', activeColor: 'macos' },
+      { id: 'desktop', iconName: 'desktop', label: '桌面', badge: 3, activeColor: 'macos' },
+      { id: 'documents', iconName: 'documents', label: '文稿', activeColor: 'macos' },
+      { id: 'downloads', iconName: 'downloads', label: '下载', activeColor: 'macos' },
     ],
   },
   {
     id: 'icloud',
     title: 'iCloud',
     items: [
-      { id: 'icloud-drive', icon: '☁️', label: 'iCloud 云盘' },
-      { id: 'shared', icon: '👥', label: '共享' },
+      { id: 'icloud-drive', iconName: 'icloud', label: 'iCloud 云盘' },
+      { id: 'shared', iconName: 'share', label: '共享' },
     ],
   },
   {
     id: 'locations',
     title: '位置',
     items: [
-      { id: 'mac', icon: '💻', label: 'Mac' },
-      { id: 'network', icon: '🌐', label: '网络' },
+      { id: 'mac', iconName: 'mac', label: 'Mac' },
+      { id: 'network', iconName: 'network', label: '网络' },
     ],
   },
   {
@@ -61,12 +61,12 @@ const getDefaultNavSections = (): NavSection[] => [
     title: '标签',
     items: [
       // 所有标签都使用 CSS 绘制的固定颜色圆点，选中时文字颜色也对应变化
-      { id: 'tag-red', icon: '', label: '红色', iconType: 'fixed', iconColor: '#ff3b30', activeColor: '#ff3b30' },
-      { id: 'tag-orange', icon: '', label: '工作', iconType: 'fixed', iconColor: '#ff9500', activeColor: '#ff9500' },
-      { id: 'tag-yellow', icon: '', label: '黄色', iconType: 'fixed', iconColor: '#ffcc00', activeColor: '#ffcc00' },
-      { id: 'tag-green', icon: '', label: '已完成', iconType: 'fixed', iconColor: '#34c759', activeColor: '#34c759' },
-      { id: 'tag-blue', icon: '', label: '个人', iconType: 'fixed', iconColor: '#007aff', activeColor: '#007aff' },
-      { id: 'tag-purple', icon: '', label: '紫色', iconType: 'fixed', iconColor: '#af52de', activeColor: '#af52de' },
+      { id: 'tag-red', label: '红色', iconType: 'fixed', iconColor: '#ff3b30', activeColor: '#ff3b30' },
+      { id: 'tag-orange', label: '工作', iconType: 'fixed', iconColor: '#ff9500', activeColor: '#ff9500' },
+      { id: 'tag-yellow', label: '黄色', iconType: 'fixed', iconColor: '#ffcc00', activeColor: '#ffcc00' },
+      { id: 'tag-green', label: '已完成', iconType: 'fixed', iconColor: '#34c759', activeColor: '#34c759' },
+      { id: 'tag-blue', label: '个人', iconType: 'fixed', iconColor: '#007aff', activeColor: '#007aff' },
+      { id: 'tag-purple', label: '紫色', iconType: 'fixed', iconColor: '#af52de', activeColor: '#af52de' },
     ],
   },
 ];
@@ -147,7 +147,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
             className={activeNavId === item.id ? 'active' : ''}
             onClick={() => handleNavSelect(item.id)}
           >
-            {isSidebarCollapsed ? item.icon : item.label}
+            {isSidebarCollapsed ? item.label.charAt(0) : item.label}
           </button>
         ))}
       </nav>

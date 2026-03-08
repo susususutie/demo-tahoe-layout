@@ -8,10 +8,24 @@ import type { ReactNode, JSX } from 'react';
 /** 选中文字颜色模式 */
 export type ActiveTextColor = 'default' | 'macos' | string;
 
+/** 内置图标名称 - macOS 风格 */
+export type BuiltinIconName = 
+  | 'airdrop'      // 隔空投送
+  | 'recent'       // 最近使用
+  | 'applications' // 应用程序
+  | 'desktop'      // 桌面
+  | 'documents'    // 文稿
+  | 'downloads'    // 下载
+  | 'icloud'       // iCloud
+  | 'share'        // 共享
+  | 'mac'          // Mac
+  | 'network'      // 网络
+  | 'folder'       // 文件夹
+  | 'home';        // 主页
+
 /** 导航项数据 */
 export interface NavItem {
   id: string;
-  icon: ReactNode;
   label: string;
   badge?: number;
   shortcut?: string;
@@ -25,10 +39,15 @@ export interface NavItem {
   activeColor?: ActiveTextColor;
   /** 
    * 图标类型
-   * - 'text' | undefined: 图标跟随文字颜色（选中时与文字同色）
+   * - 'text' | undefined: 使用内置图标（根据 iconName 渲染 SVG）
    * - 'fixed': 固定颜色图标（不受选中影响，配合 iconColor 使用）
    */
   iconType?: 'text' | 'fixed';
+  /** 
+   * 内置图标名称（当 iconType 为 'text' 或 undefined 时使用）
+   * 如 'airdrop', 'recent', 'documents' 等
+   */
+  iconName?: BuiltinIconName;
   /** 
    * 固定图标颜色（当 iconType 为 'fixed' 时使用）
    * 如 '#ff3b30' 表示红色圆形色块
