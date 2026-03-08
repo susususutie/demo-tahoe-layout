@@ -193,29 +193,15 @@
     color: var(--finder-text);
   }
 
-  /* 深色模式下默认选中状态 */
+  /* 深色模式下选中状态：不改变背景 */
   .finder-nav-item.active {
-    background: var(--finder-active-bg);
-    color: var(--finder-accent);
+    /* 背景保持透明 */
   }
 
   /* 深色模式下 highlight 选中状态 */
   .finder-nav-item.active.highlight {
-    background: rgba(255, 255, 255, 0.15);
-    color: #0a84ff;
+    /* 文字颜色通过行内样式设置 */
   }
-}
-
-/* ============================
-   彩色菜单项（标签组）
-   ============================ */
-.finder-nav-item.colored.active {
-  /* 使用内联样式设置颜色，这里重置默认颜色 */
-  font-weight: 600;
-}
-
-.finder-nav-item.colored.active .finder-nav-icon {
-  filter: none;
 }
 
 /* ============================
@@ -513,22 +499,14 @@
   /* 背景保持不变 */
 }
 
-/* 默认选中状态：浅色背景 */
+/* 默认选中状态：不改变背景，只显示选中标记 */
 .finder-nav-item.active {
-  background: var(--finder-active-bg);
-  color: var(--finder-accent);
-  font-weight: 500;
+  /* 背景保持透明 */
 }
 
-/* highlight 模式选中状态：深色背景 + macOS蓝色文字 */
+/* highlight 模式选中状态：仅文字高亮 */
 .finder-nav-item.active.highlight {
-  background: rgba(0, 0, 0, 0.12);
-  color: #007aff;
-  font-weight: 600;
-}
-
-.finder-nav-item.active.highlight .finder-nav-icon {
-  filter: saturate(1.2);
+  /* 文字颜色和加粗通过行内样式设置 */
 }
 
 .finder-nav-item.disabled {

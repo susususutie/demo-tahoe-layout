@@ -30,11 +30,10 @@ const getDefaultNavSections = (): NavSection[] => [
   {
     id: 'favorites',
     title: '个人收藏',
-    highlightOnSelect: true,
     items: [
-      { id: 'airdrop', icon: '📡', label: '隔空投送' },
-      { id: 'recent', icon: '🕐', label: '最近使用' },
-      { id: 'applications', icon: '🚀', label: '应用程序' },
+      { id: 'airdrop', icon: '📡', label: '隔空投送', activeColor: 'default' },
+      { id: 'recent', icon: '🕐', label: '最近使用', activeColor: 'macos' },
+      { id: 'applications', icon: '🚀', label: '应用程序', activeColor: '#5856d6' },
       { id: 'desktop', icon: '🖥️', label: '桌面', badge: 3 },
       { id: 'documents', icon: '📄', label: '文稿' },
       { id: 'downloads', icon: '⬇️', label: '下载' },
@@ -60,12 +59,12 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'tags',
     title: '标签',
     items: [
-      { id: 'tag-red', icon: '●', label: '重要', color: '#ff3b30' },
-      { id: 'tag-orange', icon: '●', label: '进行中', color: '#ff9500' },
-      { id: 'tag-yellow', icon: '●', label: '待处理', color: '#ffcc00' },
-      { id: 'tag-green', icon: '●', label: '已完成', color: '#34c759' },
-      { id: 'tag-blue', icon: '●', label: '个人', color: '#007aff' },
-      { id: 'tag-purple', icon: '●', label: '工作', color: '#af52de' },
+      { id: 'tag-red', icon: '●', label: '重要', activeColor: '#ff3b30' },
+      { id: 'tag-orange', icon: '●', label: '进行中', activeColor: '#ff9500' },
+      { id: 'tag-yellow', icon: '●', label: '待处理', activeColor: '#ffcc00' },
+      { id: 'tag-green', icon: '●', label: '已完成', activeColor: '#34c759' },
+      { id: 'tag-blue', icon: '●', label: '个人', activeColor: 'macos' },
+      { id: 'tag-purple', icon: '●', label: '工作', activeColor: '#af52de' },
     ],
   },
 ];

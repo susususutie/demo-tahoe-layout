@@ -41,14 +41,21 @@ const NavItemComponent: React.FC<{
   onClick: () => void;
   highlightOnSelect?: boolean;
 }> = ({ item, isActive, isCollapsed, onClick, highlightOnSelect }) => {
-  // 构建选中时的样式（支持自定义颜色）
-  const activeStyle = isActive && item.color
-    ? { color: item.color, backgroundColor: `${item.color}20` }
+  // 计算选中时的文字颜色
+  const activeTextColor = (() => {
+    if (!isActive || !item.activeColor) return undefined;
+    if (item.activeColor === 'default') return undefined;
+    if (item.activeColor === 'macos') return '#007aff';
+    return item.activeColor;
+  })();
+
+  const activeStyle = activeTextColor
+    ? { color: activeTextColor }
     : undefined;
 
   return (
     <button
-      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''} ${item.color ? 'colored' : ''}`}
+      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''}`}
       onClick={onClick}
       disabled={item.disabled}
       title={isCollapsed ? item.label : undefined}

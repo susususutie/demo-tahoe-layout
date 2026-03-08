@@ -5,6 +5,9 @@
 
 import type { ReactNode, JSX } from 'react';
 
+/** 选中文字颜色模式 */
+export type ActiveTextColor = 'default' | 'macos' | string;
+
 /** 导航项数据 */
 export interface NavItem {
   id: string;
@@ -13,8 +16,13 @@ export interface NavItem {
   badge?: number;
   shortcut?: string;
   disabled?: boolean;
-  /** 选中时的颜色（用于标签组等） */
-  color?: string;
+  /** 
+   * 选中时的文字颜色
+   * - 'default': 不改变（保持默认黑色/白色）
+   * - 'macos': 使用 macOS 默认蓝色 (#007aff)
+   * - string: 自定义颜色值（如 '#ff3b30'）
+   */
+  activeColor?: ActiveTextColor;
 }
 
 /** 导航分组 */
