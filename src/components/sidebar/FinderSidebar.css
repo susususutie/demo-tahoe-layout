@@ -525,6 +525,13 @@
   flex-shrink: 0;
 }
 
+/* 固定颜色图标（标签圆点）- macOS 风格小圆点 */
+.finder-nav-item[data-icon-type="fixed"] .finder-nav-icon {
+  font-size: 10px;
+  width: 12px;
+  height: 12px;
+}
+
 /* 标签 */
 .finder-nav-label {
   font-size: 13px;

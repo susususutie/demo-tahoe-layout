@@ -79,6 +79,7 @@ const NavItemComponent: React.FC<{
       disabled={item.disabled}
       title={isCollapsed ? item.label : undefined}
       style={textStyle}
+      data-icon-type={item.iconType}
     >
       <span className="finder-nav-icon" style={iconStyle}>
         {item.icon}
