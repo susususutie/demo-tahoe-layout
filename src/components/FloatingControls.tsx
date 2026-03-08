@@ -54,12 +54,12 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
         </button>
       </div>
 
-      {/* 收起侧边栏按钮 - 层级更高，不随侧边栏移动 */}
+      {/* 侧边栏切换按钮 - 始终显示，位置随状态变化 */}
       <button
-        className={`floating-toggle-btn ${!isCollapsed ? 'visible' : ''}`}
-        onClick={onCollapse}
-        aria-label="隐藏侧边栏"
-        title="隐藏侧边栏"
+        className="floating-toggle-btn"
+        onClick={isCollapsed ? onExpand : onCollapse}
+        aria-label={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
+        title={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
       >
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="5" width="18" height="14" rx="2" />
