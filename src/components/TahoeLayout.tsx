@@ -178,6 +178,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
       <FloatingControls
         isCollapsed={isSidebarCollapsed}
         onExpand={() => setIsSidebarCollapsed(false)}
+        onCollapse={() => setIsSidebarCollapsed(true)}
       />
 
       {/* 侧边栏 */}

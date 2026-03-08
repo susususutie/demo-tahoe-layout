@@ -221,6 +221,10 @@
 .finder-sidebar-header-spacer {
   height: 52px;
   flex-shrink: 0;
+  background: transparent;
+  pointer-events: none;
+  position: relative;
+  z-index: 1;
 }
 
 /* ============================
