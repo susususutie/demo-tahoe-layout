@@ -186,8 +186,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
             aria-label="收起侧边栏"
             title="收起"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <line x1="8" y1="12" x2="16" y2="12" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M8 8l8 8M16 8l-8 8" />
             </svg>
           </button>
           <button
@@ -196,8 +196,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
             aria-label="收起侧边栏"
             title="收起"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <rect x="6" y="11" width="12" height="2" rx="1" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
             </svg>
           </button>
           <button
@@ -206,9 +206,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
             aria-label="展开侧边栏"
             title="展开"
           >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-              <path d="M8 8h8v8" />
-              <path d="M8 16l8-8" />
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M12 5v14M5 12h14" />
             </svg>
           </button>
         </div>
