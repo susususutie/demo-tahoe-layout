@@ -641,9 +641,6 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
       {/* 侧边栏占位容器 - 占用空间防止内容区被遮挡 */}
       <div className={`finder-sidebar-wrapper ${isCollapsed ? 'collapsed' : ''}`}>
         <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-          {/* 顶部遮罩 */}
-          <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
-
           {/* 头部区域 - 包含占位和收起按钮 */}
           <div className="finder-sidebar-header">
             <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
@@ -676,9 +673,6 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
               <div className="finder-footer">{footer}</div>
             )}
           </nav>
-
-          {/* 底部遮罩 */}
-          <div className="finder-vignette bottom" />
         </aside>
       </div>
     </>
