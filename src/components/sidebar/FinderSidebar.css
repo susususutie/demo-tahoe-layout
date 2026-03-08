@@ -42,6 +42,11 @@
 
   /* 强调色 */
   --finder-accent: #0071e3;
+
+  /* 动画时间 */
+  --finder-transition-fast: 0.15s ease;
+  --finder-transition-normal: 0.25s ease;
+  --finder-transition-slow: 0.35s ease;
 }
 
 /* 深色模式 */
@@ -371,16 +376,33 @@
 }
 
 .finder-nav::-webkit-scrollbar {
-  width: 4px;
+  width: 8px;
 }
 
 .finder-nav::-webkit-scrollbar-track {
   background: transparent;
+  margin: 4px 0;
 }
 
 .finder-nav::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.finder-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.finder-nav::-webkit-scrollbar-thumb:active {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* Firefox 滚动条 */
+.finder-nav {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
 }
 
 /* ============================
@@ -482,10 +504,14 @@
   border-radius: var(--finder-item-radius);
   background: transparent;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: 
+    background-color var(--finder-transition-fast),
+    transform var(--finder-transition-fast),
+    color var(--finder-transition-fast);
   color: var(--finder-text);
   text-align: left;
   position: relative;
+  will-change: transform;
 }
 
 /* 收起状态居中 */
@@ -494,14 +520,28 @@
   padding: 8px;
 }
 
-/* 悬停时背景不改变 */
+/* 悬停时轻微移动 */
 .finder-nav-item:hover:not(.disabled) {
-  /* 背景保持不变 */
+  background: rgba(0, 0, 0, 0.04);
+  transform: translateX(2px);
+}
+
+.finder-sidebar.collapsed .finder-nav-item:hover:not(.disabled) {
+  transform: scale(1.05);
 }
 
 /* 默认选中状态：macOS 风格灰色背景 */
 .finder-nav-item.active {
   background: rgba(0, 0, 0, 0.08);
+  transform: translateX(0);
+}
+
+.finder-nav-item:active:not(.disabled) {
+  transform: scale(0.98);
+}
+
+.finder-sidebar.collapsed .finder-nav-item:active:not(.disabled) {
+  transform: scale(0.95);
 }
 
 /* highlight 模式选中状态：同样使用灰色背景 */

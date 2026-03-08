@@ -31,6 +31,141 @@ import {
   Accessibility,
   Target,
   Eye,
+  Search,
+  Star,
+  Heart,
+  Bell,
+  User,
+  Key,
+  Lock,
+  Moon,
+  Sun,
+  Battery,
+  Bluetooth,
+  Printer,
+  ScanLine,
+  Gamepad2,
+  Mic,
+  Camera,
+  Music,
+  Video,
+  Play,
+  Pause,
+  Square,
+  SkipForward,
+  Shuffle,
+  Repeat,
+  List,
+  Columns,
+  PanelLeft,
+  Maximize2,
+  Minimize2,
+  Fullscreen,
+  PictureInPicture,
+  Airplay,
+  Cast,
+  ScreenShare,
+  CircleDot,
+  Scissors,
+  Copy,
+  Clipboard,
+  Undo2,
+  Redo2,
+  CheckSquare,
+  Bold,
+  Italic,
+  Underline,
+  Strikethrough,
+  Code,
+  Link,
+  Quote,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  ListOrdered,
+  IndentIncrease,
+  IndentDecrease,
+  Move,
+  Scaling,
+  RotateCw,
+  FlipHorizontal,
+  Crop,
+  SlidersHorizontal,
+  Filter,
+  Wand2,
+  Pencil,
+  PenTool,
+  Type,
+  Palette,
+  Droplet,
+  Blend,
+  Grid3x3,
+  BoxSelect,
+  CloudFog,
+  SunDim,
+  Droplets,
+  Focus,
+  Snowflake,
+  SquareAsterisk,
+  Waves,
+  Replace,
+  View,
+  Spline,
+  Grid2x2,
+  Mail,
+  Paintbrush,
+  Eraser,
+  Zap,
+  Flame,
+  Bandage,
+  CopyPlus,
+  Puzzle,
+  EyeOff,
+  Sparkles,
+  Sunset,
+  SunMedium,
+  Paintbrush2,
+  Shrink,
+  ArrowLeftRight,
+  Maximize,
+  Minimize,
+  SwatchBook,
+  Feather,
+  Sword,
+  Telescope,
+  Wind,
+  CloudSun,
+  Rainbow,
+  CircleOff,
+  ScatterChart,
+  Film,
+  History,
+  Binary,
+  Coffee,
+  File,
+  FileCode,
+  FileImage,
+  FileVideo,
+  FileAudio,
+  FileArchive,
+  FileJson,
+  FileType,
+  FileSpreadsheet,
+  FileSymlink,
+  FileTerminal,
+  FileUp,
+  FileDown,
+  FilePlus,
+  FileMinus,
+  FileX,
+  FileQuestion,
+  FileCheck,
+  FileClock,
+  FileHeart,
+  FileLock,
+  FileSearch,
+  FileWarning,
   type LucideProps,
 } from 'lucide-react';
 
@@ -90,6 +225,153 @@ const iconMap: Record<string, React.ComponentType<LucideProps>> = {
   wallpaper: Cloud,     // 墙纸（用云朵代替）
   appearance: Eye,      // 外观
   display: Monitor,     // 显示器
+  // 更多常用图标
+  search: Search,       // 搜索
+  star: Star,           // 收藏
+  heart: Heart,         // 喜欢
+  bell: Bell,           // 通知
+  user: User,           // 用户
+  key: Key,             // 密码
+  lock: Lock,           // 安全
+  moon: Moon,           // 深色模式
+  sun: Sun,             // 浅色模式
+  battery: Battery,     // 电池
+  wifi2: Wifi,          // WiFi（备用）
+  bluetooth: Bluetooth, // 蓝牙
+  printer: Printer,     // 打印机
+  scanner: ScanLine,    // 扫描仪
+  gamepad: Gamepad2,    // 游戏手柄
+  mic: Mic,             // 麦克风
+  camera: Camera,       // 相机
+  music: Music,         // 音乐
+  video: Video,         // 视频
+  play: Play,           // 播放
+  pause: Pause,         // 暂停
+  stop: Square,         // 停止
+  skip: SkipForward,    // 跳过
+  shuffle: Shuffle,     // 随机
+  repeat: Repeat,       // 重复
+  list: List,           // 列表
+  grid: LayoutGrid,     // 网格
+  columns: Columns,     // 分栏
+  sidebar: PanelLeft,   // 侧边栏
+  maximize: Maximize2,  // 最大化
+  minimize: Minimize2,  // 最小化
+  fullscreen: Fullscreen, // 全屏
+  exitFullscreen: Minimize2, // 退出全屏
+  pictureInPicture: PictureInPicture, // 画中画
+  airplay: Airplay,     // AirPlay
+  cast: Cast,           // 投屏
+  screenShare: ScreenShare, // 屏幕共享
+  record: CircleDot,    // 录制
+  cut: Scissors,        // 剪切
+  copy: Copy,           // 复制
+  paste: Clipboard,     // 粘贴
+  undo: Undo2,          // 撤销
+  redo: Redo2,          // 重做
+  selectAll: CheckSquare, // 全选
+  bold: Bold,           // 粗体
+  italic: Italic,       // 斜体
+  underline: Underline, // 下划线
+  strikethrough: Strikethrough, // 删除线
+  code: Code,           // 代码
+  link: Link,           // 链接
+  quote: Quote,         // 引用
+  alignLeft: AlignLeft,     // 左对齐
+  alignCenter: AlignCenter, // 居中对齐
+  alignRight: AlignRight,   // 右对齐
+  alignJustify: AlignJustify, // 两端对齐
+  listOrdered: ListOrdered,   // 有序列表
+  listUnordered: List,        // 无序列表
+  indent: IndentIncrease,     // 增加缩进
+  outdent: IndentDecrease,    // 减少缩进
+  move: Move,             // 移动
+  resize: Scaling,        // 调整大小
+  rotate: RotateCw,       // 旋转
+  flip: FlipHorizontal,   // 翻转
+  crop: Crop,             // 裁剪
+  adjust: SlidersHorizontal, // 调整
+  filter: Filter,         // 滤镜
+  effects: Wand2,         // 效果
+  markup: Pencil,         // 标记
+  signature: PenTool,     // 签名
+  text: Type,             // 文本
+  font: Palette,          // 字体
+  color: Droplet,         // 颜色
+  gradient: Blend,        // 渐变
+  pattern: Grid3x3,       // 图案
+  texture: BoxSelect,     // 纹理
+  shadow: CloudFog,       // 阴影
+  glow: SunDim,           // 发光
+  blur: Droplets,         // 模糊
+  sharpen: Focus,         // 锐化
+  noise: Snowflake,       // 噪点
+  pixelate: SquareAsterisk, // 像素化
+  distort: Waves,         // 扭曲
+  transform: Replace,     // 变换
+  perspective: View,      // 透视
+  warp: Spline,           // 变形
+  mesh: Grid2x2,          // 网格变形
+  envelope: Mail,         // 变形工具
+  liquify: Paintbrush,    // 液化
+  smudge: Eraser,         // 涂抹
+  dodge: Zap,             // 减淡
+  burn: Flame,            // 加深
+  sponge: Droplet,        // 海绵
+  heal: Bandage,          // 修复
+  clone: CopyPlus,        // 仿制
+  patch: Puzzle,          // 修补
+  redEye: EyeOff,         // 红眼
+  whiten: Sparkles,       // 美白
+  bronze: Sunset,         // 古铜
+  tan: SunMedium,         // 日晒
+  makeup: Paintbrush2,    // 美妆
+  reshape: Shrink,        // 重塑
+  slim: ArrowLeftRight,   // 瘦脸
+  enlarge: Maximize,      // 放大
+  shrink: Minimize,       // 缩小
+  liquefy: SwatchBook,    // 液化
+  smooth: Feather,        // 平滑
+  sharpen2: Sword,        // 锐化2
+  clarify: Telescope,     // 清晰
+  denoise: Wind,          // 降噪
+  dehaze: CloudSun,       // 去雾
+  defringe: Target,       // 去边
+  chromatic: Rainbow,     // 色差
+  vignette: CircleOff,    // 暗角
+  grain: ScatterChart,    // 颗粒
+  film: Film,             // 胶片
+  vintage: History,       // 复古
+  noir: Moon,             // 黑白
+  instant: Camera,        // 拍立得
+  transfer: Shuffle,      // 转换
+  mono: Binary,           // 单色
+  sepia: Coffee,          // 褐色
+  // 文件类型图标
+  file: File,             // 文件
+  fileText: FileText,     // 文本文件
+  fileCode: FileCode,     // 代码文件
+  fileImage: FileImage,   // 图片文件
+  fileVideo: FileVideo,   // 视频文件
+  fileAudio: FileAudio,   // 音频文件
+  fileArchive: FileArchive, // 压缩文件
+  fileJson: FileJson,     // JSON文件
+  fileType: FileType,     // 类型文件
+  fileSpreadsheet: FileSpreadsheet, // 表格文件
+  fileSymlink: FileSymlink, // 符号链接
+  fileTerminal: FileTerminal, // 终端文件
+  fileUp: FileUp,         // 上传文件
+  fileDown: FileDown,     // 下载文件
+  filePlus: FilePlus,     // 新建文件
+  fileMinus: FileMinus,   // 删除文件
+  fileX: FileX,           // 错误文件
+  fileQuestion: FileQuestion, // 未知文件
+  fileCheck: FileCheck,   // 已检查文件
+  fileClock: FileClock,   // 待处理文件
+  fileHeart: FileHeart,   // 收藏文件
+  fileLock: FileLock,     // 锁定文件
+  fileSearch: FileSearch, // 搜索文件
+  fileWarning: FileWarning, // 警告文件
 };
 
 /** 内置图标组件 - 使用 Lucide Icons */

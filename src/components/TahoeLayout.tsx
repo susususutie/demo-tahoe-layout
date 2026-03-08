@@ -43,29 +43,33 @@ const getDefaultNavSections = (): NavSection[] => [
     items: [
       // 所有菜单选中时文字都变为 macOS 蓝色，使用 Lucide 图标
       { id: 'recent', iconName: 'recent', label: '最近使用', activeColor: 'macos' },
-      { id: 'shared', iconName: 'share', label: '共享', activeColor: 'macos' },
       { id: 'applications', iconName: 'applications', label: '应用程序', activeColor: 'macos' },
-      { id: 'image', iconName: 'image', label: '图片', activeColor: 'macos' },
-      { id: 'downloads', iconName: 'downloads', label: '下载', activeColor: 'macos' },
       { id: 'desktop', iconName: 'desktop', label: '桌面', badge: 3, activeColor: 'macos' },
       { id: 'documents', iconName: 'documents', label: '文稿', activeColor: 'macos' },
+      { id: 'downloads', iconName: 'downloads', label: '下载', activeColor: 'macos' },
+      { id: 'image', iconName: 'image', label: '图片', activeColor: 'macos' },
+      { id: 'music', iconName: 'music', label: '音乐', activeColor: 'macos' },
+      { id: 'video', iconName: 'video', label: '视频', activeColor: 'macos' },
     ],
   },
   {
-    id: 'icloud',
-    title: 'iCloud',
+    id: 'tools',
+    title: '工具',
     items: [
-      { id: 'icloud-drive', iconName: 'icloud', label: 'iCloud 云盘', activeColor: 'macos' },
-    ],
-  },
-  {
-    id: 'locations',
-    title: '位置',
-    items: [
-      { id: 'sutie', iconName: 'mac', label: 'sutie', activeColor: 'macos' },
-      { id: 'airdrop', iconName: 'airdrop', label: '隔空投送', activeColor: 'macos' },
-      { id: 'network', iconName: 'network', label: '网络', activeColor: 'macos' },
+      { id: 'search', iconName: 'search', label: '搜索', activeColor: 'macos' },
+      { id: 'settings', iconName: 'settings', label: '设置', activeColor: 'macos' },
+      { id: 'share', iconName: 'share', label: '共享', activeColor: 'macos' },
       { id: 'trash', iconName: 'trash', label: '废纸篓', activeColor: 'macos' },
+    ],
+  },
+  {
+    id: 'shortcuts',
+    title: '快捷方式',
+    items: [
+      { id: 'star', iconName: 'star', label: '收藏', activeColor: 'macos' },
+      { id: 'heart', iconName: 'heart', label: '喜欢', activeColor: 'macos' },
+      { id: 'bell', iconName: 'bell', label: '通知', activeColor: 'macos' },
+      { id: 'user', iconName: 'user', label: '用户', activeColor: 'macos' },
     ],
   },
   {
