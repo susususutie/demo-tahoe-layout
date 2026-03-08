@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import { FinderSidebar } from './sidebar';
 import { Breadcrumb } from './Breadcrumb';
 import type { NavSection, SidebarConfig } from './sidebar/types';
@@ -102,24 +102,10 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
     sidebarConfig?.defaultCollapsed ?? false
   );
-  const [contentScrolled, setContentScrolled] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
 
   // 导航数据
   const navSections = getDefaultNavSections();
-
-  // 监听主内容区滚动
-  useEffect(() => {
-    const mainEl = mainRef.current;
-    if (!mainEl) return;
-
-    const handleScroll = () => {
-      setContentScrolled(mainEl.scrollTop > 0);
-    };
-
-    mainEl.addEventListener('scroll', handleScroll);
-    return () => mainEl.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // 处理导航选择
   const handleNavSelect = (id: string) => {
@@ -180,9 +166,6 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
 
       {/* 主内容区 */}
       <main className="tahoe-main" ref={mainRef}>
-        {/* 滚动遮罩 - 顶部 */}
-        <div className={`tahoe-content-vignette top ${contentScrolled ? 'visible' : ''}`} />
-
         {/* 内容头部 */}
         <header className="tahoe-content-header">
           <div className="tahoe-header-left">
@@ -251,9 +234,6 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
         <div className="tahoe-content">
           {children}
         </div>
-
-        {/* 滚动遮罩 - 底部 */}
-        <div className="tahoe-content-vignette bottom" />
       </main>
     </div>
   );
