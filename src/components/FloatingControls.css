@@ -134,6 +134,48 @@
   background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
 }
 
+/* 收起侧边栏按钮 - 层级更高，不随侧边栏移动 */
+.floating-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  margin-left: 140px; /* 展开时在侧边栏右侧（200px - 60px 间距） */
+}
+
+.floating-toggle-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.floating-toggle-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.floating-toggle-btn svg {
+  width: 16px;
+  height: 16px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* 收起时按钮靠近三色按钮 */
+.floating-controls.collapsed .floating-toggle-btn {
+  margin-left: 0;
+}
+
 /* 深色模式 */
 @media (prefers-color-scheme: dark) {
   .floating-close-btn {
@@ -150,5 +192,18 @@
 
   .floating-btn svg {
     stroke: rgba(0, 0, 0, 0.6);
+  }
+
+  .floating-toggle-btn {
+    background: rgba(40, 40, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .floating-toggle-btn:hover {
+    background: rgba(50, 50, 52, 1);
+  }
+
+  .floating-toggle-btn svg {
+    color: rgba(255, 255, 255, 0.9);
   }
 }

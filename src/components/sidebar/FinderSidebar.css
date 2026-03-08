@@ -157,63 +157,8 @@
   opacity: 1;
 }
 
-/* 关闭按钮 - 红色 */
-.finder-close-btn {
-  background: linear-gradient(180deg, #ff5f57 0%, #ff4940 100%);
-  box-shadow: 
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-close-btn:hover {
-  background: linear-gradient(180deg, #ff6b63 0%, #ff5f57 100%);
-}
-
-/* 最小化按钮 - 黄色 */
-.finder-minimize-btn {
-  background: linear-gradient(180deg, #febc2e 0%, #ffb020 100%);
-  box-shadow: 
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-minimize-btn:hover {
-  background: linear-gradient(180deg, #ffc83e 0%, #febc2e 100%);
-}
-
-/* 展开按钮 - 绿色 */
-.finder-expand-btn {
-  background: linear-gradient(180deg, #28c840 0%, #22b336 100%);
-  box-shadow: 
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-expand-btn:hover {
-  background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
-}
-
 /* 深色模式按钮样式 */
 @media (prefers-color-scheme: dark) {
-  .finder-close-btn {
-    background: linear-gradient(135deg, #ff5f56 0%, #e0443c 100%);
-  }
-
-  .finder-minimize-btn {
-    background: linear-gradient(135deg, #ffbd2e 0%, #e0a028 100%);
-  }
-
-  .finder-expand-btn {
-    background: linear-gradient(135deg, #27c93f 0%, #1e9f2e 100%);
-  }
-
-  .finder-window-btn svg {
-    color: rgba(0, 0, 0, 0.6);
-  }
-
   .finder-section-toggle:hover {
     background: var(--finder-hover-bg);
     color: var(--finder-text);
@@ -231,25 +176,11 @@
 }
 
 /* ============================
-   头部区域
+   头部占位区域
    ============================ */
-.finder-sidebar-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 12px 12px 12px 16px;
-  height: 52px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-}
-
-/* 头部占位区域 */
 .finder-sidebar-header-spacer {
-  flex: 1;
-  height: 100%;
+  height: 52px;
+  flex-shrink: 0;
   background: transparent;
   pointer-events: none;
   position: relative;
@@ -259,10 +190,10 @@
 .finder-sidebar-header-spacer::after {
   content: '';
   position: absolute;
-  top: -12px;
-  left: -16px;
-  right: -12px;
-  bottom: -12px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   background: var(--finder-bg);
   backdrop-filter: var(--finder-blur);
   -webkit-backdrop-filter: var(--finder-blur);
@@ -274,44 +205,6 @@
 
 .finder-sidebar-header-spacer.scrolled::after {
   opacity: 1;
-}
-
-/* ============================
-   切换按钮 - 在侧边栏内部
-   ============================ */
-.finder-toggle-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  padding: 0;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-
-.finder-sidebar:not(.collapsed) .finder-toggle-btn.visible {
-  opacity: 1;
-  visibility: visible;
-  pointer-events: auto;
-}
-
-.finder-toggle-btn:hover {
-  background: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.finder-toggle-btn svg {
-  width: 16px;
-  height: 16px;
-  color: rgba(0, 0, 0, 0.7);
 }
 
 /* 收起状态下的悬浮展开按钮 */
