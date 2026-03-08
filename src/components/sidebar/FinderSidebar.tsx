@@ -583,9 +583,6 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
   config = {},
   onCollapsedChange,
   footer,
-  syncStatus: _syncStatus,
-  user: _user,
-  windowControls,
   collapsed: controlledCollapsed,
 }) => {
   const {
@@ -638,89 +635,13 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     setIsCollapsed(!isCollapsed);
   };
 
-  // 窗口控制按钮处理
-  const handleClose = () => {
-    if (windowControls?.onClose) {
-      windowControls.onClose();
-    } else {
-      handleToggle();
-    }
-  };
-
-  const handleMinimize = () => {
-    if (windowControls?.onMinimize) {
-      windowControls.onMinimize();
-    } else {
-      handleToggle();
-    }
-  };
-
-  const handleExpand = () => {
-    if (windowControls?.onExpand) {
-      windowControls.onExpand();
-    } else {
-      handleToggle();
-    }
-  };
-
   return (
     <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       {/* 顶部遮罩 */}
       <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
 
-      {/* 头部区域：左侧三色按钮，右侧操作按钮 */}
-      <div className="finder-sidebar-header">
-        {/* 左侧：macOS 风格窗口控制按钮 */}
-        <div className="finder-window-controls">
-          <button
-            className="finder-window-btn finder-close-btn"
-            onClick={handleClose}
-            aria-label="关闭"
-            title="关闭"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M6 6l12 12M18 6l-12 12" />
-            </svg>
-          </button>
-          <button
-            className="finder-window-btn finder-minimize-btn"
-            onClick={handleMinimize}
-            aria-label="最小化"
-            title="最小化"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <line x1="5" y1="12" x2="19" y2="12" />
-            </svg>
-          </button>
-          <button
-            className="finder-window-btn finder-expand-btn"
-            onClick={handleExpand}
-            aria-label="展开"
-            title="展开"
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M12 5v14M5 12h14" />
-            </svg>
-          </button>
-        </div>
-
-        {/* 右侧：收起按钮 */}
-        {!isCollapsed && (
-          <div className="finder-header-right">
-            <button
-              className="finder-collapse-btn"
-              onClick={handleToggle}
-              aria-label="收起侧边栏"
-              title="收起侧边栏"
-            >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="3" y="5" width="18" height="14" rx="2" />
-                <line x1="8" y1="5" x2="8" y2="19" />
-              </svg>
-            </button>
-          </div>
-        )}
-      </div>
+      {/* 头部占位区域 - 为悬浮按钮留出空间 */}
+      <div className="finder-sidebar-header-spacer" />
 
       {/* 导航区域 */}
       <nav className="finder-nav" ref={navRef}>

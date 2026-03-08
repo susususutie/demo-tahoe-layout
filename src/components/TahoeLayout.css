@@ -193,85 +193,15 @@
   min-width: 0;
 }
 
-/* 悬浮按钮组 - 侧边栏收起时显示 */
-.tahoe-floating-controls {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  visibility: hidden;
-}
-
-.tahoe-floating-controls.visible {
-  opacity: 1;
-  transform: translateX(0);
-  visibility: visible;
-}
-
-/* 悬浮三色按钮组 */
-.tahoe-floating-window-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-/* 悬浮按钮基础样式 */
-.tahoe-floating-btn {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.tahoe-floating-btn:hover {
-  transform: scale(1.15);
-}
-
-/* 三色按钮颜色 */
-.tahoe-close-btn {
-  background: #ff5f57;
-}
-
-.tahoe-minimize-btn {
-  background: #febc2e;
-}
-
-.tahoe-expand-btn {
-  background: #28c840;
-}
-
-/* 侧边栏展开按钮 - 悬浮在内容区 */
-.tahoe-sidebar-show-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  padding: 0;
-  border: 1px solid var(--tahoe-border);
-  border-radius: var(--tahoe-radius);
-  background: rgba(255, 255, 255, 0.9);
-  cursor: pointer;
-  transition: all 0.2s ease;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.tahoe-sidebar-show-btn:hover {
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-  transform: scale(1.05);
-}
-
-.tahoe-sidebar-show-btn svg {
-  width: 18px;
-  height: 18px;
+/* 标题 */
+.tahoe-title {
+  font-size: 16px;
+  font-weight: 700;
   color: var(--tahoe-text);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 标题 */
@@ -415,26 +345,6 @@
     );
   }
 
-  .tahoe-sidebar-show-btn {
-    background: rgba(40, 40, 42, 0.9);
-    border-color: rgba(255, 255, 255, 0.1);
-  }
-
-  .tahoe-sidebar-show-btn:hover {
-    background: rgba(50, 50, 52, 1);
-  }
-
-  .tahoe-close-btn {
-    background: #ff5f57;
-  }
-
-  .tahoe-minimize-btn {
-    background: #febc2e;
-  }
-
-  .tahoe-expand-btn {
-    background: #28c840;
-  }
 }
 
 /* ============================

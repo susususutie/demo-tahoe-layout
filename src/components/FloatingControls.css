@@ -1,0 +1,144 @@
+/**
+ * 悬浮控制按钮组样式
+ */
+
+.floating-controls {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 200;
+  pointer-events: none;
+}
+
+.floating-controls > * {
+  pointer-events: auto;
+}
+
+/* 三色窗口控制按钮组 */
+.floating-window-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* 三色按钮基础样式 */
+.floating-btn {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.floating-btn:hover {
+  transform: scale(1.15);
+}
+
+/* 关闭按钮 - 红色 */
+.floating-close-btn {
+  background: linear-gradient(180deg, #ff5f57 0%, #ff4940 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.floating-close-btn:hover {
+  background: linear-gradient(180deg, #ff6b63 0%, #ff5f57 100%);
+}
+
+/* 最小化按钮 - 黄色 */
+.floating-minimize-btn {
+  background: linear-gradient(180deg, #febc2e 0%, #ffb020 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.floating-minimize-btn:hover {
+  background: linear-gradient(180deg, #ffc83e 0%, #febc2e 100%);
+}
+
+/* 展开按钮 - 绿色 */
+.floating-expand-btn {
+  background: linear-gradient(180deg, #28c840 0%, #22b336 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.floating-expand-btn:hover {
+  background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
+}
+
+/* 展开侧边栏按钮 */
+.floating-sidebar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transform: translateX(-10px);
+  visibility: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.floating-sidebar-btn.visible {
+  opacity: 1;
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.floating-sidebar-btn:hover {
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: scale(1.05);
+}
+
+.floating-sidebar-btn svg {
+  width: 18px;
+  height: 18px;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* 深色模式 */
+@media (prefers-color-scheme: dark) {
+  .floating-close-btn {
+    background: linear-gradient(180deg, #ff5f57 0%, #e0443c 100%);
+  }
+
+  .floating-minimize-btn {
+    background: linear-gradient(180deg, #febc2e 0%, #e0a028 100%);
+  }
+
+  .floating-expand-btn {
+    background: linear-gradient(180deg, #28c840 0%, #1e9f2e 100%);
+  }
+
+  .floating-sidebar-btn {
+    background: rgba(40, 40, 42, 0.9);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .floating-sidebar-btn:hover {
+    background: rgba(50, 50, 52, 1);
+  }
+
+  .floating-sidebar-btn svg {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
