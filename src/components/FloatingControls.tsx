@@ -1,28 +1,21 @@
 /**
  * 悬浮控制按钮组
  * - 三色窗口控制按钮（始终固定在左上角）
- * - 展开侧边栏按钮（侧边栏收起时显示）
  */
 
 import React from 'react';
 import './FloatingControls.css';
 
 interface FloatingControlsProps {
-  /** 侧边栏是否收起 */
-  isCollapsed: boolean;
   /** 展开侧边栏回调 */
   onExpand: () => void;
-  /** 隐藏侧边栏回调 */
-  onCollapse: () => void;
 }
 
 export const FloatingControls: React.FC<FloatingControlsProps> = ({
-  isCollapsed,
   onExpand,
-  onCollapse,
 }) => {
   return (
-    <div className={`floating-controls ${isCollapsed ? 'collapsed' : ''}`}>
+    <div className="floating-controls">
       {/* 三色窗口控制按钮 - 始终显示 */}
       <div className="floating-window-controls">
         <button
@@ -53,19 +46,6 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
           </svg>
         </button>
       </div>
-
-      {/* 侧边栏控制按钮 - 显示时在右侧，隐藏时靠近三色按钮 */}
-      <button
-        className="floating-toggle-btn"
-        onClick={isCollapsed ? onExpand : onCollapse}
-        aria-label={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
-        title={isCollapsed ? '展开侧边栏' : '隐藏侧边栏'}
-      >
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-          <rect x="3" y="5" width="18" height="14" rx="2" />
-          <line x1="8" y1="5" x2="8" y2="19" />
-        </svg>
-      </button>
     </div>
   );
 };

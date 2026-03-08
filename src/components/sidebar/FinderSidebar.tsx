@@ -635,9 +635,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     <>
       {/* 悬浮控制按钮组 - 固定在左上角，不随侧边栏移动 */}
       <FloatingControls
-        isCollapsed={isCollapsed}
         onExpand={() => setIsCollapsed(false)}
-        onCollapse={() => setIsCollapsed(true)}
       />
 
       {/* 侧边栏占位容器 - 占用空间防止内容区被遮挡 */}
@@ -646,8 +644,22 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           {/* 顶部遮罩 */}
           <div className={`finder-vignette top ${isScrolled ? 'visible' : ''}`} />
 
-          {/* 头部占位区域 - 为悬浮按钮留出空间 */}
-          <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
+          {/* 头部区域 - 包含占位和收起按钮 */}
+          <div className="finder-sidebar-header">
+            <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
+            {/* 收起侧边栏按钮 - 在侧边栏内部右侧 */}
+            <button
+              className={`finder-toggle-btn ${isCollapsed ? '' : 'visible'}`}
+              onClick={() => setIsCollapsed(true)}
+              aria-label="隐藏侧边栏"
+              title="隐藏侧边栏"
+            >
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <rect x="3" y="5" width="18" height="14" rx="2" />
+                <line x1="8" y1="5" x2="8" y2="19" />
+              </svg>
+            </button>
+          </div>
 
           {/* 导航区域 */}
           <nav className="finder-nav" ref={navRef}>
