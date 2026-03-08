@@ -99,13 +99,9 @@
   backdrop-filter: var(--finder-blur);
   -webkit-backdrop-filter: var(--finder-blur);
   border: 1px solid var(--finder-border);
-  box-shadow:
-    inset 0 0 0 1px var(--finder-border-highlight),
-    0 4px 24px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 0 1px var(--finder-border-highlight), 0 4px 24px rgba(0, 0, 0, 0.08);
   z-index: 100;
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   overflow: hidden;
 }
 
@@ -246,6 +242,26 @@
 }
 
 /* ============================
+   拖动调整宽度的手柄
+   ============================ */
+.finder-resize-handle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  cursor: ew-resize;
+  background: transparent;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.finder-resize-handle:hover,
+.finder-resize-handle:active {
+  background: var(--finder-accent);
+}
+
+/* ============================
    导航区域
    ============================ */
 .finder-nav {
@@ -371,7 +387,6 @@
 .finder-section-items {
   display: flex;
   flex-direction: column;
-  gap: 1px;
   overflow: hidden;
   max-height: 1000px;
   opacity: 1;
@@ -403,9 +418,7 @@
   border-radius: var(--finder-item-radius);
   background: transparent;
   cursor: pointer;
-  transition:
-    background-color var(--finder-transition-fast),
-    color var(--finder-transition-fast);
+  transition: background-color var(--finder-transition-fast), color var(--finder-transition-fast);
   color: var(--finder-text);
   text-align: left;
   position: relative;
@@ -415,11 +428,6 @@
 .finder-sidebar.collapsed .finder-nav-item {
   justify-content: center;
   padding: 8px;
-}
-
-/* 悬停效果 */
-.finder-nav-item:hover:not(.disabled) {
-  background: rgba(0, 0, 0, 0.04);
 }
 
 /* 默认选中状态：macOS 风格灰色背景 */
@@ -494,8 +502,6 @@
 
 /* 图片图标（从 macosicons.com 等加载的 macOS 应用图标） */
 .finder-nav-icon.finder-image-icon {
-  width: 28px;
-  height: 28px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -509,8 +515,8 @@
 
 /* 内置应用图标（Big Sur 风格） */
 .finder-nav-icon.finder-app-icon {
-  width: 28px;
-  height: 28px;
+  width: 23px;
+  height: 23px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -518,8 +524,8 @@
 }
 
 .finder-nav-icon.finder-app-icon img {
-  width: 28px;
-  height: 28px;
+  width: 23px;
+  height: 23px;
   border-radius: 6px;
   object-fit: contain;
 }
