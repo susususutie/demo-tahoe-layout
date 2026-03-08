@@ -103,8 +103,8 @@
 }
 
 .finder-window-btn {
-  width: 12px;
-  height: 12px;
+  width: 14px;
+  height: 14px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -113,14 +113,16 @@
   justify-content: center;
   transition: all 0.2s ease;
   position: relative;
+  padding: 0;
 }
 
 .finder-window-btn svg {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   opacity: 0;
   transition: opacity 0.15s ease;
-  color: rgba(0, 0, 0, 0.5);
+  stroke: rgba(0, 0, 0, 0.7);
+  stroke-width: 2.5;
 }
 
 /* 鼠标移入按钮区域时，所有图标都显示 */
