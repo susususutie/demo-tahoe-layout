@@ -35,6 +35,7 @@ export type BuiltinIconName =
   | 'appearance'   // 外观
   | 'display'      // 显示器
   // macOS 应用图标
+  | 'finder'       // Finder
   | 'siri'         // Siri
   | 'safari'       // Safari
   | 'appstore'     // App Store

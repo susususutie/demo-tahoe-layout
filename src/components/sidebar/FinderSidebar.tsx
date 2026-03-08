@@ -36,6 +36,7 @@ import {
 
 /** 内置应用图标文件映射表 - iconName 对应本地图标路径 */
 const appIconFileMap: Record<string, string> = {
+  finder: '/icons/finder.png',
   siri: '/icons/siri.png',
   safari: '/icons/safari.png',
   settings: '/icons/settings.png',
