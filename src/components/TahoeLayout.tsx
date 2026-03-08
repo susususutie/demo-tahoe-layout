@@ -16,11 +16,11 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   const [contentScrolled, setContentScrolled] = useState(false);
   const [activeItem, setActiveItem] = useState('Dashboard');
   const sidebarRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const sidebarEl = sidebarRef.current;
-    const contentEl = contentRef.current;
+    const mainEl = mainRef.current;
 
     const handleSidebarScroll = () => {
       if (sidebarEl) {
@@ -28,18 +28,18 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
       }
     };
 
-    const handleContentScroll = () => {
-      if (contentEl) {
-        setContentScrolled(contentEl.scrollTop > 0);
+    const handleMainScroll = () => {
+      if (mainEl) {
+        setContentScrolled(mainEl.scrollTop > 0);
       }
     };
 
     sidebarEl?.addEventListener('scroll', handleSidebarScroll);
-    contentEl?.addEventListener('scroll', handleContentScroll);
+    mainEl?.addEventListener('scroll', handleMainScroll);
 
     return () => {
       sidebarEl?.removeEventListener('scroll', handleSidebarScroll);
-      contentEl?.removeEventListener('scroll', handleContentScroll);
+      mainEl?.removeEventListener('scroll', handleMainScroll);
     };
   }, []);
 
@@ -92,7 +92,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
       </aside>
 
       {/* Main Content */}
-      <main className="tahoe-main">
+      <main className="tahoe-main" ref={mainRef}>
         <div
           className={`tahoe-content-vignette top ${contentScrolled ? 'visible' : ''}`}
         />
@@ -103,7 +103,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
             <button className="tahoe-action-btn secondary">⋯</button>
           </div>
         </div>
-        <div className="tahoe-content" ref={contentRef}>
+        <div className="tahoe-content">
           {children}
         </div>
         <div

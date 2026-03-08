@@ -230,22 +230,30 @@
   font-weight: 500;
 }
 
-/* 
+/*
  * 主内容区
- * 比侧边栏稍不透明，形成层次
+ * 使用独立的滚动容器，头部 sticky 定位
  */
 .tahoe-main {
   flex: 1;
-  display: flex;
-  flex-direction: column;
   position: relative;
   background: var(--tahoe-bg-content);
   backdrop-filter: var(--tahoe-blur);
   -webkit-backdrop-filter: var(--tahoe-blur-webkit);
-  overflow: hidden;
+
+  /* 整体滚动，这样 sticky 头部才能感知滚动 */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* 创建堆叠上下文 */
+  isolation: isolate;
 }
 
-/* 内容头部 */
+/*
+ * 内容头部
+ * 使用 sticky 定位保持在顶部
+ * backdrop-filter 让滚动内容能透出来
+ */
 .tahoe-content-header {
   display: flex;
   align-items: center;
@@ -253,10 +261,17 @@
   padding: 12px 24px;
   height: var(--tahoe-header-height);
   background: var(--tahoe-bg-header);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: var(--tahoe-blur);
+  -webkit-backdrop-filter: var(--tahoe-blur-webkit);
   border-bottom: 1px solid var(--tahoe-border);
-  flex-shrink: 0;
+
+  /* 关键：sticky 定位让头部悬浮在内容上方 */
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  /* 内发光边框增强效果 */
+  box-shadow: inset 0 -1px 0 var(--tahoe-border-highlight);
 }
 
 .tahoe-title {
@@ -301,32 +316,10 @@
   background: rgba(0, 0, 0, 0.08);
 }
 
-/* 内容区域 */
+/* 内容区域 - 现在是普通流布局，由父容器统一滚动 */
 .tahoe-content {
-  flex: 1;
-  overflow-y: auto;
   padding: 24px;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.12) transparent;
-}
-
-.tahoe-content::-webkit-scrollbar {
-  width: 8px;
-}
-
-.tahoe-content::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.tahoe-content::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
-}
-
-.tahoe-content::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.2);
+  min-height: calc(100vh - var(--tahoe-header-height));
 }
 
 /* ============================
