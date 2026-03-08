@@ -31,11 +31,11 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'apps',
     title: '应用程序',
     items: [
-      // 使用 image 类型：从 URL 加载图片图标（如 macosicons.com 下载的图标）
-      { id: 'vscode', label: 'VS Code', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:visual-studio-code.svg', iconSize: 22, activeColor: 'macos' },
-      { id: 'chrome', label: 'Chrome', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:chrome.svg', iconSize: 22, activeColor: 'macos' },
-      { id: 'figma', label: 'Figma', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:figma.svg', iconSize: 22, activeColor: 'macos' },
-      { id: 'github', label: 'GitHub', iconType: 'image', iconSrc: 'https://api.iconify.design/logos:github-icon.svg', iconSize: 22, activeColor: 'macos' },
+      // 使用 image 类型：从 URL 加载图片图标（macosicons.com 风格）
+      { id: 'siri', label: 'Siri', iconType: 'image', iconSrc: 'https://api.macosicons.com/icon/1T8DDbVshC/download', iconSize: 22, activeColor: 'macos' },
+      { id: 'safari', label: 'Safari', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Safari_browser_logo.svg', iconSize: 22, activeColor: 'macos' },
+      { id: 'mail', label: '邮件', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg', iconSize: 22, activeColor: 'macos' },
+      { id: 'messages', label: '信息', iconType: 'image', iconSrc: 'https://upload.wikimedia.org/wikipedia/commons/5/5f/IMessage_logo.svg', iconSize: 22, activeColor: 'macos' },
     ],
   },
   {
