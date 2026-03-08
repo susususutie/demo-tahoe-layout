@@ -31,11 +31,15 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'apps',
     title: '应用程序',
     items: [
-      // 使用 image 类型：直接使用图标文件（如从 macosicons.com 下载）
-      { id: 'siri', label: 'Siri', iconType: 'image', iconSrc: 'https://macosicons.com/icons/siri.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'safari', label: 'Safari', iconType: 'image', iconSrc: 'https://macosicons.com/icons/safari.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'settings', label: '设置', iconType: 'image', iconSrc: 'https://macosicons.com/icons/settings.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'appstore', label: 'App Store', iconType: 'image', iconSrc: 'https://macosicons.com/icons/app-store.png', iconSize: 28, activeColor: 'macos' },
+      // 使用 appIcon 类型：内置 macOS 应用图标（通过 iconName 匹配）
+      { id: 'siri', label: 'Siri', iconType: 'appIcon', iconName: 'siri', activeColor: 'macos' },
+      { id: 'safari', label: 'Safari', iconType: 'appIcon', iconName: 'safari', activeColor: 'macos' },
+      { id: 'settings', label: '设置', iconType: 'appIcon', iconName: 'settings', activeColor: 'macos' },
+      { id: 'appstore', label: 'App Store', iconType: 'appIcon', iconName: 'appstore', activeColor: 'macos' },
+      { id: 'messages', label: '信息', iconType: 'appIcon', iconName: 'messages', activeColor: 'macos' },
+      { id: 'mail', label: '邮件', iconType: 'appIcon', iconName: 'mail', activeColor: 'macos' },
+      { id: 'photos', label: '照片', iconType: 'appIcon', iconName: 'photos', activeColor: 'macos' },
+      { id: 'music', label: '音乐', iconType: 'appIcon', iconName: 'music', activeColor: 'macos' },
     ],
   },
   {

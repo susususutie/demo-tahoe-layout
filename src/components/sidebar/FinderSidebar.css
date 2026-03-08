@@ -580,6 +580,22 @@
   object-fit: contain;
 }
 
+/* 内置应用图标（Big Sur 风格） */
+.finder-nav-icon.finder-app-icon {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.finder-nav-icon.finder-app-icon svg {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+}
+
 /* 标签 */
 .finder-nav-label {
   font-size: 13px;

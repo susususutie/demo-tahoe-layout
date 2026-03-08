@@ -34,6 +34,216 @@ import {
   type LucideProps,
 } from 'lucide-react';
 
+/** macOS 应用图标组件 - Big Sur 风格 */
+const AppIconSiri: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <defs>
+      <linearGradient id="siriGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#5e5ce6" />
+        <stop offset="30%" stopColor="#007aff" />
+        <stop offset="60%" stopColor="#34c759" />
+        <stop offset="100%" stopColor="#ff2d55" />
+      </linearGradient>
+    </defs>
+    <rect width="28" height="28" rx="6" fill="url(#siriGrad)" />
+    <circle cx="14" cy="14" r="6" fill="white" />
+  </svg>
+);
+
+const AppIconSafari: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#007aff" />
+    <circle cx="14" cy="14" r="8" fill="none" stroke="white" strokeWidth="1.5" />
+    <path d="M14 6v16M6 14h16" stroke="white" strokeWidth="1" />
+  </svg>
+);
+
+const AppIconSettings: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#8e8e93" />
+    <circle cx="14" cy="14" r="5" fill="none" stroke="white" strokeWidth="1.5" />
+    <path d="M14 4v3M14 21v3M4 14h3M21 14h3" stroke="white" strokeWidth="1.5" />
+  </svg>
+);
+
+const AppIconAppStore: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <defs>
+      <linearGradient id="storeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#007aff" />
+        <stop offset="100%" stopColor="#5856d6" />
+      </linearGradient>
+    </defs>
+    <rect width="28" height="28" rx="6" fill="url(#storeGrad)" />
+    <path d="M10 18l4-10 4 10M12 14h8" stroke="white" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+const AppIconMail: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#007aff" />
+    <rect x="6" y="9" width="16" height="10" rx="2" fill="none" stroke="white" strokeWidth="1.5" />
+    <path d="M6 11l8 6 8-6" stroke="white" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+const AppIconMessages: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#34c759" />
+    <path d="M14 6c-5 0-9 3-9 7 0 2 1 4 3 5l-1 4 4-2c1 0 2 0 3 0 5 0 9-3 9-7s-4-7-9-7z" fill="white" />
+  </svg>
+);
+
+const AppIconPhotos: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="white" />
+    <circle cx="20" cy="8" r="4" fill="#ff2d55" />
+    <circle cx="8" cy="10" r="4" fill="#007aff" />
+    <circle cx="14" cy="20" r="4" fill="#34c759" />
+    <circle cx="22" cy="18" r="3" fill="#ffcc00" />
+  </svg>
+);
+
+const AppIconCalendar: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#ff3b30" />
+    <rect x="6" y="8" width="16" height="14" rx="2" fill="white" />
+    <path d="M6 12h16M10 6v4M18 6v4" stroke="white" strokeWidth="1.5" />
+  </svg>
+);
+
+const AppIconMusic: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <defs>
+      <linearGradient id="musicGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#ff2d55" />
+        <stop offset="50%" stopColor="#ff3b30" />
+        <stop offset="100%" stopColor="#ff9500" />
+      </linearGradient>
+    </defs>
+    <rect width="28" height="28" rx="6" fill="url(#musicGrad)" />
+    <circle cx="10" cy="20" r="3" fill="white" />
+    <circle cx="20" cy="16" r="3" fill="white" />
+    <path d="M13 20V9l10-4v11" stroke="white" strokeWidth="2" fill="none" />
+  </svg>
+);
+
+const AppIconNotes: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#ffcc00" />
+    <rect x="6" y="5" width="16" height="18" rx="1" fill="white" />
+    <path d="M9 10h10M9 14h10M9 18h6" stroke="#ffcc00" strokeWidth="1.5" />
+  </svg>
+);
+
+const AppIconReminders: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#007aff" />
+    <circle cx="14" cy="14" r="6" fill="none" stroke="white" strokeWidth="2" />
+    <path d="M14 8v6l4 4" stroke="white" strokeWidth="2" fill="none" />
+  </svg>
+);
+
+const AppIconTerminal: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#1c1c1e" />
+    <path d="M8 8l6 6-6 6M14 20h8" stroke="white" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+const AppIconMaps: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#34c759" />
+    <path d="M14 6c-4 0-7 3-7 7 0 5 7 9 7 9s7-4 7-9c0-4-3-7-7-7z" fill="white" />
+    <circle cx="14" cy="13" r="2" fill="#34c759" />
+  </svg>
+);
+
+const AppIconWeather: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#007aff" />
+    <circle cx="10" cy="12" r="4" fill="white" />
+    <path d="M8 20h10c3 0 5-2 5-5s-2-5-5-5c0-3-3-5-6-5" stroke="white" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+const AppIconBooks: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#ff9500" />
+    <path d="M6 6h16v18H6z" fill="white" />
+    <path d="M6 6l8 5 8-5M6 24l8-5 8 5" stroke="#ff9500" strokeWidth="1" fill="none" />
+  </svg>
+);
+
+const AppIconCalculator: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#8e8e93" />
+    <rect x="6" y="6" width="16" height="16" rx="2" fill="white" />
+    <path d="M9 11h10M9 15h4M9 19h4M16 15h3M16 19h3" stroke="#8e8e93" strokeWidth="1.5" />
+  </svg>
+);
+
+const AppIconFaceTime: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#34c759" />
+    <rect x="6" y="8" width="16" height="12" rx="2" fill="white" />
+    <path d="M18 14l4-2v4l-4-2z" fill="white" />
+  </svg>
+);
+
+const AppIconTV: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#1c1c1e" />
+    <rect x="5" y="7" width="18" height="12" rx="2" fill="white" />
+    <path d="M11 19l-3 4M17 19l3 4" stroke="white" strokeWidth="1.5" />
+  </svg>
+);
+
+const AppIconPodcasts: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <defs>
+      <linearGradient id="podcastGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#5856d6" />
+        <stop offset="100%" stopColor="#af52de" />
+      </linearGradient>
+    </defs>
+    <rect width="28" height="28" rx="6" fill="url(#podcastGrad)" />
+    <circle cx="14" cy="14" r="4" fill="none" stroke="white" strokeWidth="2" />
+    <path d="M14 22v2M10 18c-2-2-2-6 0-8M18 18c2-2 2-6 0-8" stroke="white" strokeWidth="1.5" fill="none" />
+  </svg>
+);
+
+const AppIconStocks: React.FC = () => (
+  <svg viewBox="0 0 28 28" width="28" height="28">
+    <rect width="28" height="28" rx="6" fill="#1c1c1e" />
+    <path d="M6 18l6-6 4 4 6-8" stroke="#34c759" strokeWidth="2" fill="none" />
+  </svg>
+);
+
+/** 应用图标映射表 */
+const appIconMap: Record<string, React.FC> = {
+  siri: AppIconSiri,
+  safari: AppIconSafari,
+  settings: AppIconSettings,
+  appstore: AppIconAppStore,
+  mail: AppIconMail,
+  messages: AppIconMessages,
+  photos: AppIconPhotos,
+  calendar: AppIconCalendar,
+  music: AppIconMusic,
+  notes: AppIconNotes,
+  reminders: AppIconReminders,
+  terminal: AppIconTerminal,
+  maps: AppIconMaps,
+  weather: AppIconWeather,
+  books: AppIconBooks,
+  calculator: AppIconCalculator,
+  facetime: AppIconFaceTime,
+  tv: AppIconTV,
+  podcasts: AppIconPodcasts,
+  stocks: AppIconStocks,
+};
+
 /** iCloud 同步状态图标 */
 const SyncStatusIcon: React.FC<{ status: SyncStatus }> = ({ status }) => {
   const icons: Record<SyncStatus, string> = {
@@ -120,6 +330,7 @@ const NavItemComponent: React.FC<{
   const useCircle = item.iconType === 'circle' && item.iconColor;
   const useColoredRect = item.iconType === 'coloredRect' && item.iconColor && item.iconName;
   const useImage = item.iconType === 'image' && item.iconSrc;
+  const useAppIcon = item.iconType === 'appIcon' && item.iconName;
   const useFixedColor = useRoundedRect || useCircle;
 
   // 计算图标颜色
@@ -137,6 +348,11 @@ const NavItemComponent: React.FC<{
 
   // 渲染图标内容
   const renderIcon = () => {
+    // 应用图标（内置 SVG）
+    if (useAppIcon) {
+      const AppIconComponent = appIconMap[item.iconName!];
+      return AppIconComponent ? <AppIconComponent /> : null;
+    }
     // 图片图标（从 URL 加载，如 macosicons.com）
     if (useImage) {
       const size = item.iconSize || 20;
@@ -184,6 +400,7 @@ const NavItemComponent: React.FC<{
     useCircle ? 'finder-circle' : '',
     useColoredRect ? 'finder-colored-rect' : '',
     useImage ? 'finder-image-icon' : '',
+    useAppIcon ? 'finder-app-icon' : '',
   ].filter(Boolean).join(' ');
 
   return (

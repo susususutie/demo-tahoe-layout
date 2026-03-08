@@ -9,7 +9,7 @@ import type { ReactNode, JSX } from 'react';
 export type ActiveTextColor = 'default' | 'macos' | string;
 
 /** 内置图标名称 - macOS 风格 */
-export type BuiltinIconName = 
+export type BuiltinIconName =
   // 访达风格图标
   | 'airdrop'      // 隔空投送
   | 'recent'       // 最近使用
@@ -33,7 +33,27 @@ export type BuiltinIconName =
   | 'target'       // 聚焦
   | 'wallpaper'    // 墙纸
   | 'appearance'   // 外观
-  | 'display';     // 显示器
+  | 'display'      // 显示器
+  // macOS 应用图标
+  | 'siri'         // Siri
+  | 'safari'       // Safari
+  | 'appstore'     // App Store
+  | 'facetime'     // FaceTime
+  | 'messages'     // 信息
+  | 'mail'         // 邮件
+  | 'calendar'     // 日历
+  | 'photos'       // 照片
+  | 'notes'        // 备忘录
+  | 'reminders'    // 提醒事项
+  | 'music'        // 音乐
+  | 'podcasts'     // 播客
+  | 'tv'           // TV
+  | 'maps'         // 地图
+  | 'weather'      // 天气
+  | 'stocks'       // 股市
+  | 'books'        // 图书
+  | 'calculator'   // 计算器
+  | 'terminal';    // 终端
 
 /** 导航项数据 */
 export interface NavItem {
@@ -52,12 +72,13 @@ export interface NavItem {
   /** 
    * 图标类型
    * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
-   * - 'image': 使用图片图标（从 URL 加载，如 macosicons.com 下载的图标）
+   * - 'appIcon': 使用 macOS 应用图标（内置图标文件）
+   * - 'image': 使用外部图片图标（从 URL 加载）
    * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
    * - 'circle': 固定颜色的圆形图标（不受选中影响，标签用）
    * - 'coloredRect': 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）
    */
-  iconType?: 'svg' | 'image' | 'roundedRect' | 'circle' | 'coloredRect';
+  iconType?: 'svg' | 'appIcon' | 'image' | 'roundedRect' | 'circle' | 'coloredRect';
   /** 
    * 内置图标名称（当 iconType 为 'svg' 或 undefined 时使用）
    * 如 'airdrop', 'recent', 'documents' 等
