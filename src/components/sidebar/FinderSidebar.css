@@ -6,9 +6,12 @@
 /* ============================
    基础变量
    ============================ */
-.finder-sidebar {
+:root {
   --finder-width: 200px;
   --finder-collapsed-width: 52px;
+}
+
+.finder-sidebar {
   --finder-radius: 16px;
   --finder-item-radius: 10px;
   --finder-blur: blur(40px) saturate(150%) brightness(1.05);
