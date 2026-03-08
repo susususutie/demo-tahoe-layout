@@ -59,13 +59,13 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'tags',
     title: '标签',
     items: [
-      // 所有标签都使用 CSS 绘制的固定颜色圆点
-      { id: 'tag-red', icon: '', label: '红色', iconType: 'fixed', iconColor: '#ff3b30' },
-      { id: 'tag-orange', icon: '', label: '工作', iconType: 'fixed', iconColor: '#ff9500' },
-      { id: 'tag-yellow', icon: '', label: '黄色', iconType: 'fixed', iconColor: '#ffcc00' },
-      { id: 'tag-green', icon: '', label: '已完成', iconType: 'fixed', iconColor: '#34c759' },
-      { id: 'tag-blue', icon: '', label: '个人', iconType: 'fixed', iconColor: '#007aff' },
-      { id: 'tag-purple', icon: '', label: '紫色', iconType: 'fixed', iconColor: '#af52de' },
+      // 所有标签都使用 CSS 绘制的固定颜色圆点，选中时文字颜色也对应变化
+      { id: 'tag-red', icon: '', label: '红色', iconType: 'fixed', iconColor: '#ff3b30', activeColor: '#ff3b30' },
+      { id: 'tag-orange', icon: '', label: '工作', iconType: 'fixed', iconColor: '#ff9500', activeColor: '#ff9500' },
+      { id: 'tag-yellow', icon: '', label: '黄色', iconType: 'fixed', iconColor: '#ffcc00', activeColor: '#ffcc00' },
+      { id: 'tag-green', icon: '', label: '已完成', iconType: 'fixed', iconColor: '#34c759', activeColor: '#34c759' },
+      { id: 'tag-blue', icon: '', label: '个人', iconType: 'fixed', iconColor: '#007aff', activeColor: '#007aff' },
+      { id: 'tag-purple', icon: '', label: '紫色', iconType: 'fixed', iconColor: '#af52de', activeColor: '#af52de' },
     ],
   },
 ];
