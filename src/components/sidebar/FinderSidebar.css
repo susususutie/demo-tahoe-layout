@@ -538,6 +538,15 @@
   flex-shrink: 0;
 }
 
+/* 圆形图标 - 固定颜色（标签用） */
+.finder-nav-icon.finder-circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: currentColor;
+  flex-shrink: 0;
+}
+
 /* 标签 */
 .finder-nav-label {
   font-size: 13px;

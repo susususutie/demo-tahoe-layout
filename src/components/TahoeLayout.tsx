@@ -62,13 +62,13 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'tags',
     title: '标签',
     items: [
-      // 使用 roundedRect 类型的圆角矩形图标（固定颜色）
-      { id: 'tag-red', label: '红色', iconType: 'roundedRect', iconColor: '#ff3b30', activeColor: '#ff3b30' },
-      { id: 'tag-orange', label: '工作', iconType: 'roundedRect', iconColor: '#ff9500', activeColor: '#ff9500' },
-      { id: 'tag-yellow', label: '黄色', iconType: 'roundedRect', iconColor: '#ffcc00', activeColor: '#ffcc00' },
-      { id: 'tag-green', label: '已完成', iconType: 'roundedRect', iconColor: '#34c759', activeColor: '#34c759' },
-      { id: 'tag-blue', label: '个人', iconType: 'roundedRect', iconColor: '#007aff', activeColor: '#007aff' },
-      { id: 'tag-purple', label: '紫色', iconType: 'roundedRect', iconColor: '#af52de', activeColor: '#af52de' },
+      // 使用 circle 类型的圆形图标（固定颜色，标签用）
+      { id: 'tag-red', label: '红色', iconType: 'circle', iconColor: '#ff3b30', activeColor: '#ff3b30' },
+      { id: 'tag-orange', label: '工作', iconType: 'circle', iconColor: '#ff9500', activeColor: '#ff9500' },
+      { id: 'tag-yellow', label: '黄色', iconType: 'circle', iconColor: '#ffcc00', activeColor: '#ffcc00' },
+      { id: 'tag-green', label: '已完成', iconType: 'circle', iconColor: '#34c759', activeColor: '#34c759' },
+      { id: 'tag-blue', label: '个人', iconType: 'circle', iconColor: '#007aff', activeColor: '#007aff' },
+      { id: 'tag-purple', label: '紫色', iconType: 'circle', iconColor: '#af52de', activeColor: '#af52de' },
     ],
   },
 ];

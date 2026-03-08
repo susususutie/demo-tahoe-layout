@@ -44,8 +44,9 @@ export interface NavItem {
    * 图标类型
    * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
    * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
+   * - 'circle': 固定颜色的圆形图标（不受选中影响，标签用）
    */
-  iconType?: 'svg' | 'roundedRect';
+  iconType?: 'svg' | 'roundedRect' | 'circle';
   /** 
    * 内置图标名称（当 iconType 为 'svg' 或 undefined 时使用）
    * 如 'airdrop', 'recent', 'documents' 等
