@@ -148,8 +148,12 @@
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  /* 按钮位置：侧边栏宽度 - 61px - 73px */
-  margin-left: calc(var(--finder-width) - 61px - 73px);
+  /* 
+   * 按钮位置计算：
+   * 侧边栏宽度 - 侧边栏marginLeft - 侧边栏paddingLeft - 按钮宽度
+   * 200px - 8px - 12px - 28px = 152px
+   */
+  margin-left: calc(var(--finder-width) - 8px - 12px - 28px);
 }
 
 .floating-toggle-btn:hover {
