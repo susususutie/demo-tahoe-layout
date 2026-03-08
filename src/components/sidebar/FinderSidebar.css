@@ -207,6 +207,18 @@
 }
 
 /* ============================
+   彩色菜单项（标签组）
+   ============================ */
+.finder-nav-item.colored.active {
+  /* 使用内联样式设置颜色，这里重置默认颜色 */
+  font-weight: 600;
+}
+
+.finder-nav-item.colored.active .finder-nav-icon {
+  filter: none;
+}
+
+/* ============================
    头部
    ============================ */
 .finder-sidebar-header {

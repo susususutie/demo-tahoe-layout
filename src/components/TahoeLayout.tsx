@@ -59,10 +59,14 @@ const getDefaultNavSections = (): NavSection[] => [
   {
     id: 'tags',
     title: '标签',
+    useItemColor: true,
     items: [
-      { id: 'tag-red', icon: '🔴', label: '重要' },
-      { id: 'tag-orange', icon: '🟠', label: '进行中' },
-      { id: 'tag-green', icon: '🟢', label: '已完成' },
+      { id: 'tag-red', icon: '●', label: '重要', color: '#ff3b30' },
+      { id: 'tag-orange', icon: '●', label: '进行中', color: '#ff9500' },
+      { id: 'tag-yellow', icon: '●', label: '待处理', color: '#ffcc00' },
+      { id: 'tag-green', icon: '●', label: '已完成', color: '#34c759' },
+      { id: 'tag-blue', icon: '●', label: '个人', color: '#007aff' },
+      { id: 'tag-purple', icon: '●', label: '工作', color: '#af52de' },
     ],
   },
 ];

@@ -40,13 +40,20 @@ const NavItemComponent: React.FC<{
   isCollapsed: boolean;
   onClick: () => void;
   highlightOnSelect?: boolean;
-}> = ({ item, isActive, isCollapsed, onClick, highlightOnSelect }) => {
+  useItemColor?: boolean;
+}> = ({ item, isActive, isCollapsed, onClick, highlightOnSelect, useItemColor }) => {
+  // 构建选中时的样式（支持自定义颜色）
+  const activeStyle = isActive && useItemColor && item.color
+    ? { color: item.color, backgroundColor: `${item.color}20` }
+    : undefined;
+
   return (
     <button
-      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''}`}
+      className={`finder-nav-item ${isActive ? 'active' : ''} ${item.disabled ? 'disabled' : ''} ${highlightOnSelect ? 'highlight' : ''} ${useItemColor ? 'colored' : ''}`}
       onClick={onClick}
       disabled={item.disabled}
       title={isCollapsed ? item.label : undefined}
+      style={activeStyle}
     >
       <span className="finder-nav-icon">{item.icon}</span>
       {!isCollapsed && (
@@ -82,6 +89,7 @@ const NavSectionComponent: React.FC<{
             isCollapsed={true}
             onClick={() => onSelect(item.id)}
             highlightOnSelect={section.highlightOnSelect}
+            useItemColor={section.useItemColor}
           />
         ))}
       </div>
@@ -122,6 +130,7 @@ const NavSectionComponent: React.FC<{
             isCollapsed={false}
             onClick={() => onSelect(item.id)}
             highlightOnSelect={section.highlightOnSelect}
+            useItemColor={section.useItemColor}
           />
         ))}
       </div>

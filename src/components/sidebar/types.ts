@@ -13,6 +13,8 @@ export interface NavItem {
   badge?: number;
   shortcut?: string;
   disabled?: boolean;
+  /** 选中时的颜色（用于标签组等） */
+  color?: string;
 }
 
 /** 导航分组 */
@@ -22,6 +24,8 @@ export interface NavSection {
   items: NavItem[];
   /** 选中时是否高亮显示（深色背景+蓝色文字） */
   highlightOnSelect?: boolean;
+  /** 是否使用项自身的颜色（用于标签组） */
+  useItemColor?: boolean;
 }
 
 /** iCloud 同步状态 */
