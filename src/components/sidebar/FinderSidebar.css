@@ -412,6 +412,15 @@
   margin-bottom: 4px;
 }
 
+/* 无标题分组添加顶部间距作为空白间隔 */
+.finder-section:first-child {
+  margin-top: 0;
+}
+
+.finder-section:not(:first-child) {
+  margin-top: 8px;
+}
+
 /* 分组头部：标题 + 展开按钮 */
 .finder-section-header {
   display: flex;
@@ -419,7 +428,6 @@
   justify-content: space-between;
   padding: 6px 8px 4px 12px;
   cursor: default;
-  min-height: 24px; /* 确保无标题时仍有高度 */
 }
 
 .finder-section-header:hover .finder-section-toggle {
@@ -434,11 +442,6 @@
   letter-spacing: 0.03em;
   margin: 0;
   user-select: none;
-}
-
-/* 标题占位符 - 无标题时保持间距 */
-.finder-section-title-placeholder {
-  flex: 1;
 }
 
 /* 展开/收起按钮 */

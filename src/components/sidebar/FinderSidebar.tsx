@@ -7,7 +7,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
-import type { SidebarProps, NavItem, NavSection, SyncStatus } from './types';
+import type { SidebarProps, NavItem, NavSection } from './types';
 import './FinderSidebar.css';
 
 // Lucide Icons - macOS 风格图标库
@@ -174,29 +174,6 @@ const appIconFileMap: Record<string, string> = {
   finder: '/icons/finder.png',
   clock: '/icons/clock.png',
   textedit: '/icons/textedit.png',
-};
-
-/** iCloud 同步状态图标 */
-const SyncStatusIcon: React.FC<{ status: SyncStatus }> = ({ status }) => {
-  const icons: Record<SyncStatus, string> = {
-    synced: '☁️',
-    syncing: '🔄',
-    offline: '⚠️',
-    error: '❌',
-  };
-
-  const titles: Record<SyncStatus, string> = {
-    synced: '已同步到 iCloud',
-    syncing: '正在同步...',
-    offline: '离线',
-    error: '同步错误',
-  };
-
-  return (
-    <span className="finder-sync-icon" title={titles[status]}>
-      {icons[status]}
-    </span>
-  );
 };
 
 /** Lucide 图标映射 - macOS 风格 */
@@ -551,37 +528,37 @@ const NavSectionComponent: React.FC<{
     );
   }
 
+  const hasTitle = !!section.title;
+
   return (
     <div className={`finder-section ${effectiveExpanded ? 'expanded' : 'collapsed'}`}>
-      {/* 标题区域：始终渲染占位，保持间距 */}
-      <div className="finder-section-header">
-        {section.title ? (
+      {/* 标题区域：有标题时渲染头部 */}
+      {hasTitle && (
+        <div className="finder-section-header">
           <h3 className="finder-section-title">{section.title}</h3>
-        ) : (
-          <span className="finder-section-title-placeholder" />
-        )}
-        {/* 仅当 collapsible 为 true 时显示展开/收起按钮 */}
-        {collapsible && (
-          <button
-            className="finder-section-toggle"
-            onClick={() => setIsExpanded(!isExpanded)}
-            aria-label={effectiveExpanded ? '收起分组' : '展开分组'}
-            title={effectiveExpanded ? '收起' : '展开'}
-          >
-            <svg
-              className={effectiveExpanded ? 'expanded' : ''}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+          {/* 仅当 collapsible 为 true 且存在标题时显示展开/收起按钮 */}
+          {collapsible && (
+            <button
+              className="finder-section-toggle"
+              onClick={() => setIsExpanded(!isExpanded)}
+              aria-label={effectiveExpanded ? '收起分组' : '展开分组'}
+              title={effectiveExpanded ? '收起' : '展开'}
             >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-        )}
-      </div>
+              <svg
+                className={effectiveExpanded ? 'expanded' : ''}
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9" />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
       <div className="finder-section-items">
         {section.items.map((item) => (
           <NavItemComponent
@@ -606,8 +583,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
   config = {},
   onCollapsedChange,
   footer,
-  syncStatus,
-  user,
+  syncStatus: _syncStatus,
+  user: _user,
   windowControls,
 }) => {
   const {
@@ -707,19 +684,9 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           </button>
         </div>
 
-        {/* 右侧：用户信息和操作按钮 */}
+        {/* 右侧：收起按钮 */}
         {!isCollapsed && (
           <div className="finder-header-right">
-            {user && (
-              <>
-                {syncStatus && <SyncStatusIcon status={syncStatus} />}
-                <span className="finder-username">{user.name}</span>
-                <div className="finder-avatar">
-                  {user.avatar || user.name.charAt(0).toUpperCase()}
-                </div>
-              </>
-            )}
-            {/* 右侧收起按钮 */}
             <button
               className="finder-collapse-btn"
               onClick={handleToggle}
