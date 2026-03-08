@@ -590,10 +590,11 @@
   flex-shrink: 0;
 }
 
-.finder-nav-icon.finder-app-icon svg {
+.finder-nav-icon.finder-app-icon img {
   width: 28px;
   height: 28px;
   border-radius: 6px;
+  object-fit: contain;
 }
 
 /* 标签 */

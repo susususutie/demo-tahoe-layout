@@ -72,8 +72,8 @@ export interface NavItem {
   /** 
    * 图标类型
    * - 'svg' | undefined: 使用 SVG 线条图标（根据 iconName 渲染，可随文字变色）
-   * - 'appIcon': 使用 macOS 应用图标（内置图标文件）
-   * - 'image': 使用外部图片图标（从 URL 加载）
+   * - 'appIcon': 使用 macOS 应用图标（内置图标文件，通过 iconName 匹配）
+   * - 'image': 使用外部图片图标（从 URL 加载，通过 iconSrc）
    * - 'roundedRect': 固定颜色的圆角矩形图标（不受选中影响）
    * - 'circle': 固定颜色的圆形图标（不受选中影响，标签用）
    * - 'coloredRect': 彩色圆角矩形背景 + 白色图标（macOS 系统设置风格）

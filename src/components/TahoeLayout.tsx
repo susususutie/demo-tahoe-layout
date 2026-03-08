@@ -31,15 +31,15 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'apps',
     title: '应用程序',
     items: [
-      // 使用 image 类型：引用本地图标文件（从 macosicongallery.com 下载）
-      { id: 'siri', label: 'Siri', iconType: 'image', iconSrc: '/icons/siri.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'safari', label: 'Safari', iconType: 'image', iconSrc: '/icons/safari.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'settings', label: '设置', iconType: 'image', iconSrc: '/icons/settings.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'appstore', label: 'App Store', iconType: 'image', iconSrc: '/icons/appstore.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'messages', label: '信息', iconType: 'image', iconSrc: '/icons/messages.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'mail', label: '邮件', iconType: 'image', iconSrc: '/icons/mail.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'photos', label: '照片', iconType: 'image', iconSrc: '/icons/photos.png', iconSize: 28, activeColor: 'macos' },
-      { id: 'music', label: '音乐', iconType: 'image', iconSrc: '/icons/music.png', iconSize: 28, activeColor: 'macos' },
+      // 使用 appIcon 类型：内置应用图标（通过 iconName 匹配 /icons/ 目录下的文件）
+      { id: 'siri', label: 'Siri', iconType: 'appIcon', iconName: 'siri', activeColor: 'macos' },
+      { id: 'safari', label: 'Safari', iconType: 'appIcon', iconName: 'safari', activeColor: 'macos' },
+      { id: 'settings', label: '设置', iconType: 'appIcon', iconName: 'settings', activeColor: 'macos' },
+      { id: 'appstore', label: 'App Store', iconType: 'appIcon', iconName: 'appstore', activeColor: 'macos' },
+      { id: 'messages', label: '信息', iconType: 'appIcon', iconName: 'messages', activeColor: 'macos' },
+      { id: 'mail', label: '邮件', iconType: 'appIcon', iconName: 'mail', activeColor: 'macos' },
+      { id: 'photos', label: '照片', iconType: 'appIcon', iconName: 'photos', activeColor: 'macos' },
+      { id: 'music', label: '音乐', iconType: 'appIcon', iconName: 'music', activeColor: 'macos' },
     ],
   },
   {
