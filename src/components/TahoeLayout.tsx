@@ -31,12 +31,13 @@ const getDefaultNavSections = (): NavSection[] => [
     id: 'favorites',
     title: '个人收藏',
     items: [
-      { id: 'airdrop', icon: '📡', label: '隔空投送', activeColor: 'default' },
+      // 所有菜单选中时文字都变为 macOS 蓝色
+      { id: 'airdrop', icon: '📡', label: '隔空投送', activeColor: 'macos' },
       { id: 'recent', icon: '🕐', label: '最近使用', activeColor: 'macos' },
-      { id: 'applications', icon: '🚀', label: '应用程序', activeColor: '#5856d6' },
-      { id: 'desktop', icon: '🖥️', label: '桌面', badge: 3 },
-      { id: 'documents', icon: '📄', label: '文稿' },
-      { id: 'downloads', icon: '⬇️', label: '下载' },
+      { id: 'applications', icon: '🚀', label: '应用程序', activeColor: 'macos' },
+      { id: 'desktop', icon: '🖥️', label: '桌面', badge: 3, activeColor: 'macos' },
+      { id: 'documents', icon: '📄', label: '文稿', activeColor: 'macos' },
+      { id: 'downloads', icon: '⬇️', label: '下载', activeColor: 'macos' },
     ],
   },
   {
