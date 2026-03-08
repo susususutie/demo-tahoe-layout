@@ -40,7 +40,7 @@
 }
 
 .floating-btn:hover {
-  transform: scale(1.15);
+  /* 不放大，只保持其他过渡效果 */
 }
 
 .floating-btn svg {
