@@ -158,12 +158,6 @@
   margin-left: calc(var(--finder-width) - 28px - 12px - 16px);
 }
 
-/* 当侧边栏展开时（没有三色按钮），切换按钮位置调整 */
-.floating-controls:not(.collapsed) .floating-toggle-btn {
-  /* 三色按钮区域宽度约 70px (14px*3 + 8px*2 gap)，减去这部分 */
-  margin-left: calc(var(--finder-width) - 28px - 12px - 16px - 70px);
-}
-
 .floating-toggle-btn:hover {
   background: #ffffff;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);

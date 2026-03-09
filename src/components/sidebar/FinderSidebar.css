@@ -116,103 +116,9 @@
 }
 
 /* ============================
-   macOS 窗口控制按钮
+   深色模式按钮样式
    ============================ */
-.finder-window-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-}
-
-.finder-sidebar.collapsed .finder-window-controls {
-  justify-content: center;
-}
-
-.finder-window-btn {
-  width: 14px;
-  height: 14px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.2s ease;
-  position: relative;
-  padding: 0;
-  flex-shrink: 0;
-}
-
-.finder-window-btn svg {
-  width: 10px;
-  height: 10px;
-  opacity: 0;
-  transition: opacity 0.15s ease;
-  stroke: rgba(0, 0, 0, 0.7);
-  stroke-width: 2.5;
-}
-
-/* 鼠标移入按钮区域时，所有图标都显示 */
-.finder-window-controls:hover .finder-window-btn svg {
-  opacity: 1;
-}
-
-/* 三色按钮颜色 */
-.finder-close-btn {
-  background: linear-gradient(180deg, #ff5f57 0%, #ff4940 100%);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-close-btn:hover {
-  background: linear-gradient(180deg, #ff6b63 0%, #ff5f57 100%);
-}
-
-.finder-minimize-btn {
-  background: linear-gradient(180deg, #febc2e 0%, #ffb020 100%);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-minimize-btn:hover {
-  background: linear-gradient(180deg, #ffc83e 0%, #febc2e 100%);
-}
-
-.finder-zoom-btn {
-  background: linear-gradient(180deg, #28c840 0%, #22b336 100%);
-  box-shadow:
-    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 1px 2px rgba(0, 0, 0, 0.15);
-}
-
-.finder-zoom-btn:hover {
-  background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
-}
-
-/* 深色模式按钮样式 */
 @media (prefers-color-scheme: dark) {
-  .finder-close-btn {
-    background: linear-gradient(180deg, #ff5f57 0%, #e0443c 100%);
-  }
-
-  .finder-minimize-btn {
-    background: linear-gradient(180deg, #febc2e 0%, #e0a028 100%);
-  }
-
-  .finder-zoom-btn {
-    background: linear-gradient(180deg, #28c840 0%, #1e9f2e 100%);
-  }
-
-  .finder-window-btn svg {
-    stroke: rgba(0, 0, 0, 0.6);
-  }
-
   .finder-section-toggle:hover {
     background: var(--finder-hover-bg);
     color: var(--finder-text);
@@ -240,17 +146,6 @@
   height: 52px;
   z-index: 10;
   pointer-events: none; /* 让点击穿透到下方的滚动内容 */
-}
-
-/* 头部内容容器 - 实际放置内容 */
-.finder-sidebar-header-content {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  pointer-events: auto; /* 头部内容可交互 */
 }
 
 /* 头部模糊遮罩层 - 始终显示，让滚动内容能透过遮罩隐约可见 */
