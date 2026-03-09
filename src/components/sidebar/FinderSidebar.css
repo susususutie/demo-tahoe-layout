@@ -14,11 +14,11 @@
 .finder-sidebar {
   --finder-radius: 16px;
   --finder-item-radius: 10px;
-  --finder-blur: blur(40px) saturate(150%) brightness(1.05);
+  --finder-blur: blur(80px) saturate(180%) brightness(1.1);
 
-  /* 访达风格背景色 - 更纯净的白色 */
-  --finder-bg: rgba(255, 255, 255, 0.32);
-  --finder-bg-dark: rgba(40, 40, 42, 0.48);
+  /* 访达风格背景色 - 提高不透明度增强磨砂效果 */
+  --finder-bg: rgba(255, 255, 255, 0.45);
+  --finder-bg-dark: rgba(40, 40, 42, 0.65);
 
   /* 选中项背景 */
   --finder-active-bg: rgba(0, 113, 227, 0.12);
