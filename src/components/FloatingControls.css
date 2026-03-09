@@ -2,13 +2,34 @@
  * 悬浮控制按钮组样式
  */
 
+:root {
+  /* 定位系统 */
+  --floating-position-top: var(--tahoe-spacing-xl, 24px);
+  --floating-position-left: var(--tahoe-spacing-xl, 24px);
+
+  /* 间距系统 */
+  --floating-gap: var(--tahoe-spacing-md, 12px);
+  --floating-btn-gap: var(--tahoe-spacing-sm, 8px);
+
+  /* 三色按钮尺寸 */
+  --floating-window-btn-size: 15px;
+  --floating-window-icon-size: 10px;
+
+  /* 切换按钮尺寸 */
+  --floating-toggle-btn-width: 28px;
+  --floating-toggle-btn-height: 28px;
+
+  /* 隐藏按钮尺寸 */
+  --floating-hide-btn-size: 32px;
+}
+
 .floating-controls {
   position: fixed;
-  top: 24px;
-  left: 24px;
+  top: var(--floating-position-top);
+  left: var(--floating-position-left);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--floating-gap);
   z-index: 200;
   pointer-events: none;
 }
@@ -21,13 +42,13 @@
 .floating-window-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--floating-btn-gap);
 }
 
 /* 三色按钮基础样式 */
 .floating-btn {
-  width: 15px;
-  height: 15px;
+  width: var(--floating-window-btn-size);
+  height: var(--floating-window-btn-size);
   border-radius: 50%;
   border: none;
   cursor: pointer;
@@ -44,8 +65,8 @@
 }
 
 .floating-btn svg {
-  width: 10px;
-  height: 10px;
+  width: var(--floating-window-icon-size);
+  height: var(--floating-window-icon-size);
   opacity: 0;
   transition: opacity 0.15s ease;
   stroke: rgba(0, 0, 0, 0.7);
@@ -62,11 +83,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: var(--floating-hide-btn-size);
+  height: var(--floating-hide-btn-size);
   padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  border-radius: var(--tahoe-radius-sm, 8px);
   background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
@@ -134,11 +155,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 28px;
-  height: 28px;
+  width: var(--floating-toggle-btn-width);
+  height: var(--floating-toggle-btn-height);
   padding: 0;
   border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 6px;
+  border-radius: var(--tahoe-radius-sm, 6px);
   background: rgba(255, 255, 255, 0.9);
   cursor: pointer;
   transition:
@@ -147,15 +168,15 @@
     margin-left 0.05s ease-out;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   /* 
-   * 按钮位置计算：
+   * 按钮位置计算（使用 CSS 变量）：
    * 目标：按钮右侧与侧边栏右侧间隔为 12px（侧边栏padding）
-   * 侧边栏右侧位置 = 8px + 200px = 208px
-   * 按钮右侧位置 = 208px - 12px = 196px
-   * 按钮左侧位置 = 196px - 28px = 168px
-   * 相对于 floating-controls (left: 24px) 的 margin-left = 168px - 24px = 144px
-   * 简化：200px - 28px - 12px - 16px = 144px
+   * 侧边栏右侧位置 = margin + width
+   * 按钮右侧位置 = 侧边栏右侧位置 - padding
+   * 按钮左侧位置 = 按钮右侧位置 - 按钮宽度
+   * margin-left = 按钮左侧位置 - floating-controls left
+   * 简化：width - btn_width - padding - controls_left_gap
    */
-  margin-left: calc(var(--finder-width) - 28px - 12px - 16px);
+  margin-left: calc(var(--finder-width) - var(--floating-toggle-btn-width) - var(--tahoe-spacing-md, 12px) - var(--tahoe-spacing-lg, 16px));
 }
 
 .floating-toggle-btn:hover {

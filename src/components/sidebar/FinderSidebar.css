@@ -7,8 +7,22 @@
    基础变量
    ============================ */
 :root {
-  --finder-width: 200px;
-  --finder-collapsed-width: 52px;
+  /* 宽度定义 - 继承自主布局变量或独立定义 */
+  --finder-width: var(--tahoe-sidebar-width, 200px);
+  --finder-collapsed-width: var(--tahoe-sidebar-collapsed-width, 52px);
+
+  /* 定位系统 */
+  --finder-position-left: var(--tahoe-layout-margin, 8px);
+  --finder-position-top: var(--tahoe-layout-margin, 8px);
+
+  /* 间距系统 */
+  --finder-spacing-xs: var(--tahoe-spacing-xs, 4px);
+  --finder-spacing-sm: var(--tahoe-spacing-sm, 8px);
+  --finder-spacing-md: var(--tahoe-spacing-md, 12px);
+  --finder-spacing-lg: var(--tahoe-spacing-lg, 16px);
+
+  /* 头部高度 */
+  --finder-header-height: var(--tahoe-header-height, 52px);
 }
 
 .finder-sidebar {
@@ -70,8 +84,8 @@
    ============================ */
 .finder-sidebar-wrapper {
   width: var(--finder-width);
-  height: calc(100vh - 16px);
-  margin: 8px;
+  height: calc(100vh - var(--finder-spacing-lg) * 2);
+  margin: var(--finder-spacing-sm);
   margin-right: 0;
   flex-shrink: 0;
   transition: width 0.05s ease-out;
@@ -80,7 +94,7 @@
 
 .finder-sidebar-wrapper.collapsed {
   width: 0;
-  margin: 8px 0;
+  margin: var(--finder-spacing-sm) 0;
 }
 
 /* ============================
@@ -88,10 +102,10 @@
    ============================ */
 .finder-sidebar {
   width: var(--finder-width);
-  height: calc(100vh - 16px);
+  height: calc(100vh - var(--finder-spacing-lg) * 2);
   position: fixed;
-  left: 8px;
-  top: 8px;
+  left: var(--finder-position-left);
+  top: var(--finder-position-top);
   border-radius: var(--finder-radius);
   background: var(--finder-bg);
   backdrop-filter: var(--finder-blur);
@@ -152,7 +166,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 52px;
+  height: var(--finder-header-height);
   z-index: 10;
   pointer-events: none; /* 让点击穿透到下方的滚动内容 */
   flex-shrink: 0;
@@ -165,7 +179,7 @@
   top: 0;
   right: 0;
   width: 9px; /* 滚动条宽度 */
-  height: 52px; /* 头部高度 */
+  height: var(--finder-header-height); /* 头部高度 */
   background: var(--finder-bg);
   backdrop-filter: var(--finder-blur);
   -webkit-backdrop-filter: var(--finder-blur);
@@ -217,17 +231,17 @@
    侧边栏内容区域
    ============================ */
 .finder-sidebar-content {
-  padding: 8px;
-  /* 负 margin 让内容向上延伸到头部遮罩区域（头部高度 52px - 8px padding） */
-  margin-top: -44px;
+  padding: var(--finder-spacing-sm);
+  /* 负 margin 让内容向上延伸到头部遮罩区域（头部高度 - padding） */
+  margin-top: calc(var(--finder-header-height) * -1 + var(--finder-spacing-sm));
   /* 增加 padding-top 确保内容从头部下方开始可读 */
-  padding-top: 52px;
-  min-height: calc(100% - 52px);
+  padding-top: var(--finder-header-height);
+  min-height: calc(100% - var(--finder-header-height));
 }
 
 .finder-sidebar.collapsed .finder-sidebar-content {
-  padding: 8px 6px;
-  padding-top: 52px;
+  padding: var(--finder-spacing-sm) 6px;
+  padding-top: var(--finder-header-height);
 }
 
 /* 收起状态下的悬浮展开按钮 */
@@ -307,8 +321,8 @@
 /* 滚动条轨道 */
 .finder-custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
-  margin: 52px 0 4px 0; /* 上方留出头部高度 52px，下方留 4px */
-  border-radius: 4px;
+  margin: var(--finder-header-height) 0 var(--finder-spacing-xs) 0; /* 上方留出头部高度，下方留间距 */
+  border-radius: var(--finder-spacing-xs);
 }
 
 /* 滚动条滑块 - 默认隐藏（透明） */
@@ -374,7 +388,7 @@
    分组标题 - 支持展开/收起
    ============================ */
 .finder-section {
-  margin-bottom: 4px;
+  margin-bottom: var(--finder-spacing-xs);
 }
 
 /* 无标题分组添加顶部间距作为空白间隔 */
@@ -383,7 +397,7 @@
 }
 
 .finder-section:not(:first-child) {
-  margin-top: 8px;
+  margin-top: var(--finder-spacing-sm);
 }
 
 /* 分组头部：标题 + 展开按钮 */
@@ -391,7 +405,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 8px 4px 12px;
+  padding: var(--finder-spacing-xs) var(--finder-spacing-sm) var(--finder-spacing-xs) var(--finder-spacing-md);
   cursor: default;
 }
 
@@ -470,7 +484,7 @@
 .finder-nav-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--finder-spacing-sm);
   width: 100%;
   padding: 6px 10px;
   border: none;
@@ -488,7 +502,7 @@
 /* 收起状态居中 */
 .finder-sidebar.collapsed .finder-nav-item {
   justify-content: center;
-  padding: 8px;
+  padding: var(--finder-spacing-sm);
 }
 
 /* 默认选中状态：macOS 风格灰色背景 */
@@ -622,6 +636,6 @@
    ============================ */
 .finder-footer {
   margin-top: auto;
-  padding-top: 8px;
+  padding-top: var(--finder-spacing-sm);
   border-top: 1px solid var(--finder-border);
 }
