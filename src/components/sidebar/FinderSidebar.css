@@ -199,12 +199,18 @@
    侧边栏内容区域
    ============================ */
 .finder-sidebar-content {
+  /* 小 padding 让内容能延伸到上方透明遮罩区域 */
   padding: 8px;
+  /* 负 margin 让内容向上延伸到头部区域 */
+  margin-top: -44px;
+  /* 增加 padding-top 给三色按钮留出空间 */
+  padding-top: 52px;
   min-height: calc(100% - 52px); /* 确保内容足够高可以滚动 */
 }
 
 .finder-sidebar.collapsed .finder-sidebar-content {
   padding: 8px 6px;
+  padding-top: 52px;
 }
 
 /* 收起状态下的悬浮展开按钮 */
