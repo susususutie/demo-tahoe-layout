@@ -89,8 +89,6 @@
 .finder-sidebar {
   width: var(--finder-width);
   height: calc(100vh - 16px);
-  display: flex;
-  flex-direction: column;
   position: fixed;
   left: 8px;
   top: 8px;
@@ -106,7 +104,18 @@
   transition:
     transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
+  /* 整个侧边栏可滚动 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* 自定义滚动条样式 - macOS 风格 */
+  scrollbar-width: none; /* Firefox 默认隐藏 */
+  -ms-overflow-style: none; /* IE/Edge 默认隐藏 */
+}
+
+/* Webkit 浏览器默认隐藏滚动条 */
+.finder-sidebar::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
 }
 
 /* 收起状态：向左滑出 */
@@ -136,16 +145,17 @@
 }
 
 /* ============================
-   头部固定区域（带遮罩）
+   头部粘性定位区域（带遮罩）
    ============================ */
 .finder-sidebar-header {
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   right: 0;
   height: 52px;
   z-index: 10;
   pointer-events: none; /* 让点击穿透到下方的滚动内容 */
+  flex-shrink: 0;
 }
 
 /* 头部模糊遮罩层 - 始终显示，让滚动内容能透过遮罩隐约可见 */
@@ -183,6 +193,18 @@
   );
   pointer-events: none;
   z-index: -1;
+}
+
+/* ============================
+   侧边栏内容区域
+   ============================ */
+.finder-sidebar-content {
+  padding: 8px;
+  min-height: calc(100% - 52px); /* 确保内容足够高可以滚动 */
+}
+
+.finder-sidebar.collapsed .finder-sidebar-content {
+  padding: 8px 6px;
 }
 
 /* 收起状态下的悬浮展开按钮 */
@@ -244,55 +266,85 @@
 }
 
 /* ============================
-   导航区域
+   自定义 macOS 风格滚动条
    ============================ */
-.finder-nav {
-  flex: 1;
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 8px;
-  padding-top: 60px; /* 给固定头部留出 52px + 8px 间距 */
-  scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  /* 滚动条只在内容区域，不包括头部 */
-  scrollbar-gutter: stable;
+
+/* 滚动条容器 - 固定在右侧 */
+.finder-custom-scrollbar {
+  /* 为滚动条预留空间 */
+  padding-right: 0;
 }
 
-.finder-sidebar.collapsed .finder-nav {
-  padding: 8px 6px;
-}
-
-.finder-nav::-webkit-scrollbar {
-  width: 8px;
-}
-
-.finder-nav::-webkit-scrollbar-track {
+/* Webkit 自定义滚动条 - 仅在悬停或滚动时显示 */
+.finder-custom-scrollbar::-webkit-scrollbar {
+  width: 9px;
   background: transparent;
-  margin: 4px 0;
 }
 
-.finder-nav::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.15);
+/* 滚动条轨道 */
+.finder-custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 52px 0 4px 0; /* 上方留出头部高度 52px，下方留 4px */
   border-radius: 4px;
+}
+
+/* 滚动条滑块 - 默认隐藏（透明） */
+.finder-custom-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4.5px;
   border: 2px solid transparent;
   background-clip: padding-box;
+  min-height: 40px;
+  transition: background 0.3s ease;
 }
 
-.finder-nav::-webkit-scrollbar-thumb:hover {
+/* 悬停时显示滚动条 */
+.finder-custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* 滚动条滑块悬停效果 */
+.finder-custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(0, 0, 0, 0.25);
 }
 
-.finder-nav::-webkit-scrollbar-thumb:active {
+/* 滚动条滑块拖动效果 */
+.finder-custom-scrollbar::-webkit-scrollbar-thumb:active {
   background: rgba(0, 0, 0, 0.35);
 }
 
+/* 滚动时临时显示滚动条（通过添加 scrolled 类） */
+.finder-custom-scrollbar.scrolled::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.18);
+}
+
 /* Firefox 滚动条 */
-.finder-nav {
+.finder-custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+  scrollbar-color: rgba(0, 0, 0, 0.18) transparent;
+}
+
+/* 深色模式滚动条 */
+@media (prefers-color-scheme: dark) {
+  .finder-custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .finder-custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+  }
+
+  .finder-custom-scrollbar::-webkit-scrollbar-thumb:active {
+    background: rgba(255, 255, 255, 0.4);
+  }
+
+  .finder-custom-scrollbar.scrolled::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .finder-custom-scrollbar {
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
 }
 
 /* ============================

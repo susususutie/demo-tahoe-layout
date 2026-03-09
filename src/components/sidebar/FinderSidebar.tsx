@@ -596,8 +596,6 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     }
   }
 
-  const navRef = useRef<HTMLDivElement>(null)
-
   // 通知父组件收起状态变化（非受控模式）
   useEffect(() => {
     if (!isControlled) {
@@ -659,13 +657,13 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
 
       {/* 侧边栏占位容器 - 占用空间防止内容区被遮挡 */}
       <div className={`finder-sidebar-wrapper ${isCollapsed ? 'collapsed' : ''}`}>
-        <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-          {/* 头部固定区域 - 带模糊遮罩，滚动时内容能透过遮罩显示 */}
+        <aside className={`finder-sidebar finder-custom-scrollbar ${isCollapsed ? 'collapsed' : ''}`}>
+          {/* 头部粘性定位区域 - 带模糊遮罩 */}
           <div className='finder-sidebar-header' />
 
-          {/* 导航区域 */}
-          <nav className="finder-nav" ref={navRef}>
-            {sections.map((section) => (
+          {/* 内容区域 - 顶部留白给头部 */}
+          <div className='finder-sidebar-content'>
+            {sections.map(section => (
               <NavSectionComponent
                 key={section.id}
                 section={section}
@@ -675,7 +673,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
               />
             ))}
             {footer && !isCollapsed && <div className="finder-footer">{footer}</div>}
-          </nav>
+          </div>
 
           {/* 拖动调整宽度的手柄 */}
           {!isCollapsed && (
