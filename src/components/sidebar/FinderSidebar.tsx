@@ -596,21 +596,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
     }
   }
 
-  const [isScrolled, setIsScrolled] = useState(false)
   const navRef = useRef<HTMLDivElement>(null)
-
-  // 监听滚动
-  useEffect(() => {
-    const navEl = navRef.current
-    if (!navEl) return
-
-    const handleScroll = () => {
-      setIsScrolled(navEl.scrollTop > 0)
-    }
-
-    navEl.addEventListener('scroll', handleScroll)
-    return () => navEl.removeEventListener('scroll', handleScroll)
-  }, [])
 
   // 通知父组件收起状态变化（非受控模式）
   useEffect(() => {
@@ -674,8 +660,42 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
       {/* 侧边栏占位容器 - 占用空间防止内容区被遮挡 */}
       <div className={`finder-sidebar-wrapper ${isCollapsed ? 'collapsed' : ''}`}>
         <aside className={`finder-sidebar ${isCollapsed ? 'collapsed' : ''}`}>
-          {/* 头部占位区域 - 为悬浮按钮留出空间 */}
-          <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
+          {/* 头部固定区域 - 带模糊遮罩，滚动时内容能透过遮罩显示 */}
+          <div className='finder-sidebar-header'>
+            <div className='finder-sidebar-header-content'>
+              {/* 三色窗口控制按钮 */}
+              <div className="finder-window-controls">
+                <button
+                  className="finder-window-btn finder-close-btn"
+                  onClick={() => setIsCollapsed(true)}
+                  aria-label="收起侧边栏"
+                  title="收起"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M6 6l12 12M18 6l-12 12" />
+                  </svg>
+                </button>
+                <button
+                  className="finder-window-btn finder-minimize-btn"
+                  aria-label="最小化"
+                  title="最小化"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                  </svg>
+                </button>
+                <button
+                  className="finder-window-btn finder-zoom-btn"
+                  aria-label="缩放"
+                  title="缩放"
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
 
           {/* 导航区域 */}
           <nav className="finder-nav" ref={navRef}>

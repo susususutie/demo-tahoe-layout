@@ -23,36 +23,39 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
 }) => {
   return (
     <div className={`floating-controls ${isCollapsed ? 'collapsed' : ''}`}>
-      {/* 三色窗口控制按钮 - 始终显示 */}
-      <div className="floating-window-controls">
-        <button
-          className="floating-btn floating-close-btn"
-          onClick={onExpand}
-          aria-label="展开侧边栏"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M6 6l12 12M18 6l-12 12" />
-          </svg>
-        </button>
-        <button
-          className="floating-btn floating-minimize-btn"
-          onClick={onExpand}
-          aria-label="展开侧边栏"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <line x1="5" y1="12" x2="19" y2="12" />
-          </svg>
-        </button>
-        <button
-          className="floating-btn floating-expand-btn"
-          onClick={onExpand}
-          aria-label="展开侧边栏"
-        >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M12 5v14M5 12h14" />
-          </svg>
-        </button>
-      </div>
+      {/* 三色窗口控制按钮 - 仅在侧边栏收起时显示，作为展开入口 */}
+      {isCollapsed && (
+        <div className="floating-window-controls">
+          <button
+            className="floating-btn floating-close-btn"
+            onClick={onExpand}
+            aria-label="展开侧边栏"
+            title="展开侧边栏"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6l-12 12" />
+            </svg>
+          </button>
+          <button
+            className="floating-btn floating-minimize-btn"
+            aria-label="最小化"
+            title="最小化"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <line x1="5" y1="12" x2="19" y2="12" />
+            </svg>
+          </button>
+          <button
+            className="floating-btn floating-expand-btn"
+            aria-label="缩放"
+            title="缩放"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M12 5v14M5 12h14" />
+            </svg>
+          </button>
+        </div>
+      )}
 
       {/* 侧边栏切换按钮 - 始终显示，位置随状态变化 */}
       <button

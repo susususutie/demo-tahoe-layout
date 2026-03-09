@@ -130,8 +130,8 @@
 }
 
 .finder-window-btn {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -141,11 +141,12 @@
   transition: all 0.2s ease;
   position: relative;
   padding: 0;
+  flex-shrink: 0;
 }
 
 .finder-window-btn svg {
-  width: 11px;
-  height: 11px;
+  width: 10px;
+  height: 10px;
   opacity: 0;
   transition: opacity 0.15s ease;
   stroke: rgba(0, 0, 0, 0.7);
@@ -157,8 +158,61 @@
   opacity: 1;
 }
 
+/* 三色按钮颜色 */
+.finder-close-btn {
+  background: linear-gradient(180deg, #ff5f57 0%, #ff4940 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.finder-close-btn:hover {
+  background: linear-gradient(180deg, #ff6b63 0%, #ff5f57 100%);
+}
+
+.finder-minimize-btn {
+  background: linear-gradient(180deg, #febc2e 0%, #ffb020 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.finder-minimize-btn:hover {
+  background: linear-gradient(180deg, #ffc83e 0%, #febc2e 100%);
+}
+
+.finder-zoom-btn {
+  background: linear-gradient(180deg, #28c840 0%, #22b336 100%);
+  box-shadow:
+    inset 0 0 0 0.5px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.finder-zoom-btn:hover {
+  background: linear-gradient(180deg, #32d64a 0%, #28c840 100%);
+}
+
 /* 深色模式按钮样式 */
 @media (prefers-color-scheme: dark) {
+  .finder-close-btn {
+    background: linear-gradient(180deg, #ff5f57 0%, #e0443c 100%);
+  }
+
+  .finder-minimize-btn {
+    background: linear-gradient(180deg, #febc2e 0%, #e0a028 100%);
+  }
+
+  .finder-zoom-btn {
+    background: linear-gradient(180deg, #28c840 0%, #1e9f2e 100%);
+  }
+
+  .finder-window-btn svg {
+    stroke: rgba(0, 0, 0, 0.6);
+  }
+
   .finder-section-toggle:hover {
     background: var(--finder-hover-bg);
     color: var(--finder-text);
@@ -176,35 +230,64 @@
 }
 
 /* ============================
-   头部占位区域
+   头部固定区域（带遮罩）
    ============================ */
-.finder-sidebar-header-spacer {
+.finder-sidebar-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 52px;
-  flex-shrink: 0;
-  background: transparent;
-  pointer-events: none;
-  position: relative;
+  z-index: 10;
+  pointer-events: none; /* 让点击穿透到下方的滚动内容 */
 }
 
-/* 头部玻璃遮罩 - 滚动时显示磨砂效果 */
-.finder-sidebar-header-spacer::after {
+/* 头部内容容器 - 实际放置内容 */
+.finder-sidebar-header-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  pointer-events: auto; /* 头部内容可交互 */
+}
+
+/* 头部模糊遮罩层 - 始终显示，让滚动内容能透过遮罩隐约可见 */
+.finder-sidebar-header::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: var(--finder-bg);
+  background: linear-gradient(
+    to bottom,
+    var(--finder-bg) 0%,
+    var(--finder-bg) 60%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
   backdrop-filter: var(--finder-blur);
   -webkit-backdrop-filter: var(--finder-blur);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
   border-radius: var(--finder-radius) var(--finder-radius) 0 0;
+  z-index: -1;
 }
 
-.finder-sidebar-header-spacer.scrolled::after {
-  opacity: 1;
+/* 头部底部渐变遮罩 - 让滚动上来的内容平滑过渡 */
+.finder-sidebar-header::after {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  right: 0;
+  height: 20px;
+  background: linear-gradient(
+    to bottom,
+    var(--finder-bg) 0%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: -1;
 }
 
 /* 收起状态下的悬浮展开按钮 */
@@ -273,12 +356,14 @@
   overflow-y: auto;
   overflow-x: hidden;
   padding: 8px;
-  padding-top: 56px; /* 给头部留出 52px + 4px 间距 */
+  padding-top: 60px; /* 给固定头部留出 52px + 8px 间距 */
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
   position: relative;
   z-index: 1;
   height: 100%;
+  /* 滚动条只在内容区域，不包括头部 */
+  scrollbar-gutter: stable;
 }
 
 .finder-sidebar.collapsed .finder-nav {
