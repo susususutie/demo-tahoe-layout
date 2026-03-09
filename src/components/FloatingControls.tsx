@@ -7,7 +7,7 @@
 import React from 'react'
 import './FloatingControls.css'
 
-interface FloatingControlsProps {
+export interface FloatingControlsProps {
   /** 侧边栏是否收起 */
   isCollapsed: boolean
   /** 展开侧边栏回调 */

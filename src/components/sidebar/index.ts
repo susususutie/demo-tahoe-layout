@@ -5,3 +5,5 @@
 
 export * from './types'
 export { FinderSidebar } from './FinderSidebar'
+export { ClassicSidebar } from './ClassicSidebar';
+export { getDefaultNavSections } from './navData';
