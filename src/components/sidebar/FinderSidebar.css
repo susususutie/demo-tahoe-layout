@@ -158,6 +158,22 @@
   flex-shrink: 0;
 }
 
+/* 滚动条轨道遮罩 - 遮住上方滚动条，但让内容透过遮罩显示 */
+.finder-sidebar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 9px; /* 滚动条宽度 */
+  height: 52px; /* 头部高度 */
+  background: var(--finder-bg);
+  backdrop-filter: var(--finder-blur);
+  -webkit-backdrop-filter: var(--finder-blur);
+  border-radius: 0 var(--finder-radius) 0 0;
+  z-index: 6; /* 在滚动条之上 */
+  pointer-events: none;
+}
+
 /* 头部模糊遮罩层 - 始终显示，让滚动内容能透过遮罩隐约可见 */
 .finder-sidebar-header::before {
   content: '';
@@ -195,17 +211,18 @@
   z-index: -1;
 }
 
+
+
 /* ============================
    侧边栏内容区域
    ============================ */
 .finder-sidebar-content {
-  /* 小 padding 让内容能延伸到上方透明遮罩区域 */
   padding: 8px;
-  /* 负 margin 让内容向上延伸到头部区域 */
+  /* 负 margin 让内容向上延伸到头部遮罩区域（头部高度 52px - 8px padding） */
   margin-top: -44px;
-  /* 增加 padding-top 给三色按钮留出空间 */
+  /* 增加 padding-top 确保内容从头部下方开始可读 */
   padding-top: 52px;
-  min-height: calc(100% - 52px); /* 确保内容足够高可以滚动 */
+  min-height: calc(100% - 52px);
 }
 
 .finder-sidebar.collapsed .finder-sidebar-content {
