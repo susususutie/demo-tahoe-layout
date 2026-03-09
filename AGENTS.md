@@ -4,7 +4,7 @@
 
 ## 项目概述
 
-macOS Tahoe 风格布局组件，基于 Vite + React 19 + TypeScript，带有磨砂玻璃效果和滚动透明遮罩。
+macOS Finder 风格侧边栏组件，基于 Vite + React 19 + TypeScript，带有磨砂玻璃效果、可拖动调整宽度、悬浮控制按钮组。
 
 ## 技术栈
 
@@ -15,6 +15,7 @@ macOS Tahoe 风格布局组件，基于 Vite + React 19 + TypeScript，带有磨
 | Vite       | ^7.3.1  | 构建工具   |
 | ESLint     | ^9.39.1 | 代码规范   |
 | pnpm       | latest  | 包管理器   |
+| lucide-react | ^0.577.0 | macOS 风格图标库 |
 
 ## 项目文件结构
 
@@ -22,20 +23,29 @@ macOS Tahoe 风格布局组件，基于 Vite + React 19 + TypeScript，带有磨
 demo-tahoe-layout/
 ├── src/
 │   ├── components/
-│   │   ├── TahoeLayout.tsx    # 核心布局组件
-│   │   └── TahoeLayout.css    # 组件样式（含遮罩效果）
-│   ├── App.tsx                # 主应用（演示页面）
-│   ├── App.css                # 演示内容样式
-│   ├── index.css              # 全局样式
-│   └── main.tsx               # 应用入口
-├── package.json               # 依赖配置
-├── vite.config.ts             # Vite 配置
-├── eslint.config.js           # ESLint 配置（Flat Config）
-├── tsconfig.json              # TypeScript 配置（项目引用）
-├── tsconfig.app.json          # 应用 TS 配置
-├── tsconfig.node.json         # Node TS 配置
-├── README.md                  # 项目文档
-└── AGENTS.md                  # 本文档
+│   │   ├── sidebar/              # 侧边栏组件目录
+│   │   │   ├── FinderSidebar.tsx # Finder 风格侧边栏
+│   │   │   ├── FinderSidebar.css # 侧边栏样式
+│   │   │   ├── types.ts          # 类型定义
+│   │   │   └── index.ts          # 导出
+│   │   ├── TahoeLayout.tsx       # 核心布局组件
+│   │   ├── TahoeLayout.css       # 布局样式
+│   │   ├── FloatingControls.tsx  # 悬浮控制按钮组
+│   │   ├── FloatingControls.css  # 悬浮按钮样式
+│   │   ├── Breadcrumb.tsx        # 面包屑组件
+│   │   └── Breadcrumb.css        # 面包屑样式
+│   ├── App.tsx                   # 主应用（演示页面）
+│   ├── App.css                   # 演示内容样式
+│   ├── index.css                 # 全局样式
+│   └── main.tsx                  # 应用入口
+├── public/
+│   └── icons/                    # 内置应用图标
+├── package.json                  # 依赖配置
+├── vite.config.ts                # Vite 配置
+├── eslint.config.js              # ESLint 配置（Flat Config）
+├── tsconfig.json                 # TypeScript 配置
+├── README.md                     # 项目文档
+└── AGENTS.md                     # 本文档
 ```
 
 ## 可用脚本
@@ -54,49 +64,97 @@ pnpm preview      # 预览生产构建
 **Props:**
 
 - `children: React.ReactNode` - 主内容区子元素
-- `sidebarContent: React.ReactNode` - 侧边栏内容（预留）
 - `title?: string` - 页面标题，默认 "Tahoe Layout"
+- `sidebarVariant?: 'finder' | 'classic'` - 侧边栏变体
+- `sidebarConfig?: SidebarConfig` - 侧边栏配置
+- `breadcrumbs?: BreadcrumbItem[]` - 面包屑路径
+- `onBreadcrumbClick?: (item, index) => void` - 面包屑点击回调
+- `onNavSelect?: (id) => void` - 导航选中回调
 
 **State:**
+- `activeNavId: string` - 当前激活的导航项 ID
+- `isSidebarCollapsed: boolean` - 侧边栏是否收起
 
-- `sidebarScrolled: boolean` - 侧边栏是否滚动
-- `contentScrolled: boolean` - 内容区是否滚动
-- `activeItem: string` - 当前激活的导航项
+### FinderSidebar 组件 (`src/components/sidebar/FinderSidebar.tsx`)
 
-**实现原理:**
+**Props:**
+- `sections: NavSection[]` - 导航分组数据
+- `activeId: string` - 当前激活项 ID
+- `onSelect: (id) => void` - 选中回调
+- `config?: SidebarConfig` - 侧边栏配置
+- `collapsed?: boolean` - 受控模式收起状态
+- `onCollapsedChange?: (collapsed) => void` - 收起状态变化回调
 
-- 使用 `useRef` 获取滚动容器引用
-- 监听 `scroll` 事件，根据 `scrollTop > 0` 控制遮罩显示
-- 通过添加/移除 `.visible` 类实现遮罩渐变动画
-- 导航项通过 `navItems` 数组配置
+**特性:**
+- 支持拖动调整宽度（最小 216px，最大 400px）
+- 支持受控/非受控两种模式
+- 内置滚动监听和玻璃遮罩效果
+- 可折叠/展开的菜单分组
 
-### CSS 变量定义 (`src/components/TahoeLayout.css`)
+### FloatingControls 组件 (`src/components/FloatingControls.tsx`)
 
-| 变量名                  | 值                        | 说明               |
-| ----------------------- | ------------------------- | ------------------ |
-| `--tahoe-sidebar-width` | 240px                     | 侧边栏宽度         |
-| `--tahoe-header-height` | 52px                      | 头部高度           |
-| `--tahoe-vignette-size` | 60px                      | 遮罩渐变高度       |
-| `--tahoe-blur`          | blur(20px) saturate(180%) | 磨砂玻璃效果       |
-| `--tahoe-accent`        | #007aff                   | 强调色（Apple 蓝） |
-| `--tahoe-radius`        | 12px                      | 大圆角             |
-| `--tahoe-radius-sm`     | 8px                       | 小圆角             |
+**Props:**
+- `isCollapsed: boolean` - 侧边栏是否收起
+- `onExpand: () => void` - 展开回调
+- `onCollapse: () => void` - 收起回调
+
+**功能:**
+- 三色窗口控制按钮（红/黄/绿）始终固定在左上角
+- 切换按钮位置随侧边栏状态变化
+- 层级高于侧边栏（z-index: 200）
+
+### 图标系统
+
+项目使用 `lucide-react` 提供 macOS 风格的 SVG 图标：
+
+```tsx
+import { Clock, FolderOpen, Image } from 'lucide-react';
+```
+
+支持 6 种图标类型（通过 `iconType` 指定）：
+- `'svg'` - Lucide 线条图标（可随文字变色）
+- `'appIcon'` - 内置应用图标（/icons/ 目录下的 PNG）
+- `'image'` - 外部图片 URL
+- `'roundedRect'` - 固定颜色圆角矩形
+- `'circle'` - 固定颜色圆形（标签用）
+- `'coloredRect'` - 彩色背景 + 白色图标
+
+### CSS 变量定义
+
+**FinderSidebar 变量 (`:root`):**
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| `--finder-width` | 200px | 侧边栏宽度（可拖动调整） |
+| `--finder-collapsed-width` | 52px | 收起后宽度 |
+| `--finder-radius` | 16px | 圆角半径 |
+| `--finder-blur` | blur(40px) saturate(150%) | 磨砂玻璃效果 |
+| `--finder-accent` | rgba(0,113,227,0.6) | 强调色（淡蓝） |
+
+**TahoeLayout 变量:**
+| 变量名 | 默认值 | 说明 |
+|--------|--------|------|
+| `--tahoe-sidebar-width` | 200px | 侧边栏占位宽度 |
+| `--tahoe-header-height` | 52px | 头部高度 |
+| `--tahoe-radius` | 10px | 圆角半径 |
+| `--tahoe-blur` | blur(40px) saturate(150%) | 磨砂玻璃效果 |
 
 ### 颜色系统
 
 **浅色模式:**
 
-- 背景: `rgba(255, 255, 255, 0.72)` 侧边栏, `rgba(255, 255, 255, 0.64)` 内容区
-- 主文字: `rgba(0, 0, 0, 0.85)`
-- 次文字: `rgba(0, 0, 0, 0.5)`
-- 边框: `rgba(0, 0, 0, 0.08)`
+- 侧边栏背景: `rgba(255, 255, 255, 0.32)`
+- 内容区背景: `rgba(245, 245, 247, 0.42)`
+- 主文字: `rgba(0, 0, 0, 0.88)`
+- 次文字: `rgba(0, 0, 0, 0.55)`
+- 边框: `rgba(255, 255, 255, 0.2)`
 
 **深色模式:**
 
-- 背景: `rgba(30, 30, 30, 0.72)` 侧边栏, `rgba(28, 28, 28, 0.64)` 内容区
-- 主文字: `rgba(255, 255, 255, 0.9)`
+- 侧边栏背景: `rgba(40, 40, 42, 0.48)`
+- 内容区背景: `rgba(28, 28, 30, 0.55)`
+- 主文字: `rgba(255, 255, 255, 0.92)`
 - 次文字: `rgba(255, 255, 255, 0.55)`
-- 边框: `rgba(255, 255, 255, 0.08)`
+- 边框: `rgba(255, 255, 255, 0.1)`
 
 **自动切换:** 使用 `@media (prefers-color-scheme: dark)` 自动适配系统主题
 
@@ -149,134 +207,98 @@ git commit -m "type: 简短描述
 
 ### 4. CSS 命名规范
 
-- 所有类名以 `tahoe-` 开头
-- 使用 BEM 命名法：`tahoe-block__element--modifier`
-- CSS 变量定义在 `:root` 中
+- 所有类名以 `finder-` 或 `tahoe-` 开头
+- 使用 BEM 命名法：`finder-block__element--modifier`
+- CSS 变量定义在 `:root` 或组件选择器中
 - 深色模式使用 `@media (prefers-color-scheme: dark)`
 
-### 5. ESLint 配置
+### 5. 类型定义
 
-项目使用 ESLint Flat Config 格式 (`eslint.config.js`)：
+所有类型定义在 `src/components/sidebar/types.ts`：
 
-- `@eslint/js` - 基础 JS 规则
-- `typescript-eslint` - TypeScript 规则
-- `eslint-plugin-react-hooks` - React Hooks 规则
-- `eslint-plugin-react-refresh` - React Refresh 规则
+- `NavItem` - 导航项数据
+- `NavSection` - 导航分组
+- `SidebarProps` - 侧边栏属性
+- `SidebarConfig` - 侧边栏配置
+- `BuiltinIconName` - 内置图标名称（100+ 个）
 
 ## 核心特性
 
 ### 磨砂玻璃效果
 
 ```css
-.tahoe-sidebar {
-  background: rgba(255, 255, 255, 0.72);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+.finder-sidebar {
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(40px) saturate(150%);
+  -webkit-backdrop-filter: blur(40px) saturate(150%);
 }
 ```
 
-### 滚动遮罩 (Vignette)
+### 拖动调整宽度
 
-当区域滚动时显示渐变遮罩，创造优雅过渡效果：
+- 最小宽度：216px
+- 最大宽度：400px
+- 拖动时实时更新 CSS 变量 `--finder-width`
+- 切换按钮和内容区自动跟随
 
-```css
-.tahoe-content-vignette.top {
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 255, 255, 0.6) 50%,
-    transparent 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
+### 悬浮控制按钮组
 
-.tahoe-content-vignette.top.visible {
-  opacity: 1;
+- 三色按钮（红/黄/绿）固定在左上角
+- 切换按钮位置随侧边栏状态变化
+- 侧边栏收起时靠近三色按钮
+- 侧边栏展开时位于侧边栏内部右侧
+
+### 可折叠菜单分组
+
+```typescript
+{
+  id: 'favorites',
+  title: '个人收藏',
+  collapsible: true,      // 可折叠
+  defaultExpanded: true,  // 默认展开
+  items: [...]
 }
 ```
 
 ### 响应式设计
 
-侧边栏在移动端 (`max-width: 768px`) 默认隐藏，可通过添加 `.open` 类显示：
-
-```css
-@media (max-width: 768px) {
-  .tahoe-sidebar {
-    transform: translateX(-100%);
-  }
-  .tahoe-sidebar.open {
-    transform: translateX(0);
-  }
-}
-```
-
-## 扩展开发建议
-
-### 添加新功能的标准流程
-
-1. **分析需求** - 理解功能目标
-2. **拆解任务** - 拆分为可执行的子任务
-3. **更新 todo** - 记录任务列表
-4. **编写代码** - 实现功能
-5. **本地测试** - 验证功能正常
-6. **构建校验** - 运行 `pnpm format && pnpm lint && pnpm build`
-7. **提交代码** - 按规范提交
-8. **更新状态** - 标记任务完成
-
-### 常见扩展方向
-
-1. **响应式增强**
-   - 移动端侧边栏抽屉
-   - 汉堡菜单按钮
-   - 触摸手势支持
-   - 断点适配
-
-2. **主题系统**
-   - 自定义主色调
-   - 透明度调节滑块
-   - 用户主题持久化（localStorage）
-   - 手动主题切换开关
-
-3. **动画优化**
-   - Framer Motion 集成
-   - 页面过渡动画
-   - 微交互效果
-   - 导航项切换动画
-
-4. **无障碍支持**
-   - 键盘导航（Tab/Arrow keys）
-   - ARIA 属性
-   - 屏幕阅读器适配
-   - 焦点管理
-
-5. **性能优化**
-   - 虚拟滚动（长列表）
-   - CSS containment
-   - 懒加载图片
-   - will-change 优化
-
-6. **功能扩展**
-   - 可折叠侧边栏
-   - 多级导航菜单
-   - 面包屑导航
-   - 搜索功能
+侧边栏在移动端 (`max-width: 768px`) 默认隐藏，可通过添加 `.open` 类显示。
 
 ## 常见问题 (FAQ)
 
-**Q: 遮罩效果不显示？**
-A: 检查：
+**Q: 如何添加新的导航项？**
+A: 修改 `TahoeLayout.tsx` 中的 `navSections`：
 
-1. 滚动容器高度是否超出视口
-2. `.visible` 类是否正确添加
-3. CSS 渐变背景是否正确设置
+```tsx
+const navSections: NavSection[] = [
+  {
+    id: 'apps',
+    title: '应用程序',
+    items: [
+      { id: 'finder', label: 'Finder', iconType: 'appIcon', iconName: 'finder' },
+    ],
+  },
+];
+```
 
-**Q: 深色模式不生效？**
-A: 检查：
+**Q: 如何修改侧边栏宽度？**
+A: 拖动侧边栏右侧的手柄，或修改 CSS 变量：
 
-1. 系统偏好设置是否为深色模式
-2. 浏览器 DevTools 模拟 `prefers-color-scheme: dark`
-3. CSS 媒体查询语法是否正确
+```css
+:root {
+  --finder-width: 240px;
+}
+```
+
+**Q: 如何禁用侧边栏收起功能？**
+A: 不传 `onCollapsedChange` 回调，或不传递 `collapsed` 属性。
+
+**Q: 如何添加自定义图标？**
+A: 将 PNG 图标放入 `public/icons/` 目录，使用 `iconType: 'appIcon'`：
+
+```tsx
+{ id: 'myapp', label: '我的应用', iconType: 'appIcon', iconName: 'myapp' }
+```
 
 **Q: backdrop-filter 在某些浏览器不生效？**
 A: 确保：
@@ -284,27 +306,6 @@ A: 确保：
 1. 同时设置 `-webkit-backdrop-filter`
 2. 元素有背景色（非透明）
 3. 浏览器版本支持（Chrome 76+, Safari 9+, Firefox 103+）
-
-**Q: 如何添加新的导航项？**
-A: 修改 `TahoeLayout.tsx` 中的 `navItems` 数组：
-
-```tsx
-const navItems = [
-  { icon: '🏠', label: 'Dashboard' },
-  { icon: '📄', label: 'Documents' },
-  // 添加新项
-  { icon: '🔔', label: 'Notifications' },
-]
-```
-
-**Q: 如何修改主题色？**
-A: 修改 CSS 变量：
-
-```css
-:root {
-  --tahoe-accent: #007aff; /* 改为你的颜色 */
-}
-```
 
 ## 浏览器兼容性
 
@@ -322,10 +323,11 @@ A: 修改 CSS 变量：
 - [Vite 文档](https://vitejs.dev/)
 - [React 文档](https://react.dev/)
 - [TypeScript 文档](https://www.typescriptlang.org/)
+- [Lucide Icons](https://lucide.dev/)
 - [backdrop-filter MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/backdrop-filter)
 - [CSS 自定义属性](https://developer.mozilla.org/en-US/docs/Web/CSS/--*)
 - [ESLint Flat Config](https://eslint.org/docs/latest/use/configure/configuration-files)
 
 ---
 
-_最后更新: 2026-03-08_
+*最后更新: 2026-03-09*
