@@ -65,7 +65,21 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   )
   // 移动端侧边栏抽屉状态
   const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false)
-  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
+
+  // 初始化主题 - 优先从 localStorage 读取
+  const getInitialTheme = (): 'light' | 'dark' => {
+    if (typeof window === 'undefined') return 'light'
+    try {
+      const stored = localStorage.getItem('tahoe-layout-theme')
+      if (stored === 'dark') return 'dark'
+      if (stored === 'light') return 'light'
+    } catch {
+      // 忽略
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  }
+
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>(getInitialTheme)
   const mainRef = useRef<HTMLElement>(null)
 
   // 监听 theme 变化，resolve system 为实际主题
@@ -95,6 +109,12 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   // 主题切换处理
   const handleThemeToggle = () => {
     const nextTheme: ThemeMode = resolvedTheme === 'light' ? 'dark' : 'light'
+    // 保存到 localStorage
+    try {
+      localStorage.setItem('tahoe-layout-theme', nextTheme)
+    } catch {
+      // 忽略 localStorage 错误
+    }
     onThemeChange?.(nextTheme)
   }
 
