@@ -176,7 +176,10 @@
    * margin-left = 按钮左侧位置 - floating-controls left
    * 简化：width - btn_width - padding - controls_left_gap
    */
-  margin-left: calc(var(--finder-width) - var(--floating-toggle-btn-width) - var(--tahoe-spacing-md, 12px) - var(--tahoe-spacing-lg, 16px));
+  margin-left: calc(
+    var(--finder-width) - var(--floating-toggle-btn-width) - var(--tahoe-spacing-md, 12px) -
+      var(--tahoe-spacing-lg, 16px)
+  );
 }
 
 .floating-toggle-btn:hover {

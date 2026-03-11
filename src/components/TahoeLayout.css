@@ -70,7 +70,7 @@
   --tahoe-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* 深色模式 */
+/* 深色模式 - 自动检测 */
 @media (prefers-color-scheme: dark) {
   :root {
     --tahoe-bg-content: var(--tahoe-bg-content-dark);
@@ -80,6 +80,26 @@
     --tahoe-text: var(--tahoe-text-dark);
     --tahoe-text-secondary: var(--tahoe-text-secondary-dark);
   }
+}
+
+/* 手动主题切换 - 暗色 */
+.tahoe-layout[data-theme='dark'] {
+  --tahoe-bg-content: var(--tahoe-bg-content-dark);
+  --tahoe-bg-header: var(--tahoe-bg-header-dark);
+  --tahoe-border: var(--tahoe-border-dark);
+  --tahoe-border-highlight: var(--tahoe-border-highlight-dark);
+  --tahoe-text: var(--tahoe-text-dark);
+  --tahoe-text-secondary: var(--tahoe-text-secondary-dark);
+}
+
+/* 手动主题切换 - 亮色 */
+.tahoe-layout[data-theme='light'] {
+  --tahoe-bg-content: rgba(245, 245, 247, 0.42);
+  --tahoe-bg-header: rgba(255, 255, 255, 0.35);
+  --tahoe-border: rgba(255, 255, 255, 0.2);
+  --tahoe-border-highlight: rgba(255, 255, 255, 0.4);
+  --tahoe-text: rgba(0, 0, 0, 0.88);
+  --tahoe-text-secondary: rgba(0, 0, 0, 0.55);
 }
 
 /* ============================
@@ -100,6 +120,15 @@
   .tahoe-layout {
     background: #000000;
   }
+}
+
+/* 手动主题切换 - 背景色 */
+.tahoe-layout[data-theme='dark'] {
+  background: #000000;
+}
+
+.tahoe-layout[data-theme='light'] {
+  background: #ffffff;
 }
 
 /* ============================
@@ -314,6 +343,21 @@
   height: var(--tahoe-divider-height);
   background: var(--tahoe-border);
   margin: 0 var(--tahoe-spacing-xs);
+}
+
+/* 主题切换按钮 */
+.tahoe-theme-toggle {
+  color: var(--tahoe-text-secondary);
+}
+
+.tahoe-theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.06);
+  color: var(--tahoe-text);
+}
+
+[data-theme='dark'] .tahoe-theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--tahoe-text-dark);
 }
 
 /* ============================

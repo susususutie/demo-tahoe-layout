@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FinderSidebar, ClassicSidebar, getDefaultNavSections } from './sidebar'
 import { ContentHeader } from './ContentHeader'
 import type { NavSection, SidebarConfig } from './sidebar/types'
@@ -8,12 +8,17 @@ import './TahoeLayout.css'
 /** 侧边栏变体类型 */
 export type SidebarVariant = 'finder' | 'classic'
 
+/** 主题模式 */
+export type ThemeMode = 'light' | 'dark' | 'system'
+
 /**
  * TahoeLayout 组件属性
  */
 export interface TahoeLayoutProps {
   children: React.ReactNode
   title?: string
+  /** 主题模式：light(亮色) / dark(暗色) / system(跟随系统) */
+  theme?: ThemeMode
   /** 侧边栏变体 */
   sidebarVariant?: SidebarVariant
   /** 自定义侧边栏配置 */
@@ -34,11 +39,14 @@ export interface TahoeLayoutProps {
   onSearchClick?: () => void
   /** 点击更多回调 */
   onMoreClick?: () => void
+  /** 主题切换回调 */
+  onThemeChange?: (theme: ThemeMode) => void
 }
 
 export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   children,
   title = 'Tahoe Layout',
+  theme = 'system',
   sidebarVariant = 'finder',
   sidebarConfig,
   navSections: customNavSections,
@@ -49,12 +57,45 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   onNewClick,
   onSearchClick,
   onMoreClick,
+  onThemeChange,
 }) => {
   const [activeNavId, setActiveNavId] = useState('recent')
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
     sidebarConfig?.defaultCollapsed ?? false
   )
+  // 当前生效的主题（resolve system 后的人工动"
+  const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
   const mainRef = useRef<HTMLElement>(null)
+
+  // 监听 theme 变化，resolve system 为实际主题
+  useEffect(() => {
+    const updateResolvedTheme = () => {
+      if (theme === 'system') {
+        const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+        setResolvedTheme(isDark ? 'dark' : 'light')
+      } else {
+        setResolvedTheme(theme)
+      }
+    }
+
+    updateResolvedTheme()
+
+    // 监听系统主题变化
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    const handler = () => {
+      if (theme === 'system') {
+        updateResolvedTheme()
+      }
+    }
+    mediaQuery.addEventListener('change', handler)
+    return () => mediaQuery.removeEventListener('change', handler)
+  }, [theme])
+
+  // 主题切换处理
+  const handleThemeToggle = () => {
+    const nextTheme: ThemeMode = resolvedTheme === 'light' ? 'dark' : 'light'
+    onThemeChange?.(nextTheme)
+  }
 
   // 使用自定义导航数据或默认数据
   const navSections = customNavSections ?? getDefaultNavSections()
@@ -95,7 +136,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   }
 
   return (
-    <div className="tahoe-layout">
+    <div className="tahoe-layout" data-theme={resolvedTheme}>
       {/* 侧边栏 */}
       {renderSidebar()}
 
@@ -110,6 +151,8 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
           onNewClick={onNewClick}
           onSearchClick={onSearchClick}
           onMoreClick={onMoreClick}
+          theme={resolvedTheme}
+          onThemeToggle={handleThemeToggle}
         />
 
         {/* 内容区域 */}

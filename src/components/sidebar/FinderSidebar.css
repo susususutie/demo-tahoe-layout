@@ -216,16 +216,10 @@
   left: 0;
   right: 0;
   height: 20px;
-  background: linear-gradient(
-    to bottom,
-    var(--finder-bg) 0%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom, var(--finder-bg) 0%, transparent 100%);
   pointer-events: none;
   z-index: -1;
 }
-
-
 
 /* ============================
    侧边栏内容区域
@@ -405,7 +399,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--finder-spacing-xs) var(--finder-spacing-sm) var(--finder-spacing-xs) var(--finder-spacing-md);
+  padding: var(--finder-spacing-xs) var(--finder-spacing-sm) var(--finder-spacing-xs)
+    var(--finder-spacing-md);
   cursor: default;
 }
 

@@ -657,13 +657,15 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
 
       {/* 侧边栏占位容器 - 占用空间防止内容区被遮挡 */}
       <div className={`finder-sidebar-wrapper ${isCollapsed ? 'collapsed' : ''}`}>
-        <aside className={`finder-sidebar finder-custom-scrollbar ${isCollapsed ? 'collapsed' : ''}`}>
+        <aside
+          className={`finder-sidebar finder-custom-scrollbar ${isCollapsed ? 'collapsed' : ''}`}
+        >
           {/* 头部粘性定位区域 - 带模糊遮罩 */}
-          <div className='finder-sidebar-header' />
+          <div className="finder-sidebar-header" />
 
           {/* 内容区域 - 顶部留白给头部 */}
-          <div className='finder-sidebar-content'>
-            {sections.map(section => (
+          <div className="finder-sidebar-content">
+            {sections.map((section) => (
               <NavSectionComponent
                 key={section.id}
                 section={section}

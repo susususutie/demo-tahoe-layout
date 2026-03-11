@@ -14,13 +14,13 @@
 
 ## 技术栈
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| [Vite](https://vitejs.dev/) | ^7.3.1 | 下一代前端构建工具 |
-| [React](https://react.dev/) | ^19.2.0 | 用户界面库 |
-| [TypeScript](https://www.typescriptlang.org/) | ~5.9.3 | 类型系统 |
-| [pnpm](https://pnpm.io/) | latest | 包管理器 |
-| [ESLint](https://eslint.org/) | ^9.39.1 | 代码规范（Flat Config） |
+| 技术                                          | 版本    | 说明                    |
+| --------------------------------------------- | ------- | ----------------------- |
+| [Vite](https://vitejs.dev/)                   | ^7.3.1  | 下一代前端构建工具      |
+| [React](https://react.dev/)                   | ^19.2.0 | 用户界面库              |
+| [TypeScript](https://www.typescriptlang.org/) | ~5.9.3  | 类型系统                |
+| [pnpm](https://pnpm.io/)                      | latest  | 包管理器                |
+| [ESLint](https://eslint.org/)                 | ^9.39.1 | 代码规范（Flat Config） |
 
 ## 项目结构
 
@@ -253,12 +253,12 @@ const customNavSections: NavSection[] = [
 
 ## 浏览器兼容性
 
-| 浏览器 | 最低版本 |
-|--------|----------|
-| Chrome | 76+ |
-| Safari | 9+ |
-| Firefox | 103+ |
-| Edge | 79+ |
+| 浏览器  | 最低版本 |
+| ------- | -------- |
+| Chrome  | 76+      |
+| Safari  | 9+       |
+| Firefox | 103+     |
+| Edge    | 79+      |
 
 > 注意：`backdrop-filter` 需要现代浏览器支持
 

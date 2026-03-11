@@ -35,20 +35,12 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
             <path d="M6 6l12 12M18 6l-12 12" />
           </svg>
         </button>
-        <button
-          className="floating-btn floating-minimize-btn"
-          aria-label="最小化"
-          title="最小化"
-        >
+        <button className="floating-btn floating-minimize-btn" aria-label="最小化" title="最小化">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
         </button>
-        <button
-          className="floating-btn floating-expand-btn"
-          aria-label="缩放"
-          title="缩放"
-        >
+        <button className="floating-btn floating-expand-btn" aria-label="缩放" title="缩放">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M12 5v14M5 12h14" />
           </svg>

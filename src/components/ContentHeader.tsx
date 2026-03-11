@@ -1,26 +1,30 @@
-import React from 'react';
-import { Breadcrumb } from './Breadcrumb';
-import { Toolbar } from './Toolbar';
-import type { BreadcrumbItem } from './Breadcrumb';
+import React from 'react'
+import { Breadcrumb } from './Breadcrumb'
+import { Toolbar } from './Toolbar'
+import type { BreadcrumbItem } from './Breadcrumb'
 
 /**
  * ContentHeader 组件属性
  */
 export interface ContentHeaderProps {
   /** 页面标题（无面包屑时显示） */
-  title?: string;
+  title?: string
   /** 面包屑路径 */
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: BreadcrumbItem[]
   /** 面包屑点击回调 */
-  onBreadcrumbClick?: (item: BreadcrumbItem, index: number) => void;
+  onBreadcrumbClick?: (item: BreadcrumbItem, index: number) => void
   /** 工具栏按钮点击回调 */
-  onToolbarButtonClick?: (id: string) => void;
+  onToolbarButtonClick?: (id: string) => void
   /** 点击新建按钮回调 */
-  onNewClick?: () => void;
+  onNewClick?: () => void
   /** 点击搜索回调 */
-  onSearchClick?: () => void;
+  onSearchClick?: () => void
   /** 点击更多回调 */
-  onMoreClick?: () => void;
+  onMoreClick?: () => void
+  /** 当前主题 */
+  theme?: 'light' | 'dark'
+  /** 主题切换回调 */
+  onThemeToggle?: () => void
 }
 
 /**
@@ -35,16 +39,15 @@ export const ContentHeader: React.FC<ContentHeaderProps> = ({
   onNewClick,
   onSearchClick,
   onMoreClick,
+  theme = 'light',
+  onThemeToggle,
 }) => {
   return (
     <header className="tahoe-content-header">
       <div className="tahoe-header-left">
         {/* 面包屑导航 */}
         {breadcrumbs ? (
-          <Breadcrumb
-            items={breadcrumbs}
-            onItemClick={onBreadcrumbClick}
-          />
+          <Breadcrumb items={breadcrumbs} onItemClick={onBreadcrumbClick} />
         ) : (
           <h1 className="tahoe-title">{title}</h1>
         )}
@@ -56,9 +59,11 @@ export const ContentHeader: React.FC<ContentHeaderProps> = ({
         onNewClick={onNewClick}
         onSearchClick={onSearchClick}
         onMoreClick={onMoreClick}
+        theme={theme}
+        onThemeToggle={onThemeToggle}
       />
     </header>
-  );
-};
+  )
+}
 
-export default ContentHeader;
+export default ContentHeader
