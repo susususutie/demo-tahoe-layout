@@ -161,12 +161,13 @@ export const Toolbar: React.FC<ToolbarProps> = ({
   onThemeToggle,
 }) => {
   return (
-    <div className="tahoe-toolbar">
+    <div className="tahoe-toolbar" role="toolbar" aria-label="工具栏">
       {buttons.map((button) => (
         <button
           key={button.id}
           className="tahoe-tool-btn"
           title={button.title}
+          aria-label={button.title}
           onClick={() => onButtonClick?.(button.id)}
         >
           {button.icon}
@@ -179,6 +180,7 @@ export const Toolbar: React.FC<ToolbarProps> = ({
         <button
           className="tahoe-tool-btn tahoe-theme-toggle"
           title={theme === 'light' ? '切换到暗色模式' : '切换到亮色模式'}
+          aria-label={theme === 'light' ? '切换到暗色模式' : '切换到亮色模式'}
           onClick={onThemeToggle}
         >
           {theme === 'light' ? <MoonIcon /> : <SunIcon />}
@@ -186,19 +188,24 @@ export const Toolbar: React.FC<ToolbarProps> = ({
       )}
 
       {showNewButton && (
-        <button className="tahoe-tool-btn tahoe-tool-btn-primary" title="新建" onClick={onNewClick}>
+        <button
+          className="tahoe-tool-btn tahoe-tool-btn-primary"
+          title="新建"
+          aria-label="新建"
+          onClick={onNewClick}
+        >
           <span>{newButtonLabel}</span>
         </button>
       )}
 
       {showSearch && (
-        <button className="tahoe-tool-btn" title="搜索" onClick={onSearchClick}>
+        <button className="tahoe-tool-btn" title="搜索" aria-label="搜索" onClick={onSearchClick}>
           <SearchIcon />
         </button>
       )}
 
       {showMore && (
-        <button className="tahoe-tool-btn" title="更多" onClick={onMoreClick}>
+        <button className="tahoe-tool-btn" title="更多" aria-label="更多" onClick={onMoreClick}>
           <MoreIcon />
         </button>
       )}
