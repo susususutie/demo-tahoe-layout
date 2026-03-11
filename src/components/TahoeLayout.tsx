@@ -63,7 +63,8 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
     sidebarConfig?.defaultCollapsed ?? false
   )
-  // 当前生效的主题（resolve system 后的人工动"
+  // 移动端侧边栏抽屉状态
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false)
   const [resolvedTheme, setResolvedTheme] = useState<'light' | 'dark'>('light')
   const mainRef = useRef<HTMLElement>(null)
 
@@ -97,13 +98,26 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
     onThemeChange?.(nextTheme)
   }
 
+  // 移动端抽屉切换
+  const toggleMobileDrawer = () => {
+    setIsMobileDrawerOpen(!isMobileDrawerOpen)
+  }
+
+  // 移动端关闭抽屉
+  const closeMobileDrawer = () => {
+    setIsMobileDrawerOpen(false)
+  }
+
   // 使用自定义导航数据或默认数据
   const navSections = customNavSections ?? getDefaultNavSections()
 
-  // 处理导航选择
+  // 处理导航选择（移动端自动关闭抽屉）
   const handleNavSelect = (id: string) => {
     setActiveNavId(id)
     onNavSelect?.(id)
+    if (window.innerWidth <= 768) {
+      closeMobileDrawer()
+    }
   }
 
   // 渲染侧边栏
@@ -137,8 +151,13 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
 
   return (
     <div className="tahoe-layout" data-theme={resolvedTheme}>
-      {/* 侧边栏 */}
-      {renderSidebar()}
+      {/* 移动端抽屉遮罩 */}
+      {isMobileDrawerOpen && <div className="tahoe-drawer-overlay" onClick={closeMobileDrawer} />}
+
+      {/* 侧边栏 - 移动端使用抽屉 */}
+      <div className={`tahoe-sidebar-wrapper ${isMobileDrawerOpen ? 'open' : ''}`}>
+        {renderSidebar()}
+      </div>
 
       {/* 主内容区 */}
       <main className="tahoe-main" ref={mainRef}>
@@ -153,6 +172,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
           onMoreClick={onMoreClick}
           theme={resolvedTheme}
           onThemeToggle={handleThemeToggle}
+          onMenuClick={toggleMobileDrawer}
         />
 
         {/* 内容区域 */}

@@ -360,6 +360,36 @@
   color: var(--tahoe-text-dark);
 }
 
+/* 移动端汉堡菜单按钮 */
+.tahoe-menu-btn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: var(--tahoe-radius-sm);
+  background: transparent;
+  color: var(--tahoe-text);
+  cursor: pointer;
+  margin-right: var(--tahoe-spacing-sm);
+}
+
+.tahoe-menu-btn:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.tahoe-menu-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (max-width: 768px) {
+  .tahoe-menu-btn {
+    display: flex;
+  }
+}
+
 /* ============================
    内容区域
    ============================ */
@@ -371,9 +401,72 @@
 /* ============================
    响应式设计
    ============================ */
+
+/* 移动端侧边栏抽屉容器 */
+.tahoe-sidebar-wrapper {
+  display: block;
+}
+
+/* 移动端抽屉遮罩层 */
+.tahoe-drawer-overlay {
+  display: none;
+}
+
+/* 移动端 */
 @media (max-width: 768px) {
+  /* 隐藏桌面侧边栏 */
+  .tahoe-sidebar,
+  .tahoe-sidebar-classic-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 280px;
+  }
+
+  .tahoe-sidebar-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    width: 280px;
+  }
+
+  .tahoe-sidebar-wrapper.open {
+    transform: translateX(0);
+  }
+
+  /* 抽屉遮罩层 */
+  .tahoe-drawer-overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   .tahoe-main {
     margin: var(--tahoe-layout-margin);
+    width: calc(100vw - var(--tahoe-layout-margin) * 2);
   }
 
   .tahoe-toolbar {
