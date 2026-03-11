@@ -104,12 +104,15 @@ pnpm preview      # 预览生产构建
 
 ### 1. 代码校验
 
-修改后必须执行：
+修改代码后提交前必须执行：
 
 ```bash
-pnpm build        # 确保 TypeScript 编译通过
+pnpm format       # Prettier 格式化代码
 pnpm lint         # 检查 ESLint 规范
+pnpm build        # 确保 TypeScript 编译通过
 ```
+
+确保以上全部通过后再提交。
 
 ### 2. 提交规范
 
@@ -217,7 +220,7 @@ git commit -m "type: 简短描述
 3. **更新 todo** - 记录任务列表
 4. **编写代码** - 实现功能
 5. **本地测试** - 验证功能正常
-6. **构建校验** - 运行 `pnpm build && pnpm lint`
+6. **构建校验** - 运行 `pnpm format && pnpm lint && pnpm build`
 7. **提交代码** - 按规范提交
 8. **更新状态** - 标记任务完成
 
