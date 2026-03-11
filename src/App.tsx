@@ -15,8 +15,8 @@ function App() {
         <section className="demo-section">
           <h2>Welcome to macOS Tahoe Style</h2>
           <p>
-            This layout component features a frosted glass effect with scroll vignettes.
-            The sidebar and content area both have transparent gradient overlays when scrolling.
+            This layout component features a frosted glass effect with scroll vignettes. The sidebar
+            and content area both have transparent gradient overlays when scrolling.
           </p>
         </section>
 

@@ -8,13 +8,13 @@ macOS Tahoe 风格布局组件，基于 Vite + React 19 + TypeScript，带有磨
 
 ## 技术栈
 
-| 技术 | 版本 | 说明 |
-|------|------|------|
-| React | ^19.2.0 | 用户界面库 |
-| TypeScript | ~5.9.3 | 类型系统 |
-| Vite | ^7.3.1 | 构建工具 |
-| ESLint | ^9.39.1 | 代码规范 |
-| pnpm | latest | 包管理器 |
+| 技术       | 版本    | 说明       |
+| ---------- | ------- | ---------- |
+| React      | ^19.2.0 | 用户界面库 |
+| TypeScript | ~5.9.3  | 类型系统   |
+| Vite       | ^7.3.1  | 构建工具   |
+| ESLint     | ^9.39.1 | 代码规范   |
+| pnpm       | latest  | 包管理器   |
 
 ## 项目文件结构
 
@@ -52,16 +52,19 @@ pnpm preview      # 预览生产构建
 ### TahoeLayout 组件 (`src/components/TahoeLayout.tsx`)
 
 **Props:**
+
 - `children: React.ReactNode` - 主内容区子元素
 - `sidebarContent: React.ReactNode` - 侧边栏内容（预留）
 - `title?: string` - 页面标题，默认 "Tahoe Layout"
 
 **State:**
+
 - `sidebarScrolled: boolean` - 侧边栏是否滚动
 - `contentScrolled: boolean` - 内容区是否滚动
 - `activeItem: string` - 当前激活的导航项
 
 **实现原理:**
+
 - 使用 `useRef` 获取滚动容器引用
 - 监听 `scroll` 事件，根据 `scrollTop > 0` 控制遮罩显示
 - 通过添加/移除 `.visible` 类实现遮罩渐变动画
@@ -69,25 +72,27 @@ pnpm preview      # 预览生产构建
 
 ### CSS 变量定义 (`src/components/TahoeLayout.css`)
 
-| 变量名 | 值 | 说明 |
-|--------|-----|------|
-| `--tahoe-sidebar-width` | 240px | 侧边栏宽度 |
-| `--tahoe-header-height` | 52px | 头部高度 |
-| `--tahoe-vignette-size` | 60px | 遮罩渐变高度 |
-| `--tahoe-blur` | blur(20px) saturate(180%) | 磨砂玻璃效果 |
-| `--tahoe-accent` | #007aff | 强调色（Apple 蓝）|
-| `--tahoe-radius` | 12px | 大圆角 |
-| `--tahoe-radius-sm` | 8px | 小圆角 |
+| 变量名                  | 值                        | 说明               |
+| ----------------------- | ------------------------- | ------------------ |
+| `--tahoe-sidebar-width` | 240px                     | 侧边栏宽度         |
+| `--tahoe-header-height` | 52px                      | 头部高度           |
+| `--tahoe-vignette-size` | 60px                      | 遮罩渐变高度       |
+| `--tahoe-blur`          | blur(20px) saturate(180%) | 磨砂玻璃效果       |
+| `--tahoe-accent`        | #007aff                   | 强调色（Apple 蓝） |
+| `--tahoe-radius`        | 12px                      | 大圆角             |
+| `--tahoe-radius-sm`     | 8px                       | 小圆角             |
 
 ### 颜色系统
 
 **浅色模式:**
+
 - 背景: `rgba(255, 255, 255, 0.72)` 侧边栏, `rgba(255, 255, 255, 0.64)` 内容区
 - 主文字: `rgba(0, 0, 0, 0.85)`
 - 次文字: `rgba(0, 0, 0, 0.5)`
 - 边框: `rgba(0, 0, 0, 0.08)`
 
 **深色模式:**
+
 - 背景: `rgba(30, 30, 30, 0.72)` 侧边栏, `rgba(28, 28, 28, 0.64)` 内容区
 - 主文字: `rgba(255, 255, 255, 0.9)`
 - 次文字: `rgba(255, 255, 255, 0.55)`
@@ -120,6 +125,7 @@ git commit -m "type: 简短描述
 ```
 
 **type 前缀:**
+
 - `feat:` - 新功能
 - `fix:` - 修复 bug
 - `style:` - 样式调整（不影响功能）
@@ -132,6 +138,7 @@ git commit -m "type: 简短描述
 复杂任务必须拆解，使用 todo 工具记录任务列表。
 
 **状态:**
+
 - `pending` - 待开始
 - `in_progress` - 进行中
 - `completed` - 已完成
@@ -147,6 +154,7 @@ git commit -m "type: 简短描述
 ### 5. ESLint 配置
 
 项目使用 ESLint Flat Config 格式 (`eslint.config.js`)：
+
 - `@eslint/js` - 基础 JS 规则
 - `typescript-eslint` - TypeScript 规则
 - `eslint-plugin-react-hooks` - React Hooks 规则
@@ -255,18 +263,21 @@ git commit -m "type: 简短描述
 
 **Q: 遮罩效果不显示？**
 A: 检查：
+
 1. 滚动容器高度是否超出视口
 2. `.visible` 类是否正确添加
 3. CSS 渐变背景是否正确设置
 
 **Q: 深色模式不生效？**
 A: 检查：
+
 1. 系统偏好设置是否为深色模式
 2. 浏览器 DevTools 模拟 `prefers-color-scheme: dark`
 3. CSS 媒体查询语法是否正确
 
 **Q: backdrop-filter 在某些浏览器不生效？**
 A: 确保：
+
 1. 同时设置 `-webkit-backdrop-filter`
 2. 元素有背景色（非透明）
 3. 浏览器版本支持（Chrome 76+, Safari 9+, Firefox 103+）
@@ -280,7 +291,7 @@ const navItems = [
   { icon: '📄', label: 'Documents' },
   // 添加新项
   { icon: '🔔', label: 'Notifications' },
-];
+]
 ```
 
 **Q: 如何修改主题色？**
@@ -288,18 +299,18 @@ A: 修改 CSS 变量：
 
 ```css
 :root {
-  --tahoe-accent: #007aff;  /* 改为你的颜色 */
+  --tahoe-accent: #007aff; /* 改为你的颜色 */
 }
 ```
 
 ## 浏览器兼容性
 
-| 浏览器 | 最低版本 |
-|--------|----------|
-| Chrome | 76+ |
-| Safari | 9+ |
-| Firefox | 103+ |
-| Edge | 79+ |
+| 浏览器  | 最低版本 |
+| ------- | -------- |
+| Chrome  | 76+      |
+| Safari  | 9+       |
+| Firefox | 103+     |
+| Edge    | 79+      |
 
 > 注意：磨砂玻璃效果需要支持 `backdrop-filter` 的现代浏览器
 
@@ -314,4 +325,4 @@ A: 修改 CSS 变量：
 
 ---
 
-*最后更新: 2026-03-08*
+_最后更新: 2026-03-08_

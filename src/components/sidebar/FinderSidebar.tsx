@@ -412,7 +412,13 @@ const NavItemComponent: React.FC<{
     // 图片图标（从外部 URL 加载）
     if (useImage) {
       const size = item.iconSize || 20
-      return <img src={item.iconSrc} alt={item.label} style={{ width: size, height: size, objectFit: 'contain' }} />
+      return (
+        <img
+          src={item.iconSrc}
+          alt={item.label}
+          style={{ width: size, height: size, objectFit: 'contain' }}
+        />
+      )
     }
     // 固定颜色纯色块（圆角矩形/圆形）- 由 CSS 绘制
     if (useFixedColor) {
@@ -420,7 +426,7 @@ const NavItemComponent: React.FC<{
     }
     // 彩色背景 + 白色图标
     if (useColoredRect) {
-      return <BuiltinIcon name={item.iconName!} color='white' />
+      return <BuiltinIcon name={item.iconName!} color="white" />
     }
     // SVG 线条图标 - 可随文字变色
     if (item.iconName) {
@@ -470,8 +476,10 @@ const NavItemComponent: React.FC<{
       </span>
       {!isCollapsed && (
         <>
-          <span className='finder-nav-label'>{item.label}</span>
-          {item.badge !== undefined && item.badge > 0 && <span className='finder-nav-badge'>{item.badge}</span>}
+          <span className="finder-nav-label">{item.label}</span>
+          {item.badge !== undefined && item.badge > 0 && (
+            <span className="finder-nav-badge">{item.badge}</span>
+          )}
         </>
       )}
     </button>
@@ -496,8 +504,8 @@ const NavSectionComponent: React.FC<{
   if (isCollapsed) {
     // 收起状态只显示图标，不显示分组标题
     return (
-      <div className='finder-section'>
-        {section.items.map(item => (
+      <div className="finder-section">
+        {section.items.map((item) => (
           <NavItemComponent
             key={item.id}
             item={item}
@@ -517,33 +525,33 @@ const NavSectionComponent: React.FC<{
     <div className={`finder-section ${effectiveExpanded ? 'expanded' : 'collapsed'}`}>
       {/* 标题区域：有标题时渲染头部 */}
       {hasTitle && (
-        <div className='finder-section-header'>
-          <h3 className='finder-section-title'>{section.title}</h3>
+        <div className="finder-section-header">
+          <h3 className="finder-section-title">{section.title}</h3>
           {/* 仅当 collapsible 为 true 且存在标题时显示展开/收起按钮 */}
           {collapsible && (
             <button
-              className='finder-section-toggle'
+              className="finder-section-toggle"
               onClick={() => setIsExpanded(!isExpanded)}
               aria-label={effectiveExpanded ? '收起分组' : '展开分组'}
               title={effectiveExpanded ? '收起' : '展开'}
             >
               <svg
                 className={effectiveExpanded ? 'expanded' : ''}
-                viewBox='0 0 24 24'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                strokeLinejoin='round'
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               >
-                <polyline points='6 9 12 15 18 9' />
+                <polyline points="6 9 12 15 18 9" />
               </svg>
             </button>
           )}
         </div>
       )}
-      <div className='finder-section-items'>
-        {section.items.map(item => (
+      <div className="finder-section-items">
+        {section.items.map((item) => (
           <NavItemComponent
             key={item.id}
             item={item}
@@ -670,8 +678,8 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
           <div className={`finder-sidebar-header-spacer ${isScrolled ? 'scrolled' : ''}`} />
 
           {/* 导航区域 */}
-          <nav className='finder-nav' ref={navRef}>
-            {sections.map(section => (
+          <nav className="finder-nav" ref={navRef}>
+            {sections.map((section) => (
               <NavSectionComponent
                 key={section.id}
                 section={section}
@@ -680,7 +688,7 @@ export const FinderSidebar: React.FC<SidebarProps> = ({
                 onSelect={onSelect}
               />
             ))}
-            {footer && !isCollapsed && <div className='finder-footer'>{footer}</div>}
+            {footer && !isCollapsed && <div className="finder-footer">{footer}</div>}
           </nav>
 
           {/* 拖动调整宽度的手柄 */}

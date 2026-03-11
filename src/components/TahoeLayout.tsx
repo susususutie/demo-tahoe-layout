@@ -1,26 +1,26 @@
-import React, { useState, useRef } from 'react';
-import { FinderSidebar } from './sidebar';
-import { Breadcrumb } from './Breadcrumb';
-import type { NavSection, SidebarConfig } from './sidebar/types';
-import type { BreadcrumbItem } from './Breadcrumb';
-import './TahoeLayout.css';
+import React, { useState, useRef } from 'react'
+import { FinderSidebar } from './sidebar'
+import { Breadcrumb } from './Breadcrumb'
+import type { NavSection, SidebarConfig } from './sidebar/types'
+import type { BreadcrumbItem } from './Breadcrumb'
+import './TahoeLayout.css'
 
 /** 侧边栏变体类型 */
-type SidebarVariant = 'finder' | 'classic';
+type SidebarVariant = 'finder' | 'classic'
 
 interface TahoeLayoutProps {
-  children: React.ReactNode;
-  title?: string;
+  children: React.ReactNode
+  title?: string
   /** 侧边栏变体 */
-  sidebarVariant?: SidebarVariant;
+  sidebarVariant?: SidebarVariant
   /** 自定义侧边栏配置 */
-  sidebarConfig?: SidebarConfig;
+  sidebarConfig?: SidebarConfig
   /** 面包屑路径 */
-  breadcrumbs?: BreadcrumbItem[];
+  breadcrumbs?: BreadcrumbItem[]
   /** 面包屑点击回调 */
-  onBreadcrumbClick?: (item: BreadcrumbItem, index: number) => void;
+  onBreadcrumbClick?: (item: BreadcrumbItem, index: number) => void
   /** 导航选中回调 */
-  onNavSelect?: (id: string) => void;
+  onNavSelect?: (id: string) => void
 }
 
 /**
@@ -33,9 +33,21 @@ const getDefaultNavSections = (): NavSection[] => [
     // title 不传，不显示分组标题和展开按钮
     items: [
       // 使用 appIcon 类型：内置应用图标（通过 iconName 匹配 /icons/ 目录下的文件）
-      { id: 'finder', label: 'Finder', iconType: 'appIcon', iconName: 'finder', activeColor: 'macos' },
+      {
+        id: 'finder',
+        label: 'Finder',
+        iconType: 'appIcon',
+        iconName: 'finder',
+        activeColor: 'macos',
+      },
       { id: 'clock', label: '时钟', iconType: 'appIcon', iconName: 'clock', activeColor: 'macos' },
-      { id: 'textedit', label: '文本编辑', iconType: 'appIcon', iconName: 'textedit', activeColor: 'macos' },
+      {
+        id: 'textedit',
+        label: '文本编辑',
+        iconType: 'appIcon',
+        iconName: 'textedit',
+        activeColor: 'macos',
+      },
     ],
   },
   {
@@ -79,15 +91,51 @@ const getDefaultNavSections = (): NavSection[] => [
     title: '标签',
     items: [
       // 使用 circle 类型的圆形图标（固定颜色，标签用）
-      { id: 'tag-red', label: '红色', iconType: 'circle', iconColor: '#ff3b30', activeColor: '#ff3b30' },
-      { id: 'tag-orange', label: '工作', iconType: 'circle', iconColor: '#ff9500', activeColor: '#ff9500' },
-      { id: 'tag-yellow', label: '黄色', iconType: 'circle', iconColor: '#ffcc00', activeColor: '#ffcc00' },
-      { id: 'tag-green', label: '已完成', iconType: 'circle', iconColor: '#34c759', activeColor: '#34c759' },
-      { id: 'tag-blue', label: '个人', iconType: 'circle', iconColor: '#007aff', activeColor: '#007aff' },
-      { id: 'tag-purple', label: '紫色', iconType: 'circle', iconColor: '#af52de', activeColor: '#af52de' },
+      {
+        id: 'tag-red',
+        label: '红色',
+        iconType: 'circle',
+        iconColor: '#ff3b30',
+        activeColor: '#ff3b30',
+      },
+      {
+        id: 'tag-orange',
+        label: '工作',
+        iconType: 'circle',
+        iconColor: '#ff9500',
+        activeColor: '#ff9500',
+      },
+      {
+        id: 'tag-yellow',
+        label: '黄色',
+        iconType: 'circle',
+        iconColor: '#ffcc00',
+        activeColor: '#ffcc00',
+      },
+      {
+        id: 'tag-green',
+        label: '已完成',
+        iconType: 'circle',
+        iconColor: '#34c759',
+        activeColor: '#34c759',
+      },
+      {
+        id: 'tag-blue',
+        label: '个人',
+        iconType: 'circle',
+        iconColor: '#007aff',
+        activeColor: '#007aff',
+      },
+      {
+        id: 'tag-purple',
+        label: '紫色',
+        iconType: 'circle',
+        iconColor: '#af52de',
+        activeColor: '#af52de',
+      },
     ],
   },
-];
+]
 
 export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   children,
@@ -98,20 +146,20 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
   onBreadcrumbClick,
   onNavSelect,
 }) => {
-  const [activeNavId, setActiveNavId] = useState('recent');
+  const [activeNavId, setActiveNavId] = useState('recent')
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(
     sidebarConfig?.defaultCollapsed ?? false
-  );
-  const mainRef = useRef<HTMLElement>(null);
+  )
+  const mainRef = useRef<HTMLElement>(null)
 
   // 导航数据
-  const navSections = getDefaultNavSections();
+  const navSections = getDefaultNavSections()
 
   // 处理导航选择
   const handleNavSelect = (id: string) => {
-    setActiveNavId(id);
-    onNavSelect?.(id);
-  };
+    setActiveNavId(id)
+    onNavSelect?.(id)
+  }
 
   // 渲染侧边栏
   const renderSidebar = () => {
@@ -126,13 +174,13 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
             collapsed={isSidebarCollapsed}
             onCollapsedChange={setIsSidebarCollapsed}
           />
-        );
+        )
       case 'classic':
-        return <ClassicSidebar />;
+        return <ClassicSidebar />
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   // 经典侧边栏（保留原有简单样式作为备选）
   const ClassicSidebar = () => (
@@ -157,7 +205,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
         </nav>
       </aside>
     </div>
-  );
+  )
 
   return (
     <div className="tahoe-layout">
@@ -171,10 +219,7 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
           <div className="tahoe-header-left">
             {/* 面包屑导航 */}
             {breadcrumbs ? (
-              <Breadcrumb
-                items={breadcrumbs}
-                onItemClick={onBreadcrumbClick}
-              />
+              <Breadcrumb items={breadcrumbs} onItemClick={onBreadcrumbClick} />
             ) : (
               <h1 className="tahoe-title">{title}</h1>
             )}
@@ -231,12 +276,10 @@ export const TahoeLayout: React.FC<TahoeLayoutProps> = ({
         </header>
 
         {/* 内容区域 */}
-        <div className="tahoe-content">
-          {children}
-        </div>
+        <div className="tahoe-content">{children}</div>
       </main>
     </div>
-  );
-};
+  )
+}
 
-export default TahoeLayout;
+export default TahoeLayout

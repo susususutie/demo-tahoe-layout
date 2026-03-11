@@ -4,16 +4,16 @@
  * - 收起侧边栏按钮（侧边栏展开时显示在右侧）
  */
 
-import React from 'react';
-import './FloatingControls.css';
+import React from 'react'
+import './FloatingControls.css'
 
 interface FloatingControlsProps {
   /** 侧边栏是否收起 */
-  isCollapsed: boolean;
+  isCollapsed: boolean
   /** 展开侧边栏回调 */
-  onExpand: () => void;
+  onExpand: () => void
   /** 收起侧边栏回调 */
-  onCollapse: () => void;
+  onCollapse: () => void
 }
 
 export const FloatingControls: React.FC<FloatingControlsProps> = ({
@@ -67,7 +67,7 @@ export const FloatingControls: React.FC<FloatingControlsProps> = ({
         </svg>
       </button>
     </div>
-  );
-};
+  )
+}
 
-export default FloatingControls;
+export default FloatingControls
