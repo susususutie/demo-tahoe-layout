@@ -68,6 +68,23 @@
   /* 阴影 */
   --tahoe-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
   --tahoe-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+
+  /* 过渡动画 */
+  --tahoe-transition: 0.25s ease;
+}
+
+/* 主题切换过渡 */
+.tahoe-layout,
+.tahoe-layout *,
+.tahoe-sidebar,
+.tahoe-main,
+.tahoe-content-header,
+.tahoe-toolbar,
+.tahoe-content {
+  transition:
+    background-color var(--tahoe-transition),
+    color var(--tahoe-transition),
+    border-color var(--tahoe-transition);
 }
 
 /* 深色模式 - 自动检测 */
