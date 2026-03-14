@@ -172,9 +172,9 @@ import {
 
 /** 内置应用图标文件映射表 - iconName 对应本地图标路径 */
 const appIconFileMap: Record<string, string> = {
-  finder: '/icons/finder.png',
-  clock: '/icons/clock.png',
-  textedit: '/icons/textedit.png',
+  finder: import.meta.env.BASE_URL + 'icons/finder.png',
+  clock: import.meta.env.BASE_URL + 'icons/clock.png',
+  textedit: import.meta.env.BASE_URL + 'icons/textedit.png',
 }
 
 /** Lucide 图标映射 - macOS 风格 */
