@@ -34,7 +34,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(screen.getByText('Test Title')).toBeInTheDocument()
     expect(screen.getByText('Test Content')).toBeInTheDocument()
   })
@@ -47,7 +47,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(container.querySelector('.tahoe-layout')).toBeInTheDocument()
   })
 
@@ -56,7 +56,7 @@ describe('TahoeLayout Component', () => {
       { id: 'home', label: 'Home' },
       { id: 'about', label: 'About' },
     ]
-    
+
     render(
       <BrowserRouter>
         <TahoeLayout title="Test" breadcrumbs={breadcrumbs}>
@@ -64,7 +64,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(screen.getByText('Home')).toBeInTheDocument()
     expect(screen.getByText('About')).toBeInTheDocument()
   })
@@ -77,7 +77,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(screen.getByText('Test')).toBeInTheDocument()
   })
 
@@ -89,7 +89,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(screen.getByText('Test')).toBeInTheDocument()
   })
 
@@ -101,7 +101,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(container.querySelector('.tahoe-layout')).toBeInTheDocument()
   })
 
@@ -113,7 +113,7 @@ describe('TahoeLayout Component', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(container.querySelector('.tahoe-layout')).toBeInTheDocument()
   })
 })
@@ -127,7 +127,7 @@ describe('TahoeLayout Theme Transitions', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(container.querySelector('.tahoe-layout')).toBeInTheDocument()
   })
 })
@@ -141,7 +141,7 @@ describe('TahoeLayout Accessibility', () => {
         </TahoeLayout>
       </BrowserRouter>
     )
-    
+
     expect(screen.getByText('Main Content')).toBeInTheDocument()
   })
 })
