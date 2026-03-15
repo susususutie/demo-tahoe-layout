@@ -170,11 +170,13 @@ import {
   type LucideProps,
 } from 'lucide-react'
 
-/** 内置应用图标文件映射表 - iconName 对应本地图标路径 */
+/** 内置应用图标文件映射表 - iconName 对应本地图标路径
+ * 使用相对路径以适配 Vite 的 base 配置（GitHub Pages 部署）
+ */
 const appIconFileMap: Record<string, string> = {
-  finder: '/icons/finder.png',
-  clock: '/icons/clock.png',
-  textedit: '/icons/textedit.png',
+  finder: './icons/finder.png',
+  clock: './icons/clock.png',
+  textedit: './icons/textedit.png',
 }
 
 /** Lucide 图标映射 - macOS 风格 */
