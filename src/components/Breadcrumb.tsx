@@ -33,9 +33,7 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({
   showHome = true,
 }) => {
   const handleClick = (item: BreadcrumbItem, index: number) => {
-    if (onItemClick) {
-      onItemClick(item, index)
-    }
+    onItemClick?.(item, index)
   }
 
   return (
